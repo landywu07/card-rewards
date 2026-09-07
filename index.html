@@ -6,900 +6,1166 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <meta name="apple-mobile-web-app-title" content="刷卡速查">
-<meta name="theme-color" content="#10151C">
+<meta name="theme-color" content="#0B0F14">
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='70' y='15' rx='12' fill='%231A222C' stroke='%23E8B65C' stroke-width='6'/%3E%3Crect width='100' height='16' y='32' fill='%23E8B65C'/%3E%3Ccircle cx='25' cy='65' r='7' fill='%237FD1A6'/%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='70' y='15' rx='12' fill='%231A222C' stroke='%23E8B65C' stroke-width='6'/%3E%3Crect width='100' height='16' y='32' fill='%23E8B65C'/%3E%3Ccircle cx='25' cy='65' r='7' fill='%237FD1A6'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='70' y='15' rx='12' fill='%23161D27' stroke='%23F5C063' stroke-width='6'/%3E%3Crect width='100' height='16' y='32' fill='%23F5C063'/%3E%3Ccircle cx='25' cy='65' r='7' fill='%233ED598'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='70' y='15' rx='12' fill='%23161D27' stroke='%23F5C063' stroke-width='6'/%3E%3Crect width='100' height='16' y='32' fill='%23F5C063'/%3E%3Ccircle cx='25' cy='65' r='7' fill='%233ED598'/%3E%3C/svg%3E">
 <title>刷卡回饋速查 2.0</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@500;700&family=Noto+Sans+TC:wght@400;500;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#10151C;
-    --surface:#1A222C;
-    --surface-alt:#212B36;
-    --surface-hover:#283442;
-    --border:#28323E;
-    --border-light:#3A4756;
-    --text:#F1EEE6;
-    --text-dim:#8E99A6;
-    --text-bright:#FFFFFF;
-    --gold:#E8B65C;
-    --gold-glow:rgba(232,182,92,0.18);
-    --green:#7FD1A6;
-    --red:#E06C75;
-    --blue:#61AFEF;
-    --purple:#C678DD;
-    --badge-bg:rgba(255,255,255,0.06);
+    --bg-base:#0B0F14;
+    --surface:rgba(22, 29, 39, 0.72);
+    --surface-solid:#151C26;
+    --surface-alt:rgba(30, 40, 54, 0.65);
+    --surface-hover:rgba(37, 49, 66, 0.8);
+    --border:rgba(255, 255, 255, 0.08);
+    --border-light:rgba(255, 255, 255, 0.14);
+    --text:#F3F4F6;
+    --text-dim:#94A3B8;
+    --text-muted:#64748B;
+    --text-white:#FFFFFF;
+    --gold:#F5C063;
+    --gold-light:#FDE68A;
+    --gold-dark:#D99B26;
+    --gold-glow:rgba(245, 192, 99, 0.22);
+    --green:#3ED598;
+    --green-glow:rgba(62, 213, 152, 0.2);
+    --blue:#4D96FF;
+    --purple:#B070FF;
+    --red:#FF647C;
+    --coral:#FF8A65;
+    --radius-sm:6px;
+    --radius-md:10px;
+    --radius-lg:16px;
+    --radius-full:9999px;
+    --shadow-card:0 8px 30px rgba(0,0,0,0.35);
+    --shadow-glow:0 0 25px rgba(245,192,99,0.18);
   }
+
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
-    background:var(--bg);
+    background-color:var(--bg-base);
+    background-image:
+      radial-gradient(circle at 50% -10%, rgba(245, 192, 99, 0.07) 0%, transparent 45%),
+      radial-gradient(circle at 100% 50%, rgba(77, 150, 255, 0.04) 0%, transparent 35%),
+      radial-gradient(circle at 0% 100%, rgba(62, 213, 152, 0.04) 0%, transparent 35%);
+    background-attachment:fixed;
     color:var(--text);
-    font-family:"Noto Sans TC",sans-serif;
+    font-family:"Noto Sans TC", -apple-system, BlinkMacSystemFont, sans-serif;
     min-height:100vh;
     -webkit-font-smoothing:antialiased;
   }
+
   .wrap{
     max-width:760px;
     margin:0 auto;
-    padding:32px 20px 80px;
-  }
-  header{
-    margin-bottom:24px;
+    padding:28px 18px 80px;
   }
 
-  /* 頂部功能列 */
-  .top-bar{
+  /* 頂部導航列 */
+  .top-nav{
     display:flex;
     justify-content:space-between;
     align-items:center;
     flex-wrap:wrap;
     gap:10px;
-    margin-bottom:12px;
+    margin-bottom:14px;
   }
-  .eyebrow{
-    font-family:"IBM Plex Mono",monospace;
-    font-size:12.5px;
-    letter-spacing:.02em;
-    color:var(--text-dim);
-    margin:0;
-  }
-  .wallet-toggle-btn{
+  .version-badge{
     display:inline-flex;
     align-items:center;
     gap:6px;
-    background:var(--surface);
-    border:1px solid var(--border);
-    color:var(--gold);
-    font-size:12.5px;
-    padding:5px 12px;
-    border-radius:20px;
-    cursor:pointer;
-    transition:all .15s ease;
-  }
-  .wallet-toggle-btn:hover{
-    background:var(--surface-alt);
-    border-color:var(--gold);
-  }
-  .wallet-toggle-btn.has-filter{
-    background:var(--gold);
-    color:#1A1204;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12px;
     font-weight:600;
+    color:var(--gold);
+    background:rgba(245, 192, 99, 0.1);
+    border:1px solid rgba(245, 192, 99, 0.25);
+    padding:3px 10px;
+    border-radius:var(--radius-full);
+    letter-spacing:.02em;
+  }
+  .version-dot{
+    width:6px;
+    height:6px;
+    background:var(--green);
+    border-radius:50%;
+    box-shadow:0 0 8px var(--green);
   }
 
-  h1{
-    font-family:"Noto Serif TC",serif;
+  .wallet-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--surface);
+    backdrop-filter:blur(12px);
+    border:1px solid var(--border-light);
+    color:var(--text);
+    font-size:12.5px;
+    font-weight:500;
+    padding:6px 14px;
+    border-radius:var(--radius-full);
+    cursor:pointer;
+    transition:all .2s ease;
+    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+  }
+  .wallet-btn:hover{
+    border-color:var(--gold);
+    color:var(--gold-light);
+    transform:translateY(-1px);
+    box-shadow:0 4px 14px rgba(245,192,99,0.15);
+  }
+  .wallet-btn.filtered{
+    background:linear-gradient(135deg, rgba(245,192,99,0.18), rgba(245,192,99,0.06));
+    border-color:var(--gold);
+    color:var(--gold);
+  }
+  .wallet-count{
+    font-family:"IBM Plex Mono", monospace;
     font-weight:700;
-    font-size:32px;
-    line-height:1.3;
+    color:var(--gold);
+  }
+
+  /* 標題區塊 */
+  header{
+    margin-bottom:20px;
+  }
+  h1{
+    font-family:"Noto Serif TC", serif;
+    font-weight:900;
+    font-size:34px;
+    line-height:1.25;
     margin:0 0 10px;
     letter-spacing:.01em;
+    background:linear-gradient(135deg, #FFFFFF 30%, #E2E8F0 70%, #CBD5E1 100%);
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
   }
   .sub{
     color:var(--text-dim);
     font-size:14.5px;
-    line-height:1.7;
+    line-height:1.75;
     margin:0;
   }
 
-  /* 控制面版（卡包切換、搜尋與金額） */
-  .control-card{
+  /* 主控制台 (Glass Card) */
+  .control-panel{
     background:var(--surface);
+    backdrop-filter:blur(24px);
+    -webkit-backdrop-filter:blur(24px);
     border:1px solid var(--border);
-    border-radius:12px;
-    padding:18px 20px;
-    margin-top:22px;
-    box-shadow:0 4px 20px rgba(0,0,0,0.25);
+    border-radius:var(--radius-lg);
+    padding:20px 22px;
+    margin-top:20px;
+    box-shadow:var(--shadow-card), 0 0 0 1px rgba(255,255,255,0.03);
+    position:relative;
   }
 
-  /* 搜尋輸入區 */
-  .search-wrapper{
+  /* 搜尋列 */
+  .search-box-wrap{
     position:relative;
     display:flex;
     align-items:center;
   }
-  .search-wrapper input{
+  .search-icon{
+    position:absolute;
+    left:16px;
+    color:var(--text-muted);
+    font-size:16px;
+    pointer-events:none;
+    display:flex;
+    align-items:center;
+  }
+  .search-box-wrap input{
     width:100%;
     background:var(--surface-alt);
     border:1px solid var(--border);
-    border-bottom:2px solid var(--gold);
-    color:var(--text);
-    font-family:"Noto Sans TC",sans-serif;
+    color:var(--text-white);
+    font-family:"Noto Sans TC", sans-serif;
     font-size:16px;
-    padding:14px 40px 14px 16px;
-    border-radius:6px;
+    padding:14px 44px 14px 46px;
+    border-radius:var(--radius-md);
     outline:none;
-    transition:border-color .15s ease, background .15s ease;
+    transition:all .2s ease;
+    box-shadow:inset 0 2px 4px rgba(0,0,0,0.2);
   }
-  .search-wrapper input::placeholder{
-    color:var(--text-dim);
+  .search-box-wrap input::placeholder{
+    color:var(--text-muted);
     font-size:14px;
   }
-  .search-wrapper input:focus{
-    background:#26323F;
+  .search-box-wrap input:focus{
+    background:#1C2533;
     border-color:var(--gold);
+    box-shadow:0 0 0 3px rgba(245, 192, 99, 0.15), inset 0 2px 4px rgba(0,0,0,0.2);
   }
-  .clear-btn{
+  .btn-clear{
     position:absolute;
     right:12px;
-    background:none;
+    background:rgba(255,255,255,0.1);
     border:none;
     color:var(--text-dim);
-    font-size:16px;
-    cursor:pointer;
-    padding:4px 8px;
+    width:24px;
+    height:24px;
     border-radius:50%;
     display:none;
+    align-items:center;
+    justify-content:center;
+    cursor:pointer;
+    font-size:12px;
+    transition:all .15s;
   }
-  .clear-btn:hover{
-    color:var(--text);
+  .btn-clear:hover{
+    background:rgba(255,255,255,0.2);
+    color:var(--text-white);
   }
 
-  
-  /* 智慧意圖分流標籤 */
+  /* 智慧意圖分流按鈕列 */
   .intent-bar{
     display:none;
     align-items:center;
     flex-wrap:wrap;
-    gap:6px;
-    margin-top:10px;
-    padding:8px 12px;
-    background:rgba(232,182,92,0.1);
-    border:1px solid rgba(232,182,92,0.3);
-    border-radius:8px;
+    gap:8px;
+    margin-top:12px;
+    padding:10px 14px;
+    background:linear-gradient(135deg, rgba(245, 192, 99, 0.12), rgba(245, 192, 99, 0.04));
+    border:1px solid rgba(245, 192, 99, 0.28);
+    border-radius:var(--radius-md);
     font-size:12px;
-    animation:fadeIn .2s ease;
+    animation:slideDown .25s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .intent-bar.show{
     display:flex;
   }
   .intent-title{
-    color:var(--gold);
-    font-weight:600;
+    color:var(--gold-light);
+    font-weight:700;
     display:inline-flex;
     align-items:center;
-    gap:4px;
+    gap:5px;
   }
   .intent-pill{
-    background:var(--surface);
-    border:1px solid var(--border);
+    background:var(--surface-solid);
+    border:1px solid rgba(245, 192, 99, 0.3);
     color:var(--text);
-    padding:3px 10px;
-    border-radius:14px;
-    font-size:11.5px;
+    padding:5px 12px;
+    border-radius:var(--radius-full);
+    font-size:12px;
+    font-weight:500;
     cursor:pointer;
-    transition:all .15s;
+    transition:all .2s ease;
+    box-shadow:0 2px 6px rgba(0,0,0,0.25);
   }
   .intent-pill:hover{
-    border-color:var(--gold);
-    color:var(--gold);
-    background:var(--surface-alt);
-  }
-  .intent-pill.active{
     background:var(--gold);
-    color:#1A1204;
-    font-weight:600;
+    color:#0B0F14;
     border-color:var(--gold);
+    transform:translateY(-1px);
+    box-shadow:0 4px 10px var(--gold-glow);
   }
-  @keyframes fadeIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
+  @keyframes slideDown{
+    from{opacity:0; transform:translateY(-6px);}
+    to{opacity:1; transform:translateY(0);}
+  }
 
-  /* 熱門快速標籤 */
-  .hot-tags{
+  /* 熱門標籤列 */
+  .hot-bar{
     display:flex;
     align-items:center;
     flex-wrap:wrap;
     gap:6px;
-    margin-top:10px;
-    font-size:12px;
+    margin-top:12px;
   }
   .hot-label{
-    color:var(--text-dim);
-    font-family:"IBM Plex Mono",monospace;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:11.5px;
+    font-weight:600;
+    color:var(--text-muted);
   }
   .hot-tag{
     background:transparent;
-    border:1px dashed var(--border);
+    border:1px solid var(--border);
     color:var(--text-dim);
     font-size:11.5px;
-    padding:2px 8px;
-    border-radius:4px;
+    padding:3px 9px;
+    border-radius:var(--radius-sm);
     cursor:pointer;
-    transition:all .15s;
+    transition:all .15s ease;
   }
   .hot-tag:hover{
     border-color:var(--gold);
     color:var(--gold);
+    background:rgba(245, 192, 99, 0.08);
   }
 
-  /* 金額區塊 */
-  .amount-section{
+  /* 金額輸入區塊 */
+  .amount-box-wrap{
     margin-top:16px;
-    padding-top:14px;
-    border-top:1px dashed var(--border);
+    padding-top:16px;
+    border-top:1px solid var(--border);
   }
-  .amount-row{
+  .amount-input-row{
     display:flex;
     gap:10px;
     align-items:center;
   }
-  .amount-row .prefix{
-    font-family:"IBM Plex Mono",monospace;
+  .amount-label{
+    font-size:13.5px;
+    font-weight:600;
     color:var(--text-dim);
-    font-size:14px;
     white-space:nowrap;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
   }
-  .amount-row input{
+  .amount-input-inner{
     flex:1;
+    position:relative;
+    display:flex;
+    align-items:center;
+  }
+  .currency-prefix{
+    position:absolute;
+    left:14px;
+    font-family:"IBM Plex Mono", monospace;
+    font-weight:600;
+    font-size:13.5px;
+    color:var(--gold);
+    pointer-events:none;
+  }
+  .amount-input-inner input{
+    width:100%;
     background:var(--surface-alt);
     border:1px solid var(--border);
-    color:var(--text);
-    font-family:"IBM Plex Mono",monospace;
+    color:var(--text-white);
+    font-family:"IBM Plex Mono", monospace;
+    font-weight:600;
     font-size:15px;
-    padding:10px 14px;
-    border-radius:6px;
+    padding:10px 14px 10px 48px;
+    border-radius:var(--radius-md);
     outline:none;
-    transition:border-color .15s;
+    transition:all .2s;
   }
-  .amount-row input:focus{
+  .amount-input-inner input:focus{
     border-color:var(--gold);
+    background:#1C2533;
+    box-shadow:0 0 0 3px rgba(245, 192, 99, 0.12);
   }
-  .presets{
+
+  /* 快捷金額微調鈕 */
+  .presets-row{
     display:flex;
     flex-wrap:wrap;
     gap:6px;
     margin-top:10px;
   }
   .preset-btn{
-    font-family:"IBM Plex Mono",monospace;
+    font-family:"IBM Plex Mono", monospace;
     font-size:11.5px;
-    padding:4px 9px;
-    border-radius:5px;
+    font-weight:600;
+    padding:4px 10px;
+    border-radius:var(--radius-sm);
     border:1px solid var(--border);
-    background:transparent;
+    background:rgba(255,255,255,0.03);
     color:var(--text-dim);
     cursor:pointer;
-    transition:all .15s;
+    transition:all .15s ease;
   }
   .preset-btn:hover{
     border-color:var(--gold);
-    color:var(--text);
+    color:var(--gold-light);
+    background:rgba(245, 192, 99, 0.08);
   }
   .preset-btn.inc{
     color:var(--blue);
-    border-color:rgba(97,175,239,0.3);
+    border-color:rgba(77, 150, 255, 0.3);
+    background:rgba(77, 150, 255, 0.06);
   }
   .preset-btn.inc:hover{
     border-color:var(--blue);
-    background:rgba(97,175,239,0.1);
+    background:rgba(77, 150, 255, 0.15);
+    color:#FFFFFF;
   }
-  .preset-btn.clear{
+  .preset-btn.clear-amt{
     color:var(--red);
-    border-color:rgba(224,108,117,0.3);
+    border-color:rgba(255, 100, 124, 0.3);
+    background:rgba(255, 100, 124, 0.06);
   }
-  .preset-btn.clear:hover{
+  .preset-btn.clear-amt:hover{
     border-color:var(--red);
-    background:rgba(224,108,117,0.1);
+    background:rgba(255, 100, 124, 0.15);
+    color:#FFFFFF;
   }
 
-  /* 錢包切換列 */
+  /* 皮夾模式切換條 */
   .wallet-bar{
     display:flex;
     justify-content:space-between;
     align-items:center;
     flex-wrap:wrap;
     gap:10px;
-    margin-top:14px;
-    padding-top:12px;
-    border-top:1px dashed var(--border);
+    margin-top:16px;
+    padding-top:14px;
+    border-top:1px solid var(--border);
   }
-  .wallet-status{
+  .wallet-status-desc{
     font-size:12.5px;
     color:var(--text-dim);
     display:flex;
     align-items:center;
     gap:6px;
   }
-  .toggle-switch-wrap{
-    display:flex;
+  .wallet-status-desc strong{
+    color:var(--gold);
+    font-family:"IBM Plex Mono", monospace;
+  }
+
+  .switch-label{
+    display:inline-flex;
     align-items:center;
-    gap:8px;
-    font-size:13px;
+    gap:10px;
     cursor:pointer;
     user-select:none;
+    font-size:13px;
+    font-weight:600;
+    color:var(--text-dim);
+    transition:color .2s;
   }
-  .toggle-switch{
+  .switch-track{
+    width:42px;
+    height:22px;
+    background:#202B38;
+    border-radius:var(--radius-full);
+    border:1px solid var(--border-light);
     position:relative;
-    width:36px;
-    height:20px;
-    background:var(--surface-alt);
-    border-radius:10px;
-    border:1px solid var(--border);
-    transition:background .2s;
+    transition:all .25s ease;
   }
-  .toggle-switch::after{
-    content:"";
+  .switch-thumb{
+    width:16px;
+    height:16px;
+    background:var(--text-muted);
+    border-radius:50%;
     position:absolute;
     top:2px;
     left:2px;
-    width:14px;
-    height:14px;
-    background:var(--text-dim);
-    border-radius:50%;
-    transition:transform .2s, background .2s;
+    transition:all .25s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .toggle-switch-wrap.active .toggle-switch{
-    background:var(--gold);
-    border-color:var(--gold);
-  }
-  .toggle-switch-wrap.active .toggle-switch::after{
-    transform:translateX(16px);
-    background:#1A1204;
-  }
-  .toggle-switch-wrap.active span{
+  .switch-label.active{
     color:var(--gold);
-    font-weight:600;
+  }
+  .switch-label.active .switch-track{
+    background:linear-gradient(135deg, #F5C063, #D49B35);
+    border-color:var(--gold);
+    box-shadow:0 0 12px var(--gold-glow);
+  }
+  .switch-label.active .switch-thumb{
+    transform:translateX(20px);
+    background:#0B0F14;
   }
 
-  /* 分類 Chips */
-  .chips{
+  /* 分類列：橫向無縫滾動 (Horizontal Scroll Track) */
+  .chips-scroll-wrap{
+    position:relative;
+    margin-top:20px;
+    overflow:hidden;
+  }
+  .chips-track{
     display:flex;
-    flex-wrap:wrap;
-    gap:7px;
-    margin-top:18px;
+    gap:8px;
+    overflow-x:auto;
+    scrollbar-width:none;
+    -webkit-overflow-scrolling:touch;
+    padding:4px 0 6px;
+  }
+  .chips-track::-webkit-scrollbar{
+    display:none;
   }
   .chip{
-    font-family:"Noto Sans TC",sans-serif;
-    font-size:12.5px;
-    padding:6px 12px;
-    border-radius:18px;
+    flex-shrink:0;
+    font-family:"Noto Sans TC", sans-serif;
+    font-size:13px;
+    font-weight:500;
+    padding:7px 16px;
+    border-radius:var(--radius-full);
     border:1px solid var(--border);
-    background:transparent;
+    background:var(--surface);
+    backdrop-filter:blur(10px);
     color:var(--text-dim);
     cursor:pointer;
-    transition:all .15s ease;
+    transition:all .2s cubic-bezier(0.16, 1, 0.3, 1);
     white-space:nowrap;
   }
   .chip:hover{
     border-color:var(--gold);
-    color:var(--text);
+    color:var(--text-white);
+    background:var(--surface-hover);
+    transform:translateY(-1px);
   }
   .chip.active{
-    background:var(--gold);
+    background:linear-gradient(135deg, #F5C063 0%, #D49B35 100%);
     border-color:var(--gold);
-    color:#1A1204;
-    font-weight:600;
+    color:#0B0F14;
+    font-weight:700;
+    box-shadow:0 4px 14px var(--gold-glow);
+    transform:translateY(-1px);
   }
 
-  /* 結果資訊統計列 */
-  .meta-row{
+  /* 結果統計資訊列 */
+  .results-meta{
     display:flex;
     justify-content:space-between;
     align-items:baseline;
-    margin:28px 0 12px;
+    margin:28px 0 14px;
     padding-bottom:10px;
     border-bottom:1px solid var(--border);
   }
-  .meta-row .label{
-    font-family:"IBM Plex Mono",monospace;
-    font-size:12.5px;
-    color:var(--text-dim);
-  }
-
-  /* 結果列表 */
-  .results{
-    display:flex;
-    flex-direction:column;
-    gap:12px;
-  }
-
-  /* 單張卡片結果 Row */
-  .card-item{
-    background:var(--surface);
-    border:1px solid var(--border);
-    border-radius:10px;
-    overflow:hidden;
-    transition:transform .12s ease, border-color .15s ease;
-  }
-  .card-item:hover{
-    border-color:var(--border-light);
-  }
-  .card-item.top{
-    border-color:var(--gold);
-    background:linear-gradient(180deg, rgba(232,182,92,0.08), rgba(232,182,92,0.02));
-    box-shadow:0 0 20px var(--gold-glow);
-  }
-
-  .card-main{
-    display:grid;
-    grid-template-columns:32px 1fr auto;
-    gap:14px;
-    align-items:center;
-    padding:16px 16px;
-  }
-
-  .rank-box{
-    text-align:center;
-  }
-  .rank{
-    font-family:"IBM Plex Mono",monospace;
-    font-size:15px;
+  .meta-title{
+    font-size:13.5px;
     font-weight:600;
     color:var(--text-dim);
+    letter-spacing:.02em;
   }
-  .card-item.top .rank{
+  .meta-count{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12.5px;
+    font-weight:600;
     color:var(--gold);
-    font-size:17px;
-  }
-  .crown{
-    display:block;
-    font-size:12px;
-    margin-bottom:2px;
   }
 
-  .info{
+  /* 結果卡片清單 */
+  .results-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+  }
+
+  /* 單張信用卡卡片 (Card Item) */
+  .card-card{
+    background:var(--surface);
+    backdrop-filter:blur(20px);
+    -webkit-backdrop-filter:blur(20px);
+    border:1px solid var(--border);
+    border-radius:var(--radius-lg);
+    overflow:hidden;
+    transition:all .2s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow:var(--shadow-card);
+    position:relative;
+  }
+  .card-card:hover{
+    border-color:var(--border-light);
+    transform:translateY(-2px);
+    box-shadow:0 12px 36px rgba(0,0,0,0.45);
+  }
+
+  /* 冠軍第 1 名專屬樣式 */
+  .card-card.top-rank{
+    border:1.5px solid var(--gold);
+    background:linear-gradient(145deg, rgba(245, 192, 99, 0.08) 0%, rgba(22, 29, 39, 0.85) 60%, rgba(22, 29, 39, 0.95) 100%);
+    box-shadow:var(--shadow-glow), 0 12px 40px rgba(0,0,0,0.5);
+  }
+  .champion-ribbon{
+    position:absolute;
+    top:0;
+    right:0;
+    background:linear-gradient(135deg, #F5C063, #D49B35);
+    color:#0B0F14;
+    font-size:10.5px;
+    font-weight:800;
+    padding:3px 14px 4px;
+    border-bottom-left-radius:10px;
+    letter-spacing:.03em;
+    display:flex;
+    align-items:center;
+    gap:4px;
+    box-shadow:0 2px 8px rgba(0,0,0,0.3);
+  }
+
+  /* 卡片主體區塊 */
+  .card-body{
+    display:grid;
+    grid-template-columns:36px 1fr auto;
+    gap:14px;
+    align-items:center;
+    padding:18px 18px 16px;
+  }
+
+  /* 排名徽章 */
+  .rank-pill{
+    width:32px;
+    height:32px;
+    border-radius:50%;
+    background:var(--surface-alt);
+    border:1px solid var(--border);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-family:"IBM Plex Mono", monospace;
+    font-weight:700;
+    font-size:14px;
+    color:var(--text-muted);
+  }
+  .card-card.top-rank .rank-pill{
+    background:linear-gradient(135deg, #F5C063, #D49B35);
+    border-color:var(--gold);
+    color:#0B0F14;
+    font-size:15px;
+    box-shadow:0 0 10px var(--gold-glow);
+  }
+
+  /* 卡片主資訊 */
+  .card-info{
     min-width:0;
   }
-  .header-line{
+  .card-title-row{
     display:flex;
     align-items:center;
     flex-wrap:wrap;
-    gap:6px 8px;
-    margin-bottom:4px;
+    gap:8px;
+    margin-bottom:6px;
   }
-  .card-name{
-    font-size:15.5px;
-    font-weight:600;
-    color:var(--text-bright);
+  .card-brand{
+    font-size:16px;
+    font-weight:700;
+    color:var(--text-white);
     margin:0;
+    letter-spacing:.01em;
   }
-  .point-type{
-    font-family:"IBM Plex Mono",monospace;
-    font-size:11px;
-    padding:1px 6px;
-    border-radius:4px;
-    background:rgba(232,182,92,0.15);
-    color:var(--gold);
-    border:1px solid rgba(232,182,92,0.3);
-    white-space:nowrap;
-  }
-  .held-tag{
+
+  /* 點數幣別標章 */
+  .currency-badge{
+    font-family:"IBM Plex Mono", monospace;
     font-size:10.5px;
-    padding:1px 5px;
-    border-radius:3px;
-    background:rgba(127,209,166,0.15);
+    font-weight:600;
+    padding:2px 8px;
+    border-radius:var(--radius-full);
+    white-space:nowrap;
+    border:1px solid transparent;
+  }
+  .cur-gold{
+    background:rgba(245, 192, 99, 0.14);
+    color:var(--gold);
+    border-color:rgba(245, 192, 99, 0.3);
+  }
+  .cur-green{
+    background:rgba(62, 213, 152, 0.14);
     color:var(--green);
-    border:1px solid rgba(127,209,166,0.3);
+    border-color:rgba(62, 213, 152, 0.3);
+  }
+  .cur-blue{
+    background:rgba(77, 150, 255, 0.14);
+    color:var(--blue);
+    border-color:rgba(77, 150, 255, 0.3);
+  }
+  .cur-coral{
+    background:rgba(255, 138, 101, 0.14);
+    color:var(--coral);
+    border-color:rgba(255, 138, 101, 0.3);
+  }
+  .cur-purple{
+    background:rgba(176, 112, 255, 0.14);
+    color:var(--purple);
+    border-color:rgba(176, 112, 255, 0.3);
   }
 
-  .channel{
-    font-size:13.5px;
+  .held-badge{
+    font-size:10.5px;
+    font-weight:600;
+    padding:2px 7px;
+    border-radius:var(--radius-full);
+    background:rgba(62, 213, 152, 0.15);
+    color:var(--green);
+    border:1px solid rgba(62, 213, 152, 0.35);
+  }
+
+  .channel-title{
+    font-size:14px;
+    font-weight:500;
     color:var(--text);
-    line-height:1.5;
-    margin:0 0 6px;
+    line-height:1.55;
+    margin:0 0 8px;
   }
 
-  /* 結構化標籤（防踩雷/門檻） */
-  .tag-badges{
+  /* 防踩雷微膠囊標籤 */
+  .pills-group{
     display:flex;
     flex-wrap:wrap;
     gap:5px;
     margin-bottom:6px;
   }
-  .badge{
+  .micro-pill{
     font-size:11px;
-    padding:1.5px 7px;
-    border-radius:4px;
-    line-height:1.4;
+    font-weight:500;
+    padding:2px 9px;
+    border-radius:var(--radius-full);
+    line-height:1.45;
     white-space:nowrap;
+    border:1px solid transparent;
   }
-  .badge-warn{
-    background:rgba(224,108,117,0.15);
+  .pill-warn{
+    background:rgba(255, 100, 124, 0.12);
     color:var(--red);
-    border:1px solid rgba(224,108,117,0.35);
+    border-color:rgba(255, 100, 124, 0.35);
   }
-  .badge-amber{
-    background:rgba(232,182,92,0.12);
-    color:#F3CD80;
-    border:1px solid rgba(232,182,92,0.3);
+  .pill-amber{
+    background:rgba(245, 192, 99, 0.12);
+    color:#FCD34D;
+    border-color:rgba(245, 192, 99, 0.3);
   }
-  .badge-blue{
-    background:rgba(97,175,239,0.12);
+  .pill-blue{
+    background:rgba(77, 150, 255, 0.12);
     color:var(--blue);
-    border:1px solid rgba(97,175,239,0.3);
+    border-color:rgba(77, 150, 255, 0.3);
   }
-  .badge-purple{
-    background:rgba(198,120,221,0.12);
+  .pill-purple{
+    background:rgba(176, 112, 255, 0.12);
     color:var(--purple);
-    border:1px solid rgba(198,120,221,0.3);
+    border-color:rgba(176, 112, 255, 0.3);
   }
-  .badge-neutral{
-    background:var(--badge-bg);
+  .pill-default{
+    background:rgba(255, 255, 255, 0.05);
     color:var(--text-dim);
-    border:1px solid var(--border);
+    border-color:var(--border);
   }
 
-  .note{
+  .card-note{
     font-size:12px;
-    color:var(--text-dim);
-    line-height:1.6;
+    color:var(--text-muted);
+    line-height:1.65;
     margin:0;
-    opacity:.9;
   }
 
-  /* 右側費率／回饋金區塊 */
-  .rate-block{
+  /* 右側金額與費率 */
+  .rate-column{
     text-align:right;
     white-space:nowrap;
-    padding-left:10px;
+    padding-left:8px;
   }
-  .cashback{
-    font-family:"IBM Plex Mono",monospace;
-    font-size:22px;
+  .cashback-num{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:24px;
     font-weight:700;
     color:var(--green);
-    letter-spacing:-0.02em;
+    letter-spacing:-0.03em;
+    line-height:1.1;
   }
-  .card-item.top .cashback{
+  .cashback-num small{
+    font-size:13px;
+    font-weight:500;
+    margin-right:2px;
+  }
+  .card-card.top-rank .cashback-num{
     color:var(--gold);
-    font-size:25px;
+    font-size:27px;
   }
-  .effective-rate{
-    font-family:"IBM Plex Mono",monospace;
+
+  .rate-badge-row{
+    margin-top:3px;
+  }
+  .effective-tag{
+    display:inline-block;
+    font-family:"IBM Plex Mono", monospace;
     font-size:12px;
-    font-weight:600;
-    color:var(--gold);
+    font-weight:700;
+    color:var(--gold-light);
+    background:rgba(245, 192, 99, 0.15);
+    padding:1px 7px;
+    border-radius:var(--radius-sm);
+  }
+  .effective-tag.full{
+    color:var(--green);
+    background:rgba(62, 213, 152, 0.15);
+  }
+  .nominal-rate-text{
+    font-size:11px;
+    color:var(--text-muted);
     margin-top:2px;
   }
-  .effective-rate.is-full{
-    color:var(--green);
-  }
-  .nominal-sub{
-    font-size:11px;
-    color:var(--text-dim);
-    margin-top:1px;
-  }
-  .rate{
-    font-family:"IBM Plex Mono",monospace;
-    font-size:22px;
+  .cap-tag-alert{
+    display:inline-block;
+    margin-top:4px;
+    font-size:10.5px;
     font-weight:600;
+    color:var(--red);
+    background:rgba(255, 100, 124, 0.1);
+    border:1px solid rgba(255, 100, 124, 0.3);
+    border-radius:var(--radius-sm);
+    padding:1px 6px;
+  }
+
+  .nominal-alone{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:24px;
+    font-weight:700;
     color:var(--green);
+    line-height:1.1;
   }
-  .card-item.top .rate{
+  .card-card.top-rank .nominal-alone{
     color:var(--gold);
-    font-size:25px;
+    font-size:27px;
   }
-  .cap{
+  .cap-desc{
     font-size:11.5px;
     color:var(--text-dim);
     margin-top:3px;
   }
-  .capped-flag{
-    display:inline-block;
-    margin-top:4px;
-    font-size:10.5px;
-    color:var(--red);
-    background:rgba(224,108,117,0.1);
-    border:1px solid rgba(224,108,117,0.35);
-    border-radius:4px;
-    padding:1px 6px;
-  }
 
-  /* 明細展開區 */
-  .detail-toggle-row{
-    padding:6px 16px;
-    background:rgba(0,0,0,0.15);
-    border-top:1px solid rgba(255,255,255,0.04);
+  /* 展開式計算明細面板 */
+  .detail-bar-row{
+    padding:8px 18px;
+    background:rgba(0, 0, 0, 0.2);
+    border-top:1px solid var(--border);
     display:flex;
     justify-content:space-between;
     align-items:center;
   }
-  .btn-toggle-detail{
+  .btn-accordion{
     background:none;
     border:none;
     color:var(--text-dim);
-    font-size:11.5px;
-    font-family:"Noto Sans TC",sans-serif;
+    font-size:12px;
+    font-weight:500;
     cursor:pointer;
-    padding:3px 0;
+    padding:2px 0;
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    transition:color .15s;
+  }
+  .btn-accordion:hover{
+    color:var(--gold);
+  }
+  .strategy-badge-preview{
+    font-size:12px;
+    color:var(--gold-light);
     display:inline-flex;
     align-items:center;
     gap:4px;
-    transition:color .15s;
-  }
-  .btn-toggle-detail:hover{
-    color:var(--gold);
-  }
-  .sweet-spot-hint{
-    font-size:11.5px;
-    color:#E5C07B;
-    font-family:"Noto Sans TC",sans-serif;
   }
 
-  .calc-detail-panel{
+  .calc-accordion{
     display:none;
-    padding:12px 16px 14px;
-    background:var(--surface-alt);
-    border-top:1px dashed var(--border);
-    font-size:12.5px;
-    line-height:1.7;
-    color:#C9D1D9;
+    padding:16px 18px 18px;
+    background:#111720;
+    border-top:1px dashed rgba(255, 255, 255, 0.08);
+    animation:fadeIn .2s ease;
   }
-  .calc-detail-panel.show{
+  .calc-accordion.show{
     display:block;
   }
-  .detail-grid{
+
+  /* 視覺化進度拆解 */
+  .formula-box{
+    background:var(--surface-solid);
+    border:1px solid var(--border);
+    border-radius:var(--radius-md);
+    padding:12px 14px;
     display:flex;
     flex-direction:column;
-    gap:4px;
+    gap:8px;
   }
-  .detail-line{
+  .formula-item{
     display:flex;
     justify-content:space-between;
-    flex-wrap:wrap;
-    gap:4px;
+    align-items:center;
+    font-size:12.5px;
   }
-  .detail-line span{
+  .formula-item .label{
     color:var(--text-dim);
   }
-  .detail-line strong{
-    font-family:"IBM Plex Mono",monospace;
-    color:var(--text);
+  .formula-item .val{
+    font-family:"IBM Plex Mono", monospace;
+    font-weight:600;
+    color:var(--text-white);
   }
-  .detail-line strong.gold{
-    color:var(--gold);
+
+  /* 進度條 */
+  .cap-bar-wrap{
+    margin-top:4px;
   }
-  .detail-line strong.green{
-    color:var(--green);
+  .cap-bar-info{
+    display:flex;
+    justify-content:space-between;
+    font-size:11px;
+    color:var(--text-muted);
+    margin-bottom:3px;
   }
-  .detail-strategy{
-    margin-top:6px;
-    padding-top:6px;
-    border-top:1px dashed rgba(255,255,255,0.1);
-    color:var(--gold);
-    font-size:12px;
+  .progress-bg{
+    height:6px;
+    background:rgba(255,255,255,0.08);
+    border-radius:var(--radius-full);
+    overflow:hidden;
+  }
+  .progress-fill{
+    height:100%;
+    background:linear-gradient(90deg, var(--green), var(--gold));
+    border-radius:var(--radius-full);
+    transition:width .4s ease;
+  }
+  .progress-fill.capped{
+    background:linear-gradient(90deg, var(--gold), var(--red));
+  }
+
+  /* 策略卡片 */
+  .strategy-card{
+    margin-top:10px;
+    padding:10px 14px;
+    background:linear-gradient(135deg, rgba(245,192,99,0.1), rgba(245,192,99,0.02));
+    border:1px solid rgba(245,192,99,0.25);
+    border-radius:var(--radius-md);
+    font-size:12.5px;
+    color:var(--gold-light);
+    line-height:1.55;
+    display:flex;
+    align-items:flex-start;
+    gap:6px;
   }
 
   /* 搜尋高亮 */
   mark.hl{
-    background:rgba(232,182,92,0.3);
-    color:#FFF3D6;
-    padding:1px 3px;
+    background:rgba(245, 192, 99, 0.32);
+    color:#FFF8EB;
+    padding:1px 4px;
     border-radius:3px;
-    border-bottom:1px solid var(--gold);
+    border-bottom:1.5px solid var(--gold);
   }
 
   /* 空狀態 */
-  .empty{
+  .empty-state{
     text-align:center;
-    padding:60px 20px;
-    color:var(--text-dim);
+    padding:64px 20px;
+    background:var(--surface);
+    border-radius:var(--radius-lg);
+    border:1px solid var(--border);
   }
-  .empty .big{
-    font-family:"Noto Serif TC",serif;
-    font-size:19px;
-    color:var(--text);
+  .empty-icon{
+    font-size:36px;
+    margin-bottom:12px;
+  }
+  .empty-title{
+    font-family:"Noto Serif TC", serif;
+    font-size:20px;
+    font-weight:700;
+    color:var(--text-white);
     margin-bottom:8px;
   }
-  .empty-tips{
-    font-size:13px;
-    margin-top:14px;
+  .empty-desc{
+    font-size:13.5px;
+    color:var(--text-dim);
     line-height:1.8;
   }
 
-  /* 模態彈窗（我的卡包） */
+  /* 模態彈窗 (我的卡包) */
   .modal-overlay{
     position:fixed;
-    top:0;
-    left:0;
-    right:0;
-    bottom:0;
-    background:rgba(0,0,0,0.7);
-    backdrop-filter:blur(4px);
+    top:0; left:0; right:0; bottom:0;
+    background:rgba(0,0,0,0.75);
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
     display:none;
     justify-content:center;
     align-items:center;
     z-index:9999;
-    padding:20px;
+    padding:18px;
   }
   .modal-overlay.show{
     display:flex;
   }
-  .modal{
-    background:var(--surface);
+  .modal-box{
+    background:#151C26;
     border:1px solid var(--border-light);
-    border-radius:14px;
+    border-radius:var(--radius-lg);
     width:100%;
     max-width:560px;
     max-height:85vh;
     display:flex;
     flex-direction:column;
-    box-shadow:0 12px 40px rgba(0,0,0,0.6);
+    box-shadow:0 24px 60px rgba(0,0,0,0.7);
+    animation:modalPop .2s cubic-bezier(0.16, 1, 0.3, 1);
   }
-  .modal-header{
-    padding:18px 20px;
+  @keyframes modalPop{
+    from{opacity:0; transform:scale(0.96);}
+    to{opacity:1; transform:scale(1);}
+  }
+  .modal-head{
+    padding:18px 22px;
     border-bottom:1px solid var(--border);
     display:flex;
     justify-content:space-between;
     align-items:center;
   }
   .modal-title{
-    font-family:"Noto Serif TC",serif;
-    font-size:18px;
+    font-family:"Noto Serif TC", serif;
+    font-size:19px;
     font-weight:700;
     margin:0;
     display:flex;
     align-items:center;
     gap:8px;
+    color:var(--text-white);
   }
-  .modal-close{
+  .btn-close-modal{
     background:none;
     border:none;
-    color:var(--text-dim);
+    color:var(--text-muted);
     font-size:22px;
     cursor:pointer;
     padding:0;
-    line-height:1;
+    transition:color .15s;
   }
-  .modal-close:hover{
-    color:var(--text);
+  .btn-close-modal:hover{
+    color:var(--text-white);
   }
   .modal-body{
-    padding:16px 20px;
+    padding:18px 22px;
     overflow-y:auto;
     flex:1;
   }
-  .modal-tools{
+  .modal-actions{
     display:flex;
     justify-content:space-between;
     align-items:center;
     flex-wrap:wrap;
     gap:8px;
-    margin-bottom:12px;
+    margin-bottom:14px;
     padding-bottom:12px;
     border-bottom:1px dashed var(--border);
   }
-  .modal-tools-btn{
+  .action-btn{
     font-size:12px;
+    font-weight:500;
     background:var(--surface-alt);
     border:1px solid var(--border);
     color:var(--text-dim);
-    padding:4px 10px;
-    border-radius:5px;
+    padding:5px 12px;
+    border-radius:var(--radius-sm);
     cursor:pointer;
     transition:all .15s;
   }
-  .modal-tools-btn:hover{
+  .action-btn:hover{
     border-color:var(--gold);
     color:var(--gold);
+    background:rgba(245,192,99,0.08);
   }
-  .card-checkbox-grid{
+  .wallet-card-grid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:8px;
+    gap:9px;
   }
-  .card-check-item{
+  .card-option{
     display:flex;
     align-items:flex-start;
-    gap:8px;
+    gap:9px;
     background:var(--surface-alt);
     border:1px solid var(--border);
-    padding:10px 12px;
-    border-radius:8px;
+    padding:12px 14px;
+    border-radius:var(--radius-md);
     cursor:pointer;
-    font-size:13px;
+    font-size:13.5px;
+    font-weight:500;
+    color:var(--text);
     transition:all .15s;
     user-select:none;
   }
-  .card-check-item:hover{
+  .card-option:hover{
     border-color:var(--gold);
+    background:rgba(245,192,99,0.04);
   }
-  .card-check-item.checked{
+  .card-option.checked{
     border-color:var(--gold);
-    background:rgba(232,182,92,0.08);
+    background:linear-gradient(135deg, rgba(245,192,99,0.12), rgba(245,192,99,0.03));
+    color:var(--gold-light);
   }
-  .card-check-item input{
+  .card-option input{
     margin-top:2px;
     accent-color:var(--gold);
   }
-  .modal-footer{
-    padding:14px 20px;
+  .modal-foot{
+    padding:16px 22px;
     border-top:1px solid var(--border);
     display:flex;
     justify-content:flex-end;
-    gap:10px;
   }
-  .btn-save-wallet{
-    background:var(--gold);
-    color:#1A1204;
-    font-weight:600;
+  .btn-save-cards{
+    background:linear-gradient(135deg, #F5C063, #D49B35);
+    color:#0B0F14;
+    font-weight:700;
+    font-size:14.5px;
     border:none;
-    padding:8px 20px;
-    border-radius:6px;
+    padding:9px 24px;
+    border-radius:var(--radius-md);
     cursor:pointer;
-    font-size:14px;
-    transition:background .15s;
+    transition:all .15s;
+    box-shadow:0 4px 12px rgba(245,192,99,0.25);
   }
-  .btn-save-wallet:hover{
-    background:#f0c475;
+  .btn-save-cards:hover{
+    transform:translateY(-1px);
+    box-shadow:0 6px 18px rgba(245,192,99,0.4);
   }
 
   footer{
     margin-top:48px;
-    padding-top:20px;
+    padding-top:22px;
     border-top:1px solid var(--border);
     font-size:12px;
-    color:var(--text-dim);
+    color:var(--text-muted);
     line-height:1.8;
   }
 
   @media (max-width:600px){
-    h1{font-size:26px;}
+    h1{font-size:27px;}
     .wrap{padding:20px 14px 60px;}
-    .card-checkbox-grid{grid-template-columns:1fr;}
-    .card-main{grid-template-columns:24px 1fr auto; padding:14px 12px; gap:10px;}
-    .rate{font-size:18px;}
-    .card-item.top .rate{font-size:20px;}
-    .cashback{font-size:18px;}
-    .card-item.top .cashback{font-size:21px;}
-    .amount-row{flex-direction:column; align-items:stretch;}
+    .control-panel{padding:16px 14px;}
+    .wallet-card-grid{grid-template-columns:1fr;}
+    .card-body{grid-template-columns:28px 1fr auto; padding:15px 14px; gap:10px;}
+    .cashback-num{font-size:20px;}
+    .card-card.top-rank .cashback-num{font-size:22px;}
+    .nominal-alone{font-size:20px;}
+    .card-card.top-rank .nominal-alone{font-size:22px;}
+    .amount-input-row{flex-direction:column; align-items:stretch;}
+    .amount-label{margin-bottom:2px;}
   }
 </style>
 </head>
 <body>
 <div class="wrap">
   <header>
-    <div class="top-bar">
-      <p class="eyebrow">2026 下半年最新權益方案・19 張熱門信用卡／金融卡</p>
-      <button class="wallet-toggle-btn" id="openWalletBtn">
-        <span>💳</span> 我的卡包 <strong id="walletBtnCount">(19/19)</strong>
+    <div class="top-nav">
+      <div class="version-badge">
+        <span class="version-dot"></span>
+        2026 權益精算版 · 19 大神卡
+      </div>
+      <button class="wallet-btn" id="openWalletBtn">
+        <span>💳</span> 我的皮夾 <span class="wallet-count" id="walletBtnCount">(19/19)</span>
       </button>
     </div>
     <h1>刷卡前，先查一下</h1>
     <p class="sub">輸入消費通路與預估金額，自動依據「基本回饋無上限＋加碼回饋封頂」精確計算實質能拿多少回饋與實質回饋率，並提供防踩雷條件標籤與最佳刷滿金額提醒。</p>
 
-    <!-- 主控制卡片 -->
-    <div class="control-card">
-      <div class="search-wrapper">
-        <input id="searchInput" type="text" placeholder="輸入通路… 全家 / 日本 / Netflix / 街口 / 外送 / 機票" autofocus>
-        <button class="clear-btn" id="clearSearchBtn" title="清除搜尋">✕</button>
+    <!-- 主控制台 -->
+    <div class="control-panel">
+      <!-- 搜尋列 -->
+      <div class="search-box-wrap">
+        <span class="search-icon">🔍</span>
+        <input id="searchInput" type="text" placeholder="輸入通路… 全家 / Apple / Netflix / 街口 / 外送 / 機票" autofocus>
+        <button class="btn-clear" id="clearSearchBtn" title="清除搜尋">✕</button>
       </div>
 
-      
       <!-- 智慧搜尋意圖引導 -->
       <div class="intent-bar" id="intentBar">
         <span class="intent-title">💡 快速鎖定：</span>
         <div id="intentPills" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
       </div>
 
-      <!-- 熱門搜尋標籤 -->
-      <div class="hot-tags">
+      <!-- 熱門搜尋快捷列 -->
+      <div class="hot-bar">
         <span class="hot-label">熱門：</span>
         <button class="hot-tag" data-q="Uber Eats">Uber Eats</button>
         <button class="hot-tag" data-q="全聯">全聯</button>
         <button class="hot-tag" data-q="7-11">7-11</button>
         <button class="hot-tag" data-q="全家">全家</button>
+        <button class="hot-tag" data-q="apple直營">Apple直營</button>
         <button class="hot-tag" data-q="日本">日本</button>
         <button class="hot-tag" data-q="LINE Pay">LINE Pay</button>
         <button class="hot-tag" data-q="Netflix">Netflix</button>
@@ -909,36 +1175,45 @@
       </div>
 
       <!-- 金額試算列 -->
-      <div class="amount-section">
-        <div class="amount-row">
-          <span class="prefix">預估消費金額</span>
-          <input id="amountInput" type="number" inputmode="numeric" placeholder="選填，例如 40000（當筆或當月消費金額）">
+      <div class="amount-box-wrap">
+        <div class="amount-input-row">
+          <span class="amount-label">預估消費金額</span>
+          <div class="amount-input-inner">
+            <span class="currency-prefix">NT$</span>
+            <input id="amountInput" type="number" inputmode="numeric" placeholder="選填，例如 50000（當月或單筆金額）">
+          </div>
         </div>
-        <div class="presets" id="presets"></div>
+        <div class="presets-row" id="presets"></div>
       </div>
 
-      <!-- 我的卡包快速開關 -->
+      <!-- 我的皮夾快速切換 -->
       <div class="wallet-bar">
-        <div class="wallet-status" id="walletStatusText">
-          <span>皮夾管理：顯示全部 19 張卡</span>
+        <div class="wallet-status-desc" id="walletStatusText">
+          <span>皮夾模式：未啟用，顯示全部 <strong>19</strong> 張卡</span>
         </div>
-        <div class="toggle-switch-wrap" id="walletToggleWrap">
-          <div class="toggle-switch"></div>
+        <div class="switch-label" id="walletToggleWrap">
+          <div class="switch-track">
+            <div class="switch-thumb"></div>
+          </div>
           <span>只看我的卡</span>
         </div>
       </div>
     </div>
 
-    <!-- 分類 Chips -->
-    <div class="chips" id="chips"></div>
+    <!-- 分類橫向滑動列 -->
+    <div class="chips-scroll-wrap">
+      <div class="chips-track" id="chips"></div>
+    </div>
   </header>
 
-  <div class="meta-row">
-    <span class="label" id="resultLabel">全部通路</span>
-    <span class="label" id="resultCount"></span>
+  <!-- 結果統計列 -->
+  <div class="results-meta">
+    <span class="meta-title" id="resultLabel">全部通路</span>
+    <span class="meta-count" id="resultCount"></span>
   </div>
 
-  <div class="results" id="results"></div>
+  <!-- 結果卡片清單 -->
+  <div class="results-list" id="results"></div>
 
   <footer>
     ★ 標示回饋皆含各卡加碼上限與適用條件，實際刷卡前請以銀行 App／官網當期最新公告為準。<br>
@@ -949,30 +1224,29 @@
 
 <!-- 我的卡包 Modal 彈窗 -->
 <div class="modal-overlay" id="walletModal">
-  <div class="modal">
-    <div class="modal-header">
+  <div class="modal-box">
+    <div class="modal-head">
       <h3 class="modal-title"><span>💳</span> 管理我的卡包</h3>
-      <button class="modal-close" id="closeWalletBtn">✕</button>
+      <button class="btn-close-modal" id="closeWalletBtn">✕</button>
     </div>
     <div class="modal-body">
-      <div class="modal-tools">
+      <div class="modal-actions">
         <div>
-          <button class="modal-tools-btn" id="btnSelectAll">全部勾選</button>
-          <button class="modal-tools-btn" id="btnClearAll">全部取消</button>
-          <button class="modal-tools-btn" id="btnSelectPopular">常用熱門卡</button>
+          <button class="action-btn" id="btnSelectAll">全部勾選</button>
+          <button class="action-btn" id="btnClearAll">全部取消</button>
+          <button class="action-btn" id="btnSelectPopular">常用熱門卡</button>
         </div>
         <span style="font-size:12px; color:var(--text-dim);" id="walletSelectedCount">已選 19/19 張</span>
       </div>
-      <div class="card-checkbox-grid" id="cardCheckboxList"></div>
+      <div class="wallet-card-grid" id="cardCheckboxList"></div>
     </div>
-    <div class="modal-footer">
-      <button class="btn-save-wallet" id="saveWalletBtn">完成儲存</button>
+    <div class="modal-foot">
+      <button class="btn-save-cards" id="saveWalletBtn">儲存卡包設定</button>
     </div>
   </div>
 </div>
 
 <script>
-// 完整信用卡資料庫（2026年最新版，含雙軌費率、條件標籤、點數類型與多分類）
 const DATA = [
   // --- 台新Richart卡（Chill刷） ---
   {
@@ -1039,7 +1313,7 @@ const DATA = [
     sweetSpot:"月上限依台新官網公告",
     note:"",
     cats:["online", "delivery"],
-    kw:"apple 直營 蘋果 官網 iphone ipad mac macbook watch studio a straight a dji insta360 gopro 蝦皮 淘寶 酷澎 uber eats 外送"
+    kw:"apple apple直營 apple直營店 蘋果 蘋果直營 蘋果直營店 蘋果官網 直營 官網 iphone ipad mac macbook watch studio a straight a dji insta360 gopro 蝦皮 淘寶 酷澎 uber eats 外送"
   },
   {
     card:"台新Richart卡（Chill刷）",
@@ -1249,14 +1523,14 @@ const DATA = [
   // --- 玉山銀行 Unicard卡 ---
   {
     card:"玉山銀行 Unicard卡",
-    channel:"Up選（訂閱149元，適合大額單筆消費）",
+    channel:"Up選（百大特店含Apple直營／官網／百貨／高單價，訂閱149元）",
     rate:"4.5%", rateNum:4.5, baseRate:1, bonusRate:3.5, cap:"刷頂 NT$142,880／月", capAmt:142880,
     pointType:"玉山 e point",
-    tags:["需付費訂閱$149", "適合大額高單價"],
-    sweetSpot:"月消費可刷至 NT$142,880 封頂",
-    note:"需付費訂閱Up選方案",
+    tags:["Apple直營/官網4.5%", "刷頂NT$142,880", "需月費$149", "大額換機首選"],
+    sweetSpot:"購買 iPhone/Mac 高單價首選，月刷 NT$142,880 封頂享 4.5%",
+    note:"需付費訂閱Up選方案（月費149元）。百大特店（含Apple直營店、官網、經銷門市、各大型電商與百貨）享最高4.5%回饋",
     cats:["pay", "online"],
-    kw:"up選 一般 apple 蘋果 直營 官網 直營店 iphone ipad mac macbook 手機 電腦 大額 高單價 訂閱"
+    kw:"up選 一般 apple apple直營 apple直營店 蘋果 蘋果直營 蘋果直營店 蘋果官網 apple官網 直營 官網 直營店 iphone ipad mac macbook watch airpods 手機 電腦 大額 高單價 換機 筆電 訂閱 百大特店 studio a 德誼"
   },
   {
     card:"玉山銀行 Unicard卡",
@@ -1981,9 +2255,9 @@ const DATA = [
   }
 ];
 
-// 分類清單（已全面對齊 cats 陣列）
+// 分類清單（對齊 cats 陣列）
 const CATS = [
-  {key:"all", label:"全部"},
+  {key:"all", label:"全部通路"},
   {key:"delivery", label:"外送平台"},
   {key:"super", label:"四大超商／超市"},
   {key:"online", label:"網購電商"},
@@ -2008,6 +2282,34 @@ const POPULAR_CARDS = [
   "星展 傳說對決卡"
 ];
 
+// 意圖定義表（解決同名衝突：如 Apple 直營 vs Apple Pay、台灣全家 vs 日本全家）
+const INTENT_MAP = {
+  "全家": [
+    { label: "🏪 台灣全家超商（玉山Pi/台新Pay等）", q: "台灣全家", desc: "台灣全家便利商店日常消費" },
+    { label: "🇯🇵 日本全家 FamilyMart（吉鶴卡等）", q: "日本全家", desc: "日本旅遊當地門市消費" }
+  ],
+  "7-11": [
+    { label: "🏪 台灣 7-ELEVEN（icash/台新等）", q: "台灣7-11", desc: "台灣 7-11 便利商店消費" },
+    { label: "🇯🇵 日本 7-11（吉鶴卡/海外實體）", q: "日本7-11", desc: "日本旅遊當地門市消費" }
+  ],
+  "711": [
+    { label: "🏪 台灣 7-ELEVEN", q: "台灣7-11", desc: "台灣 7-11 便利商店消費" },
+    { label: "🇯🇵 日本 7-11", q: "日本7-11", desc: "日本旅遊當地門市消費" }
+  ],
+  apple: [
+    { label: "🍎 買 Apple 產品（直營／官網／門市）", q: "apple直營", desc: "購買 iPhone/Mac/iPad" },
+    { label: "📱 Apple Pay 行動支付感應", q: "apple pay", desc: "以 Apple Pay 綁定感應付款" }
+  ],
+  "蘋果": [
+    { label: "🍎 買 Apple 產品（直營／官網／門市）", q: "apple直營", desc: "購買 iPhone/Mac/iPad" },
+    { label: "📱 Apple Pay 行動支付感應", q: "apple pay", desc: "以 Apple Pay 綁定感應付款" }
+  ],
+  line: [
+    { label: "🟢 LINE Pay 綁定支付", q: "line pay", desc: "超商/餐廳行動支付" },
+    { label: "🏦 LINE Bank 聯名卡專屬", q: "line bank", desc: "指定網購/遊戲4%" }
+  ]
+};
+
 // 本機儲存金鑰
 const STORAGE_KEY_WALLET = "cc_calc_my_cards_v2";
 const STORAGE_KEY_FILTER = "cc_calc_filter_only_v2";
@@ -2017,7 +2319,6 @@ let activeCat = "all";
 let filterMyCardsOnly = false;
 let myCards = [];
 
-// 初始化卡包狀態
 function initWalletState(){
   const savedFilter = localStorage.getItem(STORAGE_KEY_FILTER);
   filterMyCardsOnly = savedFilter === "true";
@@ -2041,7 +2342,7 @@ function initWalletState(){
 
 initWalletState();
 
-// 初始化分類 Chips
+// 初始化分類 Chips（橫向滾動列）
 const chipsEl = document.getElementById('chips');
 CATS.forEach(c => {
   const b = document.createElement('button');
@@ -2052,6 +2353,7 @@ CATS.forEach(c => {
     activeCat = c.key;
     document.querySelectorAll('.chip').forEach(x => x.classList.remove('active'));
     b.classList.add('active');
+    b.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
     render();
   });
   chipsEl.appendChild(b);
@@ -2073,7 +2375,7 @@ PRESETS.forEach(v => {
   presetsEl.appendChild(b);
 });
 
-// 金額微調按鈕：+1,000, +5,000, 清空
+// 金額微調按鈕：+1,000, +5,000, 重設
 const add1kBtn = document.createElement('button');
 add1kBtn.className = 'preset-btn inc';
 add1kBtn.textContent = '+1,000';
@@ -2095,8 +2397,8 @@ add5kBtn.addEventListener('click', () => {
 presetsEl.appendChild(add5kBtn);
 
 const clearAmtBtn = document.createElement('button');
-clearAmtBtn.className = 'preset-btn clear';
-clearAmtBtn.textContent = '重設金額';
+clearAmtBtn.className = 'preset-btn clear-amt';
+clearAmtBtn.textContent = '重設';
 clearAmtBtn.addEventListener('click', () => {
   amountInput.value = '';
   render();
@@ -2108,7 +2410,7 @@ const searchInput = document.getElementById('searchInput');
 const clearSearchBtn = document.getElementById('clearSearchBtn');
 
 searchInput.addEventListener('input', () => {
-  clearSearchBtn.style.display = searchInput.value ? 'block' : 'none';
+  clearSearchBtn.style.display = searchInput.value ? 'flex' : 'none';
   render();
 });
 
@@ -2125,12 +2427,36 @@ amountInput.addEventListener('input', render);
 document.querySelectorAll('.hot-tag').forEach(tag => {
   tag.addEventListener('click', () => {
     searchInput.value = tag.dataset.q;
-    clearSearchBtn.style.display = 'block';
+    clearSearchBtn.style.display = 'flex';
     render();
   });
 });
 
-// 卡包開關與切換
+// 意圖引導更新
+const intentBar = document.getElementById('intentBar');
+const intentPills = document.getElementById('intentPills');
+
+function updateIntentUI(rawQ){
+  const cleanQ = rawQ.toLowerCase().trim();
+  const intents = INTENT_MAP[cleanQ];
+  if(intents && intents.length > 0){
+    intentBar.classList.add('show');
+    intentPills.innerHTML = intents.map(item => `
+      <button class="intent-pill" onclick="selectIntent('${item.q}')" title="${item.desc}">${item.label}</button>
+    `).join('');
+  } else {
+    intentBar.classList.remove('show');
+    intentPills.innerHTML = '';
+  }
+}
+
+window.selectIntent = function(queryText){
+  searchInput.value = queryText;
+  clearSearchBtn.style.display = 'flex';
+  render();
+};
+
+// 皮夾切換開關
 const walletToggleWrap = document.getElementById('walletToggleWrap');
 const walletStatusText = document.getElementById('walletStatusText');
 const walletBtnCount = document.getElementById('walletBtnCount');
@@ -2153,7 +2479,7 @@ walletToggleWrap.addEventListener('click', () => {
   render();
 });
 
-// 模態彈窗（我的卡包設定）
+// 我的卡包彈窗
 const walletModal = document.getElementById('walletModal');
 const openWalletBtn = document.getElementById('openWalletBtn');
 const closeWalletBtn = document.getElementById('closeWalletBtn');
@@ -2166,7 +2492,7 @@ function renderWalletCheckboxes(){
   ALL_CARDS.forEach(cName => {
     const isChecked = myCards.includes(cName);
     const item = document.createElement('label');
-    item.className = 'card-check-item' + (isChecked ? ' checked' : '');
+    item.className = 'card-option' + (isChecked ? ' checked' : '');
     item.innerHTML = `
       <input type="checkbox" value="${cName}" ${isChecked ? 'checked' : ''}>
       <span>${cName}</span>
@@ -2207,7 +2533,7 @@ walletModal.addEventListener('click', (e) => {
 document.getElementById('btnSelectAll').addEventListener('click', () => {
   cardCheckboxList.querySelectorAll('input').forEach(chk => {
     chk.checked = true;
-    chk.closest('.card-check-item').classList.add('checked');
+    chk.closest('.card-option').classList.add('checked');
   });
   updateModalSelectedCount();
 });
@@ -2215,7 +2541,7 @@ document.getElementById('btnSelectAll').addEventListener('click', () => {
 document.getElementById('btnClearAll').addEventListener('click', () => {
   cardCheckboxList.querySelectorAll('input').forEach(chk => {
     chk.checked = false;
-    chk.closest('.card-check-item').classList.remove('checked');
+    chk.closest('.card-option').classList.remove('checked');
   });
   updateModalSelectedCount();
 });
@@ -2224,8 +2550,8 @@ document.getElementById('btnSelectPopular').addEventListener('click', () => {
   cardCheckboxList.querySelectorAll('input').forEach(chk => {
     const isPop = POPULAR_CARDS.includes(chk.value);
     chk.checked = isPop;
-    if(isPop) chk.closest('.card-check-item').classList.add('checked');
-    else chk.closest('.card-check-item').classList.remove('checked');
+    if(isPop) chk.closest('.card-option').classList.add('checked');
+    else chk.closest('.card-option').classList.remove('checked');
   });
   updateModalSelectedCount();
 });
@@ -2243,112 +2569,11 @@ saveWalletBtn.addEventListener('click', () => {
   render();
 });
 
-
-// 意圖定義表（解決同名衝突：如 Apple 直營 vs Apple Pay）
-const INTENT_MAP = {
-  "全家": [
-    { label: "🏪 台灣全家超商（玉山Pi/台新Pay等）", q: "台灣全家", desc: "台灣全家便利商店日常消費" },
-    { label: "🇯🇵 日本全家 FamilyMart（吉鶴卡等）", q: "日本全家", desc: "日本旅遊當地門市消費" }
-  ],
-  "7-11": [
-    { label: "🏪 台灣 7-ELEVEN（icash/台新等）", q: "台灣7-11", desc: "台灣 7-11 便利商店消費" },
-    { label: "🇯🇵 日本 7-11（吉鶴卡/海外實體）", q: "日本7-11", desc: "日本旅遊當地門市消費" }
-  ],
-  "711": [
-    { label: "🏪 台灣 7-ELEVEN", q: "台灣7-11", desc: "台灣 7-11 便利商店消費" },
-    { label: "🇯🇵 日本 7-11", q: "日本7-11", desc: "日本旅遊當地門市消費" }
-  ],
-  apple: [
-    { label: "🍎 買 Apple 產品（直營／官網／門市）", q: "apple直營", desc: "購買 iPhone/Mac/iPad" },
-    { label: "📱 Apple Pay 行動支付感應", q: "apple pay", desc: "以 Apple Pay 綁定感應付款" }
-  ],
-  "蘋果": [
-    { label: "🍎 買 Apple 產品（直營／官網／門市）", q: "apple直營", desc: "購買 iPhone/Mac/iPad" },
-    { label: "📱 Apple Pay 行動支付感應", q: "apple pay", desc: "以 Apple Pay 綁定感應付款" }
-  ],
-  line: [
-    { label: "🟢 LINE Pay 綁定支付", q: "line pay", desc: "超商/餐廳行動支付" },
-    { label: "🏦 LINE Bank 聯名卡專屬", q: "line bank", desc: "指定網購/遊戲4%" }
-  ]
-};
-
-const intentBar = document.getElementById('intentBar');
-const intentPills = document.getElementById('intentPills');
-
-function updateIntentUI(rawQ){
-  const cleanQ = rawQ.toLowerCase().trim();
-  const intents = INTENT_MAP[cleanQ];
-  if(intents && intents.length > 0){
-    intentBar.classList.add('show');
-    intentPills.innerHTML = intents.map(item => `
-      <button class="intent-pill" onclick="selectIntent('${item.q}')" title="${item.desc}">${item.label}</button>
-    `).join('');
-  } else {
-    intentBar.classList.remove('show');
-    intentPills.innerHTML = '';
-  }
-}
-
-window.selectIntent = function(queryText){
-  searchInput.value = queryText;
-  clearSearchBtn.style.display = 'block';
-  render();
-};
-
-// 相關度評分（智慧加權：解決找店家卻跳出一堆行動支付的問題）
-function calculateRelevance(d, rawQ, qTerms){
-  if(qTerms.length === 0) return 0;
-  let score = 0;
-  const qLower = rawQ.toLowerCase().trim();
-  const channelLower = (d.channel || '').toLowerCase();
-  const cardLower = (d.card || '').toLowerCase();
-  const kwLower = (d.kw || '').toLowerCase();
-  const tagsLower = (d.tags || []).join(' ').toLowerCase();
-
-    // 特殊意圖：超商（全家 / 7-11）區分台灣本地 vs 日本旅遊
-  if((qLower === '全家' || qLower === '7-11' || qLower === '711') && !qLower.includes('日本')){
-    // 如果是台灣本地超商通路，大幅加分置頂
-    if(d.cats && d.cats.includes('super') && !d.cats.includes('abroad')){
-      score += 1200;
-    } else if(d.cats && d.cats.includes('abroad')){
-      score -= 500; // 降低海外超商優先級，避免在台灣超商結帳誤刷
-    }
-  } else if(qLower.includes('日本全家') || qLower.includes('日本7-11') || qLower.includes('日本超商')){
-    if(d.cats && d.cats.includes('abroad')){
-      score += 1500;
-    }
-  }
-  // 特殊意圖：當使用者搜尋 "apple" 或 "蘋果" 且未輸入 "pay"
-  if(qLower === 'apple' || qLower === '蘋果'){
-    // 如果是實體購買 Apple 產品的通路（直營店、官網、經銷商）
-    const isStore = channelLower.includes('apple直營') || kwLower.includes('apple 直營') || kwLower.includes('apple直營店') || channelLower.includes('apple直營店');
-    if(isStore){
-      score += 1500; // 超高權重，優先置頂！
-    } else if(channelLower.includes('apple pay') || tagsLower.includes('apple pay') || kwLower.includes('apple pay')){
-      score += 10; // 僅為支付方式，降低優先級
-    }
-  } else if(qLower.includes('apple pay')){
-    if(channelLower.includes('apple pay') || tagsLower.includes('apple pay') || kwLower.includes('apple pay')){
-      score += 800;
-    }
-  }
-
-  // 通用關鍵字權重
-  qTerms.forEach(t => {
-    if(channelLower.includes(t)) score += 80;
-    if(cardLower.includes(t)) score += 40;
-    if(tagsLower.includes(t)) score += 30;
-  });
-
-  return score;
-}
-
-// 輔助格式化
+// 格式化輔助
 function fmtMoney(n){
   return 'NT$' + Math.round(n).toLocaleString();
 }
 
-// 高亮關鍵字字串
 function highlightText(text, terms){
   if(!terms || terms.length === 0 || !text) return text;
   const escaped = terms.map(t => t.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')).filter(Boolean);
@@ -2357,7 +2582,7 @@ function highlightText(text, terms){
   return text.replace(regex, '<mark class="hl">$1</mark>');
 }
 
-// 展開/收合計算明細
+// 展開折疊
 window.toggleCalcDetail = function(idx){
   const el = document.getElementById(`detail-${idx}`);
   const btn = document.getElementById(`btn-detail-${idx}`);
@@ -2373,44 +2598,104 @@ window.toggleCalcDetail = function(idx){
   }
 };
 
-// 標籤樣式分配
-function getBadgeClass(tag){
-  if(tag.includes("⚠️") || tag.includes("金融卡")) return "badge-warn";
-  if(tag.includes("登錄") || tag.includes("領券")) return "badge-amber";
-  if(tag.includes("滿$") || tag.includes("滿千") || tag.includes("低消")) return "badge-blue";
-  if(tag.includes("Pay") || tag.includes("感應") || tag.includes("切換")) return "badge-purple";
-  return "badge-neutral";
+// 點數標章顏色分配
+function getCurrencyBadgeClass(pType){
+  if(!pType) return "cur-gold";
+  if(pType.includes("LINE POINTS")) return "cur-green";
+  if(pType.includes("小樹點") || pType.includes("台新Point") || pType.includes("玉山")) return "cur-gold";
+  if(pType.includes("OPENPOINT") || pType.includes("mo幣")) return "cur-coral";
+  if(pType.includes("刷卡金") || pType.includes("現金")) return "cur-blue";
+  return "cur-purple";
 }
 
-// 核心渲染邏輯
+// 防踩雷標籤分配
+function getMicroPillClass(tag){
+  if(tag.includes("⚠️") || tag.includes("金融卡") || tag.includes("僅限日本")) return "pill-warn";
+  if(tag.includes("登錄") || tag.includes("領券")) return "pill-amber";
+  if(tag.includes("滿$") || tag.includes("滿千") || tag.includes("低消")) return "pill-blue";
+  if(tag.includes("Pay") || tag.includes("感應") || tag.includes("切換")) return "pill-purple";
+  return "pill-default";
+}
+
+// 相關度打分
+function calculateRelevance(d, rawQ, qTerms){
+  if(qTerms.length === 0) return 0;
+  let score = 0;
+  const qLower = rawQ.toLowerCase().trim();
+  const channelLower = (d.channel || '').toLowerCase();
+  const cardLower = (d.card || '').toLowerCase();
+  const kwLower = (d.kw || '').toLowerCase();
+  const tagsLower = (d.tags || []).join(' ').toLowerCase();
+
+  // 超商意圖
+  if((qLower === '全家' || qLower === '7-11' || qLower === '711') && !qLower.includes('日本')){
+    if(d.cats && d.cats.includes('super') && !d.cats.includes('abroad')){
+      score += 1200;
+    } else if(d.cats && d.cats.includes('abroad')){
+      score -= 500;
+    }
+  } else if(qLower.includes('日本全家') || qLower.includes('日本7-11') || qLower.includes('日本超商')){
+    if(d.cats && d.cats.includes('abroad')){
+      score += 1500;
+    }
+  }
+
+  // Apple 意圖
+  if(qLower === 'apple' || qLower === '蘋果' || qLower === 'apple直營' || qLower === '蘋果直營'){
+    const isStore = channelLower.includes('apple直營') || kwLower.includes('apple直營') || kwLower.includes('apple直營店') || channelLower.includes('apple直營店');
+    if(isStore){
+      score += 1500;
+    } else if(channelLower.includes('apple pay') || tagsLower.includes('apple pay') || kwLower.includes('apple pay')){
+      score += 10;
+    }
+  } else if(qLower.includes('apple pay')){
+    if(channelLower.includes('apple pay') || tagsLower.includes('apple pay') || kwLower.includes('apple pay')){
+      score += 800;
+    }
+  }
+
+  qTerms.forEach(t => {
+    if(channelLower.includes(t)) score += 80;
+    if(cardLower.includes(t)) score += 40;
+    if(tagsLower.includes(t)) score += 30;
+  });
+
+  return score;
+}
+
+// 核心渲染
 function render(){
   updateWalletBarUI();
   const rawQ = searchInput.value.trim();
   updateIntentUI(rawQ);
+
   const qTerms = rawQ.toLowerCase().split(/\s+/).filter(Boolean);
   const amount = parseFloat(amountInput.value);
   const hasAmount = !isNaN(amount) && amount > 0;
 
   // 篩選清單
   let list = DATA.filter(d => {
-    // 1. 分類篩選（支援陣列）
     const matchCat = activeCat === 'all' || (Array.isArray(d.cats) ? d.cats.includes(activeCat) : d.cat === activeCat);
     if(!matchCat) return false;
 
-    // 2. 我的卡包篩選
     if(filterMyCardsOnly && myCards.length > 0){
       if(!myCards.includes(d.card)) return false;
     }
 
-    // 3. 多關鍵字空格匹配（需全部命中）
     if(qTerms.length === 0) return true;
     const searchable = `${d.card} ${d.channel} ${d.kw} ${d.note} ${(d.tags || []).join(' ')} ${d.pointType || ''}`.toLowerCase();
-    return qTerms.every(term => searchable.includes(term));
+    
+    const hasDirectMatch = qTerms.every(term => searchable.includes(term));
+    if(!hasDirectMatch && (rawQ.toLowerCase().includes('apple') && rawQ.includes('直營'))){
+      if(searchable.includes('apple') && (searchable.includes('直營') || searchable.includes('直營店'))) return true;
+    }
+    return hasDirectMatch;
   });
 
-  // 雙軌回饋試算（基本無上限 + 加碼封頂精算）
+  // 計算回饋與打分
   list = list.map((d, index) => {
     const isHeld = myCards.includes(d.card);
+    const relevance = calculateRelevance(d, rawQ, qTerms);
 
     if(hasAmount){
       const baseRate = d.baseRate !== undefined ? d.baseRate : (d.capAmt ? 1 : d.rateNum);
@@ -2431,7 +2716,6 @@ function render(){
       const totalCashback = baseCashback + bonusCashback;
       const effectiveRate = (totalCashback / amount) * 100;
 
-      const relevance = calculateRelevance(d, rawQ, qTerms);
       return {
         ...d,
         index,
@@ -2449,7 +2733,6 @@ function render(){
       };
     }
 
-    const relevance = calculateRelevance(d, rawQ, qTerms);
     return {
       ...d,
       index,
@@ -2462,8 +2745,7 @@ function render(){
     };
   });
 
-  // 排序：有金額依實質回饋金高到低，無金額依名目費率高到低
-    // 智慧排序：當相關度差異顯著時優先按相關度排（如找 Apple 直營店 vs Apple Pay），其餘按回饋排序
+  // 排序
   list.sort((a, b) => {
     if(rawQ && Math.abs((b.relevance || 0) - (a.relevance || 0)) >= 500){
       return (b.relevance || 0) - (a.relevance || 0);
@@ -2478,22 +2760,23 @@ function render(){
   const catObj = CATS.find(c => c.key === activeCat);
   const catLabel = catObj ? catObj.label : '全部通路';
   const scopeLabel = rawQ ? `「${rawQ}」搜尋結果` : catLabel;
-  const filterLabel = filterMyCardsOnly ? `（僅我的卡包・${myCards.length}張）` : '';
+  const filterLabel = filterMyCardsOnly ? `（僅我的皮夾 · ${myCards.length}張）` : '';
 
   labelEl.textContent = hasAmount 
-    ? `${scopeLabel}${filterLabel} — 依消費 ${fmtMoney(amount)} 之預估回饋排序` 
+    ? `${scopeLabel}${filterLabel} — 依消費 ${fmtMoney(amount)} 試算排序` 
     : `${scopeLabel}${filterLabel} — 依回饋率排序`;
   countEl.textContent = list.length ? `共 ${list.length} 筆` : '';
 
   if(list.length === 0){
-    let emptyTips = '換個關鍵字試試（如「全家」「Uber」「日本」「LINE Pay」）';
+    let emptyTips = '換個關鍵字試試（例如「全家」「Uber」「日本」「LINE Pay」）';
     if(filterMyCardsOnly){
-      emptyTips = `您目前啟用了「只看我的卡」（已選 ${myCards.length} 張），您的卡片在此通路暫無對應優惠。<br>可點擊上方開關「切換為全部卡片」查看其他高回饋卡推薦！`;
+      emptyTips = `您目前啟用了「只看我的卡」（已選 ${myCards.length} 張），您的卡片在此通路暫無對應優惠。<br>點擊上方開關「切換為全部卡片」即可查看全市場最高回饋推薦！`;
     }
     resultsEl.innerHTML = `
-      <div class="empty">
-        <div class="big">查無符合的通路</div>
-        <div class="empty-tips">${emptyTips}</div>
+      <div class="empty-state">
+        <div class="empty-icon">🔍</div>
+        <div class="empty-title">查無符合的通路</div>
+        <div class="empty-desc">${emptyTips}</div>
       </div>
     `;
     return;
@@ -2504,83 +2787,111 @@ function render(){
     const cardTitle = highlightText(d.card, qTerms);
     const channelTitle = highlightText(d.channel, qTerms);
     const noteContent = highlightText(d.note, qTerms);
+    const isTop = i === 0;
 
-    // 條件標籤 Badges
+    // 條件標籤 Micro-pills
     const badgesHtml = (d.tags && d.tags.length > 0)
-      ? `<div class="tag-badges">${d.tags.map(t => `<span class="badge ${getBadgeClass(t)}">${highlightText(t, qTerms)}</span>`).join('')}</div>`
+      ? `<div class="pills-group">${d.tags.map(t => `<span class="micro-pill ${getMicroPillClass(t)}">${highlightText(t, qTerms)}</span>`).join('')}</div>`
       : '';
 
-    // 右側費率區塊
+    // 右側費率／回饋金區塊
     let rateBlockHtml = '';
     if(hasAmount){
       const isTopRateFull = !d.isCapped;
       rateBlockHtml = `
-        <div class="cashback">${fmtMoney(d.cashback)}</div>
-        <div class="effective-rate ${isTopRateFull ? 'is-full' : ''}">實質 ${d.effectiveRate.toFixed(2)}%</div>
-        <div class="nominal-sub">名目 ${d.rate}</div>
-        ${d.isCapped ? `<span class="capped-flag">已達加碼上限（超額享基本${d.baseRate}%）</span>` : ''}
+        <div class="cashback-num"><small>NT$</small>${Math.round(d.cashback).toLocaleString()}</div>
+        <div class="rate-badge-row">
+          <span class="effective-tag ${isTopRateFull ? 'full' : ''}">實質 ${d.effectiveRate.toFixed(2)}%</span>
+        </div>
+        <div class="nominal-rate-text">名目 ${d.rate}</div>
+        ${d.isCapped ? `<span class="cap-tag-alert">加碼已滿額 (超額享${d.baseRate}%)</span>` : ''}
       `;
     } else {
       rateBlockHtml = `
-        <div class="rate">${d.rate}</div>
-        <div class="cap">${d.cap}</div>
+        <div class="nominal-alone">${d.rate}</div>
+        <div class="cap-desc">${d.cap}</div>
       `;
     }
 
-    // 計算明細區塊
+    // 計算明細 Accordion
     let calcDetailHtml = '';
     if(hasAmount){
+      // 進度條計算
+      let progressPercent = 100;
+      let capText = '';
+      if(d.capAmt != null){
+        progressPercent = Math.min(100, Math.round((amount / d.capAmt) * 100));
+        capText = `${fmtMoney(amount)} / ${fmtMoney(d.capAmt)} (${progressPercent}% ${d.isCapped ? '已封頂' : '未刷滿'})`;
+      }
+
       calcDetailHtml = `
-        <div class="calc-detail-panel" id="detail-${i}">
-          <div class="detail-grid">
-            <div class="detail-line">
-              <span>基本回饋：</span>
-              <strong>${d.baseRate}% × ${fmtMoney(amount)} = ${fmtMoney(d.baseCashback)}</strong>
+        <div class="calc-accordion" id="detail-${i}">
+          <div class="formula-box">
+            <div class="formula-item">
+              <span class="label">基本回饋（無上限）：</span>
+              <span class="val">${d.baseRate}% × ${fmtMoney(amount)} = <strong>${fmtMoney(d.baseCashback)}</strong></span>
             </div>
             ${d.bonusRate > 0 ? `
-              <div class="detail-line">
-                <span>加碼回饋：</span>
-                <strong>${d.bonusRate}% × ${fmtMoney(d.bonusEligible)} = ${fmtMoney(d.bonusCashback)} ${d.isCapped ? '<em style="color:var(--red); font-style:normal;">(已封頂)</em>' : ''}</strong>
+              <div class="formula-item">
+                <span class="label">指定加碼回饋：</span>
+                <span class="val">${d.bonusRate}% × ${fmtMoney(d.bonusEligible)} = <strong>${fmtMoney(d.bonusCashback)}</strong> ${d.isCapped ? '<em style="color:var(--red); font-style:normal;">(已封頂)</em>' : ''}</span>
               </div>
             ` : ''}
-            <div class="detail-line" style="margin-top:2px; padding-top:4px; border-top:1px solid rgba(255,255,255,0.06);">
-              <span>合計預估回饋：</span>
-              <strong class="gold">${fmtMoney(d.cashback)}（實質回饋率 ${d.effectiveRate.toFixed(2)}%）</strong>
+            
+            ${d.capAmt != null ? `
+              <div class="cap-bar-wrap">
+                <div class="cap-bar-info">
+                  <span>加碼額度使用進度</span>
+                  <span>${capText}</span>
+                </div>
+                <div class="progress-bg">
+                  <div class="progress-fill ${d.isCapped ? 'capped' : ''}" style="width:${progressPercent}%;"></div>
+                </div>
+              </div>
+            ` : ''}
+
+            <div class="formula-item" style="margin-top:4px; padding-top:8px; border-top:1px solid rgba(255,255,255,0.08);">
+              <span class="label" style="font-weight:600; color:var(--text-white);">合計實質預估回饋：</span>
+              <span class="val" style="color:var(--gold); font-size:14px;">${fmtMoney(d.cashback)} <span style="font-size:12px;">(實質 ${d.effectiveRate.toFixed(2)}%)</span></span>
             </div>
-            ${d.sweetSpot ? `<div class="detail-strategy">💡 <strong>最佳刷卡策略：</strong>${d.sweetSpot}</div>` : ''}
           </div>
+
+          ${d.sweetSpot ? `
+            <div class="strategy-card">
+              <span>💡</span>
+              <div><strong>最佳刷卡策略：</strong>${d.sweetSpot}</div>
+            </div>
+          ` : ''}
         </div>
       `;
     }
 
     return `
-      <div class="card-item ${i === 0 ? 'top' : ''}">
-        <div class="card-main">
-          <div class="rank-box">
-            ${i === 0 ? '<span class="crown">👑</span>' : ''}
-            <div class="rank">${i + 1}</div>
-          </div>
-          <div class="info">
-            <div class="header-line">
-              <p class="card-name">${cardTitle}</p>
-              ${d.pointType ? `<span class="point-type">${d.pointType}</span>` : ''}
-              ${d.isHeld ? `<span class="held-tag">✓ 我的卡</span>` : ''}
+      <div class="card-card ${isTop ? 'top-rank' : ''}">
+        ${isTop ? `<div class="champion-ribbon"><span>★</span> 最佳首選</div>` : ''}
+        <div class="card-body">
+          <div class="rank-pill">${i + 1}</div>
+          <div class="card-info">
+            <div class="card-title-row">
+              <span class="card-brand">${cardTitle}</span>
+              ${d.pointType ? `<span class="currency-badge ${getCurrencyBadgeClass(d.pointType)}">${d.pointType}</span>` : ''}
+              ${d.isHeld ? `<span class="held-badge">✓ 我的卡</span>` : ''}
             </div>
-            <p class="channel">${channelTitle}</p>
+            <p class="channel-title">${channelTitle}</p>
             ${badgesHtml}
-            ${d.note ? `<p class="note">${noteContent}</p>` : ''}
+            ${d.note ? `<p class="card-note">${noteContent}</p>` : ''}
           </div>
-          <div class="rate-block">
+          <div class="rate-column">
             ${rateBlockHtml}
           </div>
         </div>
 
         ${hasAmount ? `
-          <div class="detail-toggle-row">
-            <button class="btn-toggle-detail" id="btn-detail-${i}" onclick="toggleCalcDetail(${i})">
+          <div class="detail-bar-row">
+            <button class="btn-accordion" id="btn-detail-${i}" onclick="toggleCalcDetail(${i})">
               <span>▼</span> 查看計算明細
             </button>
-            ${d.sweetSpot ? `<span class="sweet-spot-hint">💡 ${d.sweetSpot}</span>` : ''}
+            ${d.sweetSpot ? `<span class="strategy-badge-preview">💡 ${d.sweetSpot}</span>` : ''}
           </div>
           ${calcDetailHtml}
         ` : ''}
@@ -2589,7 +2900,7 @@ function render(){
   }).join('');
 }
 
-// 首次加載渲染
+// 首次渲染
 render();
 </script>
 </body>
