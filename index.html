@@ -1,62 +1,100 @@
 <!DOCTYPE html>
-<html lang="zh-Hant">
+<html lang="zh-Hant" data-theme="light">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <meta name="apple-mobile-web-app-title" content="刷卡速查">
-<meta name="theme-color" content="#0B0F14">
+<meta name="theme-color" content="#F8FAFC">
 <meta name="mobile-web-app-capable" content="yes">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='70' y='15' rx='12' fill='%23161D27' stroke='%23F5C063' stroke-width='6'/%3E%3Crect width='100' height='16' y='32' fill='%23F5C063'/%3E%3Ccircle cx='25' cy='65' r='7' fill='%233ED598'/%3E%3C/svg%3E">
-<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='70' y='15' rx='12' fill='%23161D27' stroke='%23F5C063' stroke-width='6'/%3E%3Crect width='100' height='16' y='32' fill='%23F5C063'/%3E%3Ccircle cx='25' cy='65' r='7' fill='%233ED598'/%3E%3C/svg%3E">
-<title>刷卡回饋速查 2.0</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='70' y='15' rx='12' fill='%231E293B' stroke='%23D97706' stroke-width='6'/%3E%3Crect width='100' height='16' y='32' fill='%23D97706'/%3E%3Ccircle cx='25' cy='65' r='7' fill='%23059669'/%3E%3C/svg%3E">
+<link rel="apple-touch-icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='70' y='15' rx='12' fill='%231E293B' stroke='%23D97706' stroke-width='6'/%3E%3Crect width='100' height='16' y='32' fill='%23D97706'/%3E%3Ccircle cx='25' cy='65' r='7' fill='%23059669'/%3E%3C/svg%3E">
+<title>卡神精算師 · 刷這張最賺 | 2026 信用卡回饋即時精算</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@600;700;900&family=Noto+Sans+TC:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg-base:#0B0F14;
-    --surface:rgba(22, 29, 39, 0.72);
-    --surface-solid:#151C26;
-    --surface-alt:rgba(30, 40, 54, 0.65);
-    --surface-hover:rgba(37, 49, 66, 0.8);
-    --border:rgba(255, 255, 255, 0.08);
-    --border-light:rgba(255, 255, 255, 0.14);
-    --text:#F3F4F6;
-    --text-dim:#94A3B8;
-    --text-muted:#64748B;
-    --text-white:#FFFFFF;
-    --gold:#F5C063;
-    --gold-light:#FDE68A;
-    --gold-dark:#D99B26;
-    --gold-glow:rgba(245, 192, 99, 0.22);
-    --green:#3ED598;
-    --green-glow:rgba(62, 213, 152, 0.2);
-    --blue:#4D96FF;
-    --purple:#B070FF;
-    --red:#FF647C;
-    --coral:#FF8A65;
-    --radius-sm:6px;
-    --radius-md:10px;
-    --radius-lg:16px;
-    --radius-full:9999px;
-    --shadow-card:0 8px 30px rgba(0,0,0,0.35);
-    --shadow-glow:0 0 25px rgba(245,192,99,0.18);
+  /* 雙色主題變數系統：預設極簡明亮白金風 (Light Mode) */
+  :root {
+    --bg-base: #F8FAFC;
+    --bg-ambient: radial-gradient(circle at 50% -10%, rgba(217, 119, 6, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 100% 40%, rgba(37, 99, 235, 0.04) 0%, transparent 40%),
+                  radial-gradient(circle at 0% 80%, rgba(5, 150, 105, 0.04) 0%, transparent 40%);
+    --surface: #FFFFFF;
+    --surface-trans: rgba(255, 255, 255, 0.88);
+    --surface-solid: #FFFFFF;
+    --surface-alt: #F1F5F9;
+    --surface-hover: #E2E8F0;
+    --border: #E2E8F0;
+    --border-light: #CBD5E1;
+    --text: #1E293B;
+    --text-dim: #475569;
+    --text-muted: #64748B;
+    --text-white: #0F172A;
+    --gold: #D97706;
+    --gold-light: #F59E0B;
+    --gold-dark: #B45309;
+    --gold-glow: rgba(217, 119, 6, 0.25);
+    --green: #059669;
+    --blue: #2563EB;
+    --purple: #7C3AED;
+    --red: #DC2626;
+    --coral: #EA580C;
+    --shadow-card: 0 4px 20px -2px rgba(15, 23, 42, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
+    --shadow-top: 0 10px 30px -4px rgba(217, 119, 6, 0.16), 0 4px 12px -2px rgba(15, 23, 42, 0.05);
+    --switch-bg: #E2E8F0;
+    --switch-thumb: #FFFFFF;
+    --champ-bg: linear-gradient(145deg, rgba(254, 243, 199, 0.5) 0%, #FFFFFF 65%, #FFFFFF 100%);
+    --progress-track: #E2E8F0;
+    --code-bg: #F8FAFC;
+  }
+
+  /* 黑曜金緻深色 (Dark Mode) */
+  [data-theme="dark"] {
+    --bg-base: #0B0F14;
+    --bg-ambient: radial-gradient(circle at 50% -10%, rgba(245, 192, 99, 0.07) 0%, transparent 45%),
+                  radial-gradient(circle at 100% 50%, rgba(77, 150, 255, 0.04) 0%, transparent 35%),
+                  radial-gradient(circle at 0% 100%, rgba(62, 213, 152, 0.04) 0%, transparent 35%);
+    --surface: rgba(22, 29, 39, 0.75);
+    --surface-trans: rgba(22, 29, 39, 0.72);
+    --surface-solid: #151C26;
+    --surface-alt: rgba(30, 40, 54, 0.65);
+    --surface-hover: rgba(37, 49, 66, 0.8);
+    --border: rgba(255, 255, 255, 0.08);
+    --border-light: rgba(255, 255, 255, 0.14);
+    --text: #F3F4F6;
+    --text-dim: #94A3B8;
+    --text-muted: #64748B;
+    --text-white: #FFFFFF;
+    --gold: #F5C063;
+    --gold-light: #FDE68A;
+    --gold-dark: #D99B26;
+    --gold-glow: rgba(245, 192, 99, 0.22);
+    --green: #3ED598;
+    --blue: #4D96FF;
+    --purple: #B070FF;
+    --red: #FF647C;
+    --coral: #FF8A65;
+    --shadow-card: 0 8px 30px rgba(0,0,0,0.35);
+    --shadow-top: 0 0 25px rgba(245,192,99,0.18), 0 8px 32px rgba(0,0,0,0.4);
+    --switch-bg: #202B38;
+    --switch-thumb: #64748B;
+    --champ-bg: linear-gradient(145deg, rgba(245, 192, 99, 0.08) 0%, rgba(22, 29, 39, 0.85) 60%, rgba(22, 29, 39, 0.95) 100%);
+    --progress-track: rgba(255,255,255,0.08);
+    --code-bg: #111720;
   }
 
   *{box-sizing:border-box;}
   html,body{margin:0;padding:0;}
   body{
     background-color:var(--bg-base);
-    background-image:
-      radial-gradient(circle at 50% -10%, rgba(245, 192, 99, 0.07) 0%, transparent 45%),
-      radial-gradient(circle at 100% 50%, rgba(77, 150, 255, 0.04) 0%, transparent 35%),
-      radial-gradient(circle at 0% 100%, rgba(62, 213, 152, 0.04) 0%, transparent 35%);
+    background-image:var(--bg-ambient);
     background-attachment:fixed;
     color:var(--text);
     font-family:"Noto Sans TC", -apple-system, BlinkMacSystemFont, sans-serif;
     min-height:100vh;
     -webkit-font-smoothing:antialiased;
+    transition:background-color .25s ease, color .25s ease;
   }
 
   .wrap{
@@ -74,6 +112,12 @@
     gap:10px;
     margin-bottom:14px;
   }
+  .nav-left-group{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    flex-wrap:wrap;
+  }
   .version-badge{
     display:inline-flex;
     align-items:center;
@@ -82,44 +126,70 @@
     font-size:12px;
     font-weight:600;
     color:var(--gold);
-    background:rgba(245, 192, 99, 0.1);
-    border:1px solid rgba(245, 192, 99, 0.25);
+    background:rgba(217, 119, 6, 0.1);
+    border:1px solid rgba(217, 119, 6, 0.25);
     padding:3px 10px;
-    border-radius:var(--radius-full);
-    letter-spacing:.02em;
+    border-radius:9999px;
   }
   .version-dot{
     width:6px;
     height:6px;
     background:var(--green);
     border-radius:50%;
-    box-shadow:0 0 8px var(--green);
+    box-shadow:0 0 6px var(--green);
   }
 
+  .nav-right-group{
+    display:flex;
+    align-items:center;
+    gap:8px;
+  }
+
+  /* 主題切換鈕 */
+  .theme-toggle-btn{
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+    background:var(--surface);
+    border:1px solid var(--border);
+    color:var(--text-dim);
+    font-size:12.5px;
+    font-weight:600;
+    padding:6px 12px;
+    border-radius:9999px;
+    cursor:pointer;
+    transition:all .2s ease;
+    box-shadow:var(--shadow-card);
+  }
+  .theme-toggle-btn:hover{
+    border-color:var(--gold);
+    color:var(--gold);
+    transform:translateY(-1px);
+  }
+
+  /* 皮夾管理按鈕 */
   .wallet-btn{
     display:inline-flex;
     align-items:center;
     gap:8px;
     background:var(--surface);
-    backdrop-filter:blur(12px);
-    border:1px solid var(--border-light);
+    border:1px solid var(--border);
     color:var(--text);
     font-size:12.5px;
-    font-weight:500;
+    font-weight:600;
     padding:6px 14px;
-    border-radius:var(--radius-full);
+    border-radius:9999px;
     cursor:pointer;
     transition:all .2s ease;
-    box-shadow:0 2px 8px rgba(0,0,0,0.2);
+    box-shadow:var(--shadow-card);
   }
   .wallet-btn:hover{
     border-color:var(--gold);
-    color:var(--gold-light);
+    color:var(--gold);
     transform:translateY(-1px);
-    box-shadow:0 4px 14px rgba(245,192,99,0.15);
   }
   .wallet-btn.filtered{
-    background:linear-gradient(135deg, rgba(245,192,99,0.18), rgba(245,192,99,0.06));
+    background:rgba(217, 119, 6, 0.12);
     border-color:var(--gold);
     color:var(--gold);
   }
@@ -140,9 +210,7 @@
     line-height:1.25;
     margin:0 0 10px;
     letter-spacing:.01em;
-    background:linear-gradient(135deg, #FFFFFF 30%, #E2E8F0 70%, #CBD5E1 100%);
-    -webkit-background-clip:text;
-    -webkit-text-fill-color:transparent;
+    color:var(--text-white);
   }
   .sub{
     color:var(--text-dim);
@@ -151,17 +219,15 @@
     margin:0;
   }
 
-  /* 主控制台 (Glass Card) */
+  /* 主控制台 (Control Panel) */
   .control-panel{
     background:var(--surface);
-    backdrop-filter:blur(24px);
-    -webkit-backdrop-filter:blur(24px);
     border:1px solid var(--border);
-    border-radius:var(--radius-lg);
+    border-radius:16px;
     padding:20px 22px;
     margin-top:20px;
-    box-shadow:var(--shadow-card), 0 0 0 1px rgba(255,255,255,0.03);
-    position:relative;
+    box-shadow:var(--shadow-card);
+    transition:background-color .25s ease, border-color .25s ease;
   }
 
   /* 搜尋列 */
@@ -187,24 +253,22 @@
     font-family:"Noto Sans TC", sans-serif;
     font-size:16px;
     padding:14px 44px 14px 46px;
-    border-radius:var(--radius-md);
+    border-radius:10px;
     outline:none;
     transition:all .2s ease;
-    box-shadow:inset 0 2px 4px rgba(0,0,0,0.2);
   }
   .search-box-wrap input::placeholder{
     color:var(--text-muted);
     font-size:14px;
   }
   .search-box-wrap input:focus{
-    background:#1C2533;
     border-color:var(--gold);
-    box-shadow:0 0 0 3px rgba(245, 192, 99, 0.15), inset 0 2px 4px rgba(0,0,0,0.2);
+    box-shadow:0 0 0 3px var(--gold-glow);
   }
   .btn-clear{
     position:absolute;
     right:12px;
-    background:rgba(255,255,255,0.1);
+    background:rgba(0,0,0,0.08);
     border:none;
     color:var(--text-dim);
     width:24px;
@@ -218,11 +282,11 @@
     transition:all .15s;
   }
   .btn-clear:hover{
-    background:rgba(255,255,255,0.2);
+    background:rgba(0,0,0,0.18);
     color:var(--text-white);
   }
 
-  /* 智慧意圖分流按鈕列 */
+  /* 智慧意圖分流列 */
   .intent-bar{
     display:none;
     align-items:center;
@@ -230,9 +294,9 @@
     gap:8px;
     margin-top:12px;
     padding:10px 14px;
-    background:linear-gradient(135deg, rgba(245, 192, 99, 0.12), rgba(245, 192, 99, 0.04));
-    border:1px solid rgba(245, 192, 99, 0.28);
-    border-radius:var(--radius-md);
+    background:rgba(217, 119, 6, 0.08);
+    border:1px solid rgba(217, 119, 6, 0.25);
+    border-radius:10px;
     font-size:12px;
     animation:slideDown .25s cubic-bezier(0.16, 1, 0.3, 1);
   }
@@ -240,27 +304,27 @@
     display:flex;
   }
   .intent-title{
-    color:var(--gold-light);
+    color:var(--gold);
     font-weight:700;
     display:inline-flex;
     align-items:center;
     gap:5px;
   }
   .intent-pill{
-    background:var(--surface-solid);
-    border:1px solid rgba(245, 192, 99, 0.3);
+    background:var(--surface);
+    border:1px solid rgba(217, 119, 6, 0.3);
     color:var(--text);
     padding:5px 12px;
-    border-radius:var(--radius-full);
+    border-radius:9999px;
     font-size:12px;
-    font-weight:500;
+    font-weight:600;
     cursor:pointer;
     transition:all .2s ease;
-    box-shadow:0 2px 6px rgba(0,0,0,0.25);
+    box-shadow:0 2px 4px rgba(0,0,0,0.04);
   }
   .intent-pill:hover{
     background:var(--gold);
-    color:#0B0F14;
+    color:#FFFFFF;
     border-color:var(--gold);
     transform:translateY(-1px);
     box-shadow:0 4px 10px var(--gold-glow);
@@ -281,7 +345,7 @@
   .hot-label{
     font-family:"IBM Plex Mono", monospace;
     font-size:11.5px;
-    font-weight:600;
+    font-weight:700;
     color:var(--text-muted);
   }
   .hot-tag{
@@ -290,14 +354,14 @@
     color:var(--text-dim);
     font-size:11.5px;
     padding:3px 9px;
-    border-radius:var(--radius-sm);
+    border-radius:6px;
     cursor:pointer;
     transition:all .15s ease;
   }
   .hot-tag:hover{
     border-color:var(--gold);
     color:var(--gold);
-    background:rgba(245, 192, 99, 0.08);
+    background:rgba(217, 119, 6, 0.06);
   }
 
   /* 金額輸入區塊 */
@@ -313,12 +377,9 @@
   }
   .amount-label{
     font-size:13.5px;
-    font-weight:600;
+    font-weight:700;
     color:var(--text-dim);
     white-space:nowrap;
-    display:inline-flex;
-    align-items:center;
-    gap:6px;
   }
   .amount-input-inner{
     flex:1;
@@ -330,7 +391,7 @@
     position:absolute;
     left:14px;
     font-family:"IBM Plex Mono", monospace;
-    font-weight:600;
+    font-weight:700;
     font-size:13.5px;
     color:var(--gold);
     pointer-events:none;
@@ -341,20 +402,19 @@
     border:1px solid var(--border);
     color:var(--text-white);
     font-family:"IBM Plex Mono", monospace;
-    font-weight:600;
+    font-weight:700;
     font-size:15px;
     padding:10px 14px 10px 48px;
-    border-radius:var(--radius-md);
+    border-radius:10px;
     outline:none;
     transition:all .2s;
   }
   .amount-input-inner input:focus{
     border-color:var(--gold);
-    background:#1C2533;
-    box-shadow:0 0 0 3px rgba(245, 192, 99, 0.12);
+    box-shadow:0 0 0 3px var(--gold-glow);
   }
 
-  /* 快捷金額微調鈕 */
+  /* 快捷金額按鈕 */
   .presets-row{
     display:flex;
     flex-wrap:wrap;
@@ -366,40 +426,38 @@
     font-size:11.5px;
     font-weight:600;
     padding:4px 10px;
-    border-radius:var(--radius-sm);
+    border-radius:6px;
     border:1px solid var(--border);
-    background:rgba(255,255,255,0.03);
+    background:var(--surface);
     color:var(--text-dim);
     cursor:pointer;
     transition:all .15s ease;
   }
   .preset-btn:hover{
     border-color:var(--gold);
-    color:var(--gold-light);
-    background:rgba(245, 192, 99, 0.08);
+    color:var(--gold);
+    background:rgba(217, 119, 6, 0.08);
   }
   .preset-btn.inc{
     color:var(--blue);
-    border-color:rgba(77, 150, 255, 0.3);
-    background:rgba(77, 150, 255, 0.06);
+    border-color:rgba(37, 99, 235, 0.3);
+    background:rgba(37, 99, 235, 0.05);
   }
   .preset-btn.inc:hover{
     border-color:var(--blue);
-    background:rgba(77, 150, 255, 0.15);
-    color:#FFFFFF;
+    background:rgba(37, 99, 235, 0.15);
   }
   .preset-btn.clear-amt{
     color:var(--red);
-    border-color:rgba(255, 100, 124, 0.3);
-    background:rgba(255, 100, 124, 0.06);
+    border-color:rgba(220, 38, 38, 0.3);
+    background:rgba(220, 38, 38, 0.05);
   }
   .preset-btn.clear-amt:hover{
     border-color:var(--red);
-    background:rgba(255, 100, 124, 0.15);
-    color:#FFFFFF;
+    background:rgba(220, 38, 38, 0.15);
   }
 
-  /* 皮夾模式切換條 */
+  /* 皮夾模式切換列 */
   .wallet-bar{
     display:flex;
     justify-content:space-between;
@@ -429,43 +487,44 @@
     cursor:pointer;
     user-select:none;
     font-size:13px;
-    font-weight:600;
+    font-weight:700;
     color:var(--text-dim);
     transition:color .2s;
   }
   .switch-track{
     width:42px;
     height:22px;
-    background:#202B38;
-    border-radius:var(--radius-full);
-    border:1px solid var(--border-light);
+    background:var(--switch-bg);
+    border-radius:9999px;
+    border:1px solid var(--border);
     position:relative;
     transition:all .25s ease;
   }
   .switch-thumb{
     width:16px;
     height:16px;
-    background:var(--text-muted);
+    background:var(--switch-thumb);
     border-radius:50%;
     position:absolute;
     top:2px;
     left:2px;
+    box-shadow:0 1px 3px rgba(0,0,0,0.2);
     transition:all .25s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .switch-label.active{
     color:var(--gold);
   }
   .switch-label.active .switch-track{
-    background:linear-gradient(135deg, #F5C063, #D49B35);
+    background:linear-gradient(135deg, #F59E0B, #D97706);
     border-color:var(--gold);
-    box-shadow:0 0 12px var(--gold-glow);
+    box-shadow:0 0 10px var(--gold-glow);
   }
   .switch-label.active .switch-thumb{
     transform:translateX(20px);
-    background:#0B0F14;
+    background:#FFFFFF;
   }
 
-  /* 分類列：橫向無縫滾動 (Horizontal Scroll Track) */
+  /* 分類列：橫向無縫滑動 (Horizontal Scroll Track) */
   .chips-scroll-wrap{
     position:relative;
     margin-top:20px;
@@ -486,27 +545,26 @@
     flex-shrink:0;
     font-family:"Noto Sans TC", sans-serif;
     font-size:13px;
-    font-weight:500;
+    font-weight:600;
     padding:7px 16px;
-    border-radius:var(--radius-full);
+    border-radius:9999px;
     border:1px solid var(--border);
     background:var(--surface);
-    backdrop-filter:blur(10px);
     color:var(--text-dim);
     cursor:pointer;
     transition:all .2s cubic-bezier(0.16, 1, 0.3, 1);
     white-space:nowrap;
+    box-shadow:var(--shadow-card);
   }
   .chip:hover{
     border-color:var(--gold);
-    color:var(--text-white);
-    background:var(--surface-hover);
+    color:var(--gold);
     transform:translateY(-1px);
   }
   .chip.active{
-    background:linear-gradient(135deg, #F5C063 0%, #D49B35 100%);
+    background:linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
     border-color:var(--gold);
-    color:#0B0F14;
+    color:#FFFFFF;
     font-weight:700;
     box-shadow:0 4px 14px var(--gold-glow);
     transform:translateY(-1px);
@@ -523,14 +581,14 @@
   }
   .meta-title{
     font-size:13.5px;
-    font-weight:600;
+    font-weight:700;
     color:var(--text-dim);
     letter-spacing:.02em;
   }
   .meta-count{
     font-family:"IBM Plex Mono", monospace;
     font-size:12.5px;
-    font-weight:600;
+    font-weight:700;
     color:var(--gold);
   }
 
@@ -541,13 +599,11 @@
     gap:14px;
   }
 
-  /* 單張信用卡卡片 (Card Item) */
+  /* 信用卡卡片 (Card Item) */
   .card-card{
     background:var(--surface);
-    backdrop-filter:blur(20px);
-    -webkit-backdrop-filter:blur(20px);
     border:1px solid var(--border);
-    border-radius:var(--radius-lg);
+    border-radius:16px;
     overflow:hidden;
     transition:all .2s cubic-bezier(0.16, 1, 0.3, 1);
     box-shadow:var(--shadow-card);
@@ -556,33 +612,33 @@
   .card-card:hover{
     border-color:var(--border-light);
     transform:translateY(-2px);
-    box-shadow:0 12px 36px rgba(0,0,0,0.45);
+    box-shadow:0 12px 28px -4px rgba(15, 23, 42, 0.12);
   }
 
   /* 冠軍第 1 名專屬樣式 */
   .card-card.top-rank{
     border:1.5px solid var(--gold);
-    background:linear-gradient(145deg, rgba(245, 192, 99, 0.08) 0%, rgba(22, 29, 39, 0.85) 60%, rgba(22, 29, 39, 0.95) 100%);
-    box-shadow:var(--shadow-glow), 0 12px 40px rgba(0,0,0,0.5);
+    background:var(--champ-bg);
+    box-shadow:var(--shadow-top);
   }
   .champion-ribbon{
     position:absolute;
     top:0;
     right:0;
-    background:linear-gradient(135deg, #F5C063, #D49B35);
-    color:#0B0F14;
-    font-size:10.5px;
+    background:linear-gradient(135deg, #F59E0B, #D97706);
+    color:#FFFFFF;
+    font-size:11px;
     font-weight:800;
-    padding:3px 14px 4px;
+    padding:4px 14px 5px;
     border-bottom-left-radius:10px;
     letter-spacing:.03em;
     display:flex;
     align-items:center;
     gap:4px;
-    box-shadow:0 2px 8px rgba(0,0,0,0.3);
+    box-shadow:0 2px 6px rgba(0,0,0,0.15);
   }
 
-  /* 卡片主體區塊 */
+  /* 卡片主體 */
   .card-body{
     display:grid;
     grid-template-columns:36px 1fr auto;
@@ -591,7 +647,7 @@
     padding:18px 18px 16px;
   }
 
-  /* 排名徽章 */
+  /* 排名標章 */
   .rank-pill{
     width:32px;
     height:32px;
@@ -607,11 +663,11 @@
     color:var(--text-muted);
   }
   .card-card.top-rank .rank-pill{
-    background:linear-gradient(135deg, #F5C063, #D49B35);
+    background:linear-gradient(135deg, #F59E0B, #D97706);
     border-color:var(--gold);
-    color:#0B0F14;
+    color:#FFFFFF;
     font-size:15px;
-    box-shadow:0 0 10px var(--gold-glow);
+    box-shadow:0 2px 8px var(--gold-glow);
   }
 
   /* 卡片主資訊 */
@@ -637,46 +693,46 @@
   .currency-badge{
     font-family:"IBM Plex Mono", monospace;
     font-size:10.5px;
-    font-weight:600;
+    font-weight:700;
     padding:2px 8px;
-    border-radius:var(--radius-full);
+    border-radius:9999px;
     white-space:nowrap;
     border:1px solid transparent;
   }
   .cur-gold{
-    background:rgba(245, 192, 99, 0.14);
+    background:rgba(217, 119, 6, 0.12);
     color:var(--gold);
-    border-color:rgba(245, 192, 99, 0.3);
+    border-color:rgba(217, 119, 6, 0.3);
   }
   .cur-green{
-    background:rgba(62, 213, 152, 0.14);
+    background:rgba(5, 150, 105, 0.12);
     color:var(--green);
-    border-color:rgba(62, 213, 152, 0.3);
+    border-color:rgba(5, 150, 105, 0.3);
   }
   .cur-blue{
-    background:rgba(77, 150, 255, 0.14);
+    background:rgba(37, 99, 235, 0.12);
     color:var(--blue);
-    border-color:rgba(77, 150, 255, 0.3);
+    border-color:rgba(37, 99, 235, 0.3);
   }
   .cur-coral{
-    background:rgba(255, 138, 101, 0.14);
+    background:rgba(234, 88, 12, 0.12);
     color:var(--coral);
-    border-color:rgba(255, 138, 101, 0.3);
+    border-color:rgba(234, 88, 12, 0.3);
   }
   .cur-purple{
-    background:rgba(176, 112, 255, 0.14);
+    background:rgba(124, 58, 237, 0.12);
     color:var(--purple);
-    border-color:rgba(176, 112, 255, 0.3);
+    border-color:rgba(124, 58, 237, 0.3);
   }
 
   .held-badge{
     font-size:10.5px;
-    font-weight:600;
+    font-weight:700;
     padding:2px 7px;
-    border-radius:var(--radius-full);
-    background:rgba(62, 213, 152, 0.15);
+    border-radius:9999px;
+    background:rgba(5, 150, 105, 0.12);
     color:var(--green);
-    border:1px solid rgba(62, 213, 152, 0.35);
+    border:1px solid rgba(5, 150, 105, 0.35);
   }
 
   .channel-title{
@@ -696,35 +752,35 @@
   }
   .micro-pill{
     font-size:11px;
-    font-weight:500;
+    font-weight:600;
     padding:2px 9px;
-    border-radius:var(--radius-full);
+    border-radius:9999px;
     line-height:1.45;
     white-space:nowrap;
     border:1px solid transparent;
   }
   .pill-warn{
-    background:rgba(255, 100, 124, 0.12);
+    background:rgba(220, 38, 38, 0.1);
     color:var(--red);
-    border-color:rgba(255, 100, 124, 0.35);
+    border-color:rgba(220, 38, 38, 0.3);
   }
   .pill-amber{
-    background:rgba(245, 192, 99, 0.12);
-    color:#FCD34D;
-    border-color:rgba(245, 192, 99, 0.3);
+    background:rgba(217, 119, 6, 0.1);
+    color:var(--gold);
+    border-color:rgba(217, 119, 6, 0.3);
   }
   .pill-blue{
-    background:rgba(77, 150, 255, 0.12);
+    background:rgba(37, 99, 235, 0.1);
     color:var(--blue);
-    border-color:rgba(77, 150, 255, 0.3);
+    border-color:rgba(37, 99, 235, 0.3);
   }
   .pill-purple{
-    background:rgba(176, 112, 255, 0.12);
+    background:rgba(124, 58, 237, 0.1);
     color:var(--purple);
-    border-color:rgba(176, 112, 255, 0.3);
+    border-color:rgba(124, 58, 237, 0.3);
   }
   .pill-default{
-    background:rgba(255, 255, 255, 0.05);
+    background:var(--surface-alt);
     color:var(--text-dim);
     border-color:var(--border);
   }
@@ -752,7 +808,7 @@
   }
   .cashback-num small{
     font-size:13px;
-    font-weight:500;
+    font-weight:600;
     margin-right:2px;
   }
   .card-card.top-rank .cashback-num{
@@ -761,24 +817,25 @@
   }
 
   .rate-badge-row{
-    margin-top:3px;
+    margin-top:4px;
   }
   .effective-tag{
     display:inline-block;
     font-family:"IBM Plex Mono", monospace;
     font-size:12px;
     font-weight:700;
-    color:var(--gold-light);
-    background:rgba(245, 192, 99, 0.15);
+    color:var(--gold);
+    background:rgba(217, 119, 6, 0.12);
     padding:1px 7px;
-    border-radius:var(--radius-sm);
+    border-radius:4px;
   }
   .effective-tag.full{
     color:var(--green);
-    background:rgba(62, 213, 152, 0.15);
+    background:rgba(5, 150, 105, 0.12);
   }
   .nominal-rate-text{
     font-size:11px;
+    font-weight:500;
     color:var(--text-muted);
     margin-top:2px;
   }
@@ -786,11 +843,11 @@
     display:inline-block;
     margin-top:4px;
     font-size:10.5px;
-    font-weight:600;
+    font-weight:700;
     color:var(--red);
-    background:rgba(255, 100, 124, 0.1);
-    border:1px solid rgba(255, 100, 124, 0.3);
-    border-radius:var(--radius-sm);
+    background:rgba(220, 38, 38, 0.1);
+    border:1px solid rgba(220, 38, 38, 0.25);
+    border-radius:4px;
     padding:1px 6px;
   }
 
@@ -814,7 +871,7 @@
   /* 展開式計算明細面板 */
   .detail-bar-row{
     padding:8px 18px;
-    background:rgba(0, 0, 0, 0.2);
+    background:var(--surface-alt);
     border-top:1px solid var(--border);
     display:flex;
     justify-content:space-between;
@@ -825,7 +882,7 @@
     border:none;
     color:var(--text-dim);
     font-size:12px;
-    font-weight:500;
+    font-weight:600;
     cursor:pointer;
     padding:2px 0;
     display:inline-flex;
@@ -838,7 +895,8 @@
   }
   .strategy-badge-preview{
     font-size:12px;
-    color:var(--gold-light);
+    font-weight:600;
+    color:var(--gold);
     display:inline-flex;
     align-items:center;
     gap:4px;
@@ -847,23 +905,24 @@
   .calc-accordion{
     display:none;
     padding:16px 18px 18px;
-    background:#111720;
-    border-top:1px dashed rgba(255, 255, 255, 0.08);
+    background:var(--code-bg);
+    border-top:1px dashed var(--border);
     animation:fadeIn .2s ease;
   }
   .calc-accordion.show{
     display:block;
   }
 
-  /* 視覺化進度拆解 */
+  /* 算式拆解盒 */
   .formula-box{
-    background:var(--surface-solid);
+    background:var(--surface);
     border:1px solid var(--border);
-    border-radius:var(--radius-md);
+    border-radius:10px;
     padding:12px 14px;
     display:flex;
     flex-direction:column;
     gap:8px;
+    box-shadow:var(--shadow-card);
   }
   .formula-item{
     display:flex;
@@ -873,6 +932,7 @@
   }
   .formula-item .label{
     color:var(--text-dim);
+    font-weight:500;
   }
   .formula-item .val{
     font-family:"IBM Plex Mono", monospace;
@@ -888,47 +948,52 @@
     display:flex;
     justify-content:space-between;
     font-size:11px;
+    font-weight:600;
     color:var(--text-muted);
     margin-bottom:3px;
   }
   .progress-bg{
     height:6px;
-    background:rgba(255,255,255,0.08);
-    border-radius:var(--radius-full);
+    background:var(--progress-track);
+    border-radius:9999px;
     overflow:hidden;
   }
   .progress-fill{
     height:100%;
     background:linear-gradient(90deg, var(--green), var(--gold));
-    border-radius:var(--radius-full);
+    border-radius:9999px;
     transition:width .4s ease;
   }
   .progress-fill.capped{
     background:linear-gradient(90deg, var(--gold), var(--red));
   }
 
-  /* 策略卡片 */
+  /* 策略卡 */
   .strategy-card{
     margin-top:10px;
     padding:10px 14px;
-    background:linear-gradient(135deg, rgba(245,192,99,0.1), rgba(245,192,99,0.02));
-    border:1px solid rgba(245,192,99,0.25);
-    border-radius:var(--radius-md);
+    background:rgba(217, 119, 6, 0.08);
+    border:1px solid rgba(217, 119, 6, 0.25);
+    border-radius:10px;
     font-size:12.5px;
-    color:var(--gold-light);
+    color:var(--gold-dark);
     line-height:1.55;
     display:flex;
     align-items:flex-start;
     gap:6px;
   }
+  [data-theme="dark"] .strategy-card{
+    color:var(--gold-light);
+  }
 
   /* 搜尋高亮 */
   mark.hl{
-    background:rgba(245, 192, 99, 0.32);
-    color:#FFF8EB;
+    background:rgba(245, 192, 99, 0.35);
+    color:inherit;
     padding:1px 4px;
     border-radius:3px;
     border-bottom:1.5px solid var(--gold);
+    font-weight:600;
   }
 
   /* 空狀態 */
@@ -936,7 +1001,7 @@
     text-align:center;
     padding:64px 20px;
     background:var(--surface);
-    border-radius:var(--radius-lg);
+    border-radius:16px;
     border:1px solid var(--border);
   }
   .empty-icon{
@@ -960,9 +1025,9 @@
   .modal-overlay{
     position:fixed;
     top:0; left:0; right:0; bottom:0;
-    background:rgba(0,0,0,0.75);
-    backdrop-filter:blur(8px);
-    -webkit-backdrop-filter:blur(8px);
+    background:rgba(15, 23, 42, 0.6);
+    backdrop-filter:blur(6px);
+    -webkit-backdrop-filter:blur(6px);
     display:none;
     justify-content:center;
     align-items:center;
@@ -973,15 +1038,15 @@
     display:flex;
   }
   .modal-box{
-    background:#151C26;
-    border:1px solid var(--border-light);
-    border-radius:var(--radius-lg);
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:16px;
     width:100%;
     max-width:560px;
     max-height:85vh;
     display:flex;
     flex-direction:column;
-    box-shadow:0 24px 60px rgba(0,0,0,0.7);
+    box-shadow:0 24px 60px rgba(0,0,0,0.25);
     animation:modalPop .2s cubic-bezier(0.16, 1, 0.3, 1);
   }
   @keyframes modalPop{
@@ -1034,19 +1099,19 @@
   }
   .action-btn{
     font-size:12px;
-    font-weight:500;
+    font-weight:600;
     background:var(--surface-alt);
     border:1px solid var(--border);
     color:var(--text-dim);
     padding:5px 12px;
-    border-radius:var(--radius-sm);
+    border-radius:6px;
     cursor:pointer;
     transition:all .15s;
   }
   .action-btn:hover{
     border-color:var(--gold);
     color:var(--gold);
-    background:rgba(245,192,99,0.08);
+    background:rgba(217, 119, 6, 0.08);
   }
   .wallet-card-grid{
     display:grid;
@@ -1060,21 +1125,24 @@
     background:var(--surface-alt);
     border:1px solid var(--border);
     padding:12px 14px;
-    border-radius:var(--radius-md);
+    border-radius:10px;
     cursor:pointer;
     font-size:13.5px;
-    font-weight:500;
+    font-weight:600;
     color:var(--text);
     transition:all .15s;
     user-select:none;
   }
   .card-option:hover{
     border-color:var(--gold);
-    background:rgba(245,192,99,0.04);
+    background:rgba(217, 119, 6, 0.04);
   }
   .card-option.checked{
     border-color:var(--gold);
-    background:linear-gradient(135deg, rgba(245,192,99,0.12), rgba(245,192,99,0.03));
+    background:rgba(217, 119, 6, 0.1);
+    color:var(--gold-dark);
+  }
+  [data-theme="dark"] .card-option.checked{
     color:var(--gold-light);
   }
   .card-option input{
@@ -1088,20 +1156,20 @@
     justify-content:flex-end;
   }
   .btn-save-cards{
-    background:linear-gradient(135deg, #F5C063, #D49B35);
-    color:#0B0F14;
+    background:linear-gradient(135deg, #F59E0B, #D97706);
+    color:#FFFFFF;
     font-weight:700;
     font-size:14.5px;
     border:none;
     padding:9px 24px;
-    border-radius:var(--radius-md);
+    border-radius:10px;
     cursor:pointer;
     transition:all .15s;
-    box-shadow:0 4px 12px rgba(245,192,99,0.25);
+    box-shadow:0 4px 12px var(--gold-glow);
   }
   .btn-save-cards:hover{
     transform:translateY(-1px);
-    box-shadow:0 6px 18px rgba(245,192,99,0.4);
+    box-shadow:0 6px 18px var(--gold-glow);
   }
 
   footer{
@@ -1132,15 +1200,19 @@
 <div class="wrap">
   <header>
     <div class="top-nav">
-      <div class="version-badge">
-        <span class="version-dot"></span>
-        2026 權益精算版 · 19 大神卡
+      <div class="nav-left-group">
+        <div class="version-badge"><span class="version-dot"></span> 2026 權益精算版 · <span id="headerTotalCount"></span> 大神卡</div>
       </div>
-      <button class="wallet-btn" id="openWalletBtn">
-        <span>💳</span> 我的皮夾 <span class="wallet-count" id="walletBtnCount">(19/19)</span>
-      </button>
+      <div class="nav-right-group">
+        <button class="theme-toggle-btn" id="themeToggleBtn" title="切換深色／淺色主題">
+          <span id="themeIcon">☀️</span> <span id="themeText">淺色</span>
+        </button>
+        <button class="wallet-btn" id="openWalletBtn">
+          <span>💳</span> 我的皮夾 <span class="wallet-count" id="walletBtnCount">(24/24)</span>
+        </button>
+      </div>
     </div>
-    <h1>刷卡前，先查一下</h1>
+    <h1>卡神精算師 · 刷這張最賺</h1>
     <p class="sub">輸入消費通路與預估金額，自動依據「基本回饋無上限＋加碼回饋封頂」精確計算實質能拿多少回饋與實質回饋率，並提供防踩雷條件標籤與最佳刷滿金額提醒。</p>
 
     <!-- 主控制台 -->
@@ -1247,1013 +1319,504 @@
 </div>
 
 <script>
+
 const DATA = [
-  // --- 台新Richart卡（Chill刷） ---
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"瘋聚會-歡聚微醺（詹記麻辣火鍋／海底撈／屋馬燒肉／CAFE ACME／Bar TCRC等）",
-    rate:"10%", rateNum:10, baseRate:0.3, bonusRate:9.7, cap:"詳細月上限請洽台新官網", capAmt:null,
-    pointType:"台新Point",
-    tags:["限指定餐廳酒吧", "活動至09/30"],
-    sweetSpot:"月上限依台新官網方案公告",
-    note:"活動期間2026/7/8-9/30，2026年版方案已全面改版，非原「四大超商3.8%」方案",
-    cats:["dining"],
-    kw:"詹記 麻辣火鍋 萬客什鍋 海底撈 屋馬燒肉 茶六 新村站著吃 燒肉政宗 碳佐麻里 雞湯大叔 brun 不然 cafe acme antipodean 貳樓 樂子 fake sober draft land 臺虎精釀 abv bar tcrc bar home phowa moonrock 聚餐 酒吧 火鍋"
-  },
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"瘋聚會-日常續命（50嵐／得正／五桐號／龜記／CAFE!N／%Arabica等）",
-    rate:"10%", rateNum:10, baseRate:0.3, bonusRate:9.7, cap:"詳細月上限請洽台新官網", capAmt:null,
-    pointType:"台新Point",
-    tags:["指定熱門手搖飲", "活動至09/30"],
-    sweetSpot:"月上限依台新官網公告",
-    note:"活動期間2026/7/8-9/30",
-    cats:["dining"],
-    kw:"50嵐 得正 五桐號 龜記 ug tea 叮哥茶飲 cafe!n arabica compose coffee 飲料 手搖飲 咖啡"
-  },
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"瘋聚會-約會犒賞（饗饗INPARADISE／NAGOMI）",
-    rate:"5%", rateNum:5, baseRate:0.3, bonusRate:4.7, cap:"詳細月上限請洽台新官網", capAmt:null,
-    pointType:"台新Point",
-    tags:["指定頂級吃到飽", "活動至09/30"],
-    sweetSpot:"月上限依台新官網公告",
-    note:"活動期間2026/7/8-9/30",
-    cats:["dining"],
-    kw:"饗饗 inparadise nagomi 吃到飽 約會 自助餐"
-  },
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"沉浸娛樂-應援追星（WEVERSE／五大唱片／FANME／NOL）",
-    rate:"5%", rateNum:5, baseRate:0.3, bonusRate:4.7, cap:"詳細月上限請洽台新官網", capAmt:null,
-    pointType:"台新Point",
-    tags:["追星周邊門市"],
-    sweetSpot:"月上限依台新官網公告",
-    note:"",
-    cats:["stream"],
-    kw:"weverse k-monstar 微樂客 五大唱片 仙女樹 fanme nol 追星 周邊 專輯"
-  },
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"沉浸娛樂-熬夜追更（巴哈姆特／Netflix／Disney+／愛爾達等）",
-    rate:"5%", rateNum:5, baseRate:0.3, bonusRate:4.7, cap:"詳細月上限請洽台新官網", capAmt:null,
-    pointType:"台新Point",
-    tags:["影音串流", "電子書動漫"],
-    sweetSpot:"月上限依台新官網公告",
-    note:"",
-    cats:["stream"],
-    kw:"巴哈姆特 book walker animate 樂天kobo readmoo 讀墨 netflix disney 愛爾達 漫畫 動漫 追劇"
-  },
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"獨自升級-數位外掛（Apple直營／DJI／GoPro／蝦皮／淘寶／Uber Eats）",
-    rate:"3.3%", rateNum:3.3, baseRate:0.3, bonusRate:3.0, cap:"詳細月上限請洽台新官網", capAmt:null,
-    pointType:"台新Point",
-    tags:["Apple直營", "外送平台", "電商平台"],
-    sweetSpot:"月上限依台新官網公告",
-    note:"",
-    cats:["online", "delivery"],
-    kw:"apple apple直營 apple直營店 蘋果 蘋果直營 蘋果直營店 蘋果官網 直營 官網 iphone ipad mac macbook watch studio a straight a dji insta360 gopro 蝦皮 淘寶 酷澎 uber eats 外送"
-  },
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"獨自升級-營養補給（好好生醫／MYPROTEIN／UrMart等）",
-    rate:"5%", rateNum:5, baseRate:0.3, bonusRate:4.7, cap:"詳細月上限請洽台新官網", capAmt:null,
-    pointType:"台新Point",
-    tags:["保健生醫品牌"],
-    sweetSpot:"月上限依台新官網公告",
-    note:"",
-    cats:["life"],
-    kw:"好好生醫 popcare 好在乎 營養師輕食 vitabox myprotein urmart 優馬選品 保健食品 蛋白質 高蛋白"
-  },
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"獨自升級-運動品牌（Adidas／Nike／HOKA／lululemon等）",
-    rate:"5%", rateNum:5, baseRate:0.3, bonusRate:4.7, cap:"詳細月上限請洽台新官網", capAmt:null,
-    pointType:"台新Point",
-    tags:["運動品牌專賣"],
-    sweetSpot:"月上限依台新官網公告",
-    note:"",
-    cats:["life"],
-    kw:"adidas new balance puma onitsuka tiger nike hoka salomon lululemon 運動品牌 球鞋 慢跑鞋 瑜珈"
-  },
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"Pay著刷（台新Pay／台新Pay+）",
-    rate:"3.8%", rateNum:3.8, baseRate:0.3, bonusRate:3.5, cap:"詳細月上限請洽台新官網", capAmt:null,
-    pointType:"台新Point",
-    tags:["限台新Pay", "超商超市", "日韓免手續費"],
-    sweetSpot:"月上限依台新官網公告",
-    note:"台新Pay含全家/7-11/新光三越/康是美/IKEA/NET等；台新Pay+日韓交易再免1.5%手續費",
-    cats:["pay", "super"],
-    kw:"台新pay 全家 台灣全家 7-11 台灣7-11 711 台灣超商 新光三越 richart mart 康是美 ikea net 台灣pay twqr 神腦 燦坤 全國電子 麥當勞 美廉社 大樹藥局 lawson biccamera gs25 daiso 超商"
-  },
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"LINE Pay／全盈+Pay 綁定支付",
-    rate:"2.3%", rateNum:2.3, baseRate:0.3, bonusRate:2.0, cap:"詳細月上限請洽台新官網", capAmt:null,
-    pointType:"台新Point",
-    tags:["行動支付"],
-    sweetSpot:"月上限依台新官網公告",
-    note:"7/8起新增全盈+Pay",
-    cats:["pay"],
-    kw:"line pay 全盈+pay 行動支付 linepay"
-  },
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"天天刷（萬家福／大買家／唐吉訶德／中油／百貨等）",
-    rate:"3.3%", rateNum:3.3, baseRate:0.3, bonusRate:3.0, cap:"詳細月上限請洽台新官網", capAmt:null,
-    pointType:"台新Point",
-    tags:["超市量販", "加油交通", "百貨服飾"],
-    sweetSpot:"月上限依台新官網公告",
-    note:"全家/7-11限台新Pay支付",
-    cats:["super", "life"],
-    kw:"萬家福 樂家康 大買家 唐吉訶德 lopia 智生活 台鐵 高鐵 台灣大車隊 linego yoxi uber 台灣bolt 中油 全國加油 寶雅 康是美 屈臣氏 大樹藥局 新光三越 遠東sogo 微風 台北101 誠品生活 global mall 漢神 ikea uniqlo gu zara net lululemon 加油 計程車 超市"
-  },
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"好饗刷（全台餐飲／王品瘋Pay／Uber Eats／foodpanda／KTV）",
-    rate:"3.3%", rateNum:3.3, baseRate:0.3, bonusRate:3.0, cap:"詳細月上限請洽台新官網", capAmt:null,
-    pointType:"台新Point",
-    tags:["全台餐飲", "外送平台", "購票娛樂"],
-    sweetSpot:"月上限依台新官網公告",
-    note:"",
-    cats:["dining", "delivery"],
-    kw:"全台餐飲 王品瘋pay uber eats foodpanda 拓元 kktix 年代售票 寬宏售票 opentix funnow 錢櫃 好樂迪 oncor sing go 享溫馨 ktv 外送 餐廳"
-  },
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"數趣刷（蝦皮／momo／PChome／線上課程／AI服務）",
-    rate:"3.3%", rateNum:3.3, baseRate:0.3, bonusRate:3.0, cap:"詳細月上限請洽台新官網", capAmt:null,
-    pointType:"台新Point",
-    tags:["網購電商", "AI訂閱", "遊戲影音"],
-    sweetSpot:"月上限依台新官網公告",
-    note:"",
-    cats:["online", "stream"],
-    kw:"蝦皮 momo 酷澎 coupang pchome 東森 博客來 richart mart payeasy iherb shein farfetch olive young 知識衛星 amazing talker tutor abc hahow pressplay mycard 遊戲橘子 steam playstation nintendo netflix disney chatgpt notion canva perplexity claude ai服務 訂閱 電商"
-  },
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"玩旅刷（海外消費／航空公司／訂房／旅行社）",
-    rate:"3.3%", rateNum:3.3, baseRate:0.3, bonusRate:3.0, cap:"詳細月上限請洽台新官網", capAmt:null,
-    pointType:"台新Point",
-    tags:["海外消費", "機票航空", "訂房旅行社"],
-    sweetSpot:"月上限依台新官網公告",
-    note:"海外消費含歐洲國家交易",
-    cats:["travel", "abroad"],
-    kw:"海外消費 中華航空 長榮航空 星宇航空 台灣虎航 國泰航空 華信航空 立榮航空 樂桃航空 阿聯酋航空 亞洲航空 酷航 捷星航空 新加坡航空 日本航空 越捷航空 uber grab suica icoca pasmo wowpass airsim klook kkday agoda booking.com trip.com airbnb hotels.com expedia 雄獅旅遊 易遊網 東南旅遊 可樂旅遊 長汎假期 五福旅遊 喜鴻假期 易飛旅遊 燦星旅遊 加利利旅行社 鳳凰國際旅行社 山富旅遊 行健旅遊 機票 國外"
-  },
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"假日刷（節假日不限通路，含保費、LINE Pay、全盈+Pay）",
-    rate:"2%", rateNum:2, baseRate:2, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"台新Point",
-    tags:["節假日限定", "保費適用", "無上限"],
-    sweetSpot:"節假日刷卡無上限享有 2%",
-    note:"",
-    cats:["pay"],
-    kw:"假日 節假日 保費 一般 line pay 全盈"
-  },
-  {
-    card:"台新Richart卡（Chill刷）",
-    channel:"保費（免切換免領券）",
-    rate:"1.3%", rateNum:1.3, baseRate:1.3, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"台新Point",
-    tags:["保費專屬", "無上限", "免領券"],
-    sweetSpot:"保費不限金額 1.3% 回饋無上限",
-    note:"",
-    cats:["pay"],
-    kw:"保費 保險 人壽 產險"
-  },
-
-  // --- 星展 傳說對決卡 ---
-  {
-    card:"星展 傳說對決卡",
-    channel:"生活玩家精選通路（外送/影音/遊戲/電商/速食/潮玩）",
-    rate:"10%", rateNum:10, baseRate:1, bonusRate:9, cap:"刷頂 NT$5,556／月", capAmt:5556,
-    pointType:"活利積分",
-    tags:["外送平台", "影音串流", "加碼月上限500點"],
-    sweetSpot:"月刷 NT$5,556 賺滿加碼 500 點，超額享基本 1% 無上限",
-    note:"基本1%＋加碼9%，加碼上限500點／月。LINE Pay已排除",
-    cats:["stream", "delivery", "online", "dining"],
-    kw:"app store google play netflix disney disney+ spotify kkbox kktv catchplay litv 愛奇藝 蝦皮 淘寶 uber eats foodpanda 外送 麥當勞 肯德基 摩斯 必勝客 steam playstation nintendo garena gash mycard 巴哈姆特 youtube twitch tiktok 售票 拓元 寬宏 年代售票 kktix logitech nova 三創生活園區 animate 野獸國 popmart 鼎美玩具 khtoy toysnap 東海模型 潮玩動漫"
-  },
-  {
-    card:"星展 傳說對決卡",
-    channel:"國外指定地區實體（日／韓／泰／新／美／歐，含Apple／Samsung Pay感應）",
-    rate:"5%", rateNum:5, baseRate:1, bonusRate:4, cap:"刷頂 NT$12,500／月", capAmt:12500,
-    pointType:"活利積分",
-    tags:["海外實體", "加碼月上限500點", "支援Apple Pay"],
-    sweetSpot:"月刷 NT$12,500 賺滿加碼 500 點，超額享基本 1% 無上限",
-    note:"基本1%＋加碼4%",
-    cats:["abroad"],
-    kw:"日本 韓國 泰國 新加坡 美國 歐洲 海外 國外 apple pay 感應 實體"
-  },
-  {
-    card:"星展 傳說對決卡",
-    channel:"國內一般消費",
-    rate:"1%", rateNum:1, baseRate:1, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"活利積分",
-    tags:["一般消費", "無上限"],
-    sweetSpot:"國內一般消費 1% 無上限",
-    note:"",
-    cats:["pay"],
-    kw:"一般 國內"
-  },
-
-  // --- 星展 ECO永續卡 ---
-  {
-    card:"星展 ECO永續卡",
-    channel:"國外指定地區實體（日／韓／泰／新／美／歐，含Apple Pay感應）",
-    rate:"5%", rateNum:5, baseRate:1, bonusRate:4, cap:"刷頂 NT$15,000／月", capAmt:15000,
-    pointType:"現金積點",
-    tags:["海外實體", "加碼月上限600點", "支援Apple Pay"],
-    sweetSpot:"月刷 NT$15,000 賺滿加碼 600 點，超額享基本 1% 無上限",
-    note:"基本1%＋加碼4%",
-    cats:["abroad"],
-    kw:"日本 韓國 泰國 新加坡 美國 歐洲 海外 國外 apple pay 感應 實體"
-  },
-  {
-    card:"星展 ECO永續卡",
-    channel:"國內／國外一般消費",
-    rate:"1%", rateNum:1, baseRate:1, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"現金積點",
-    tags:["一般消費", "無上限"],
-    sweetSpot:"國內外一般消費 1% 回饋無上限",
-    note:"",
-    cats:["pay"],
-    kw:"一般 國外 國內"
-  },
-
-  // --- 中國信託 uniopen卡 ---
-  {
-    card:"中國信託 uniopen卡",
-    channel:"國內一般消費＋icash Pay加碼",
-    rate:"最高5%", rateNum:5, baseRate:1, bonusRate:4, cap:"刷頂 NT$3,750／月（icash Pay加碼部分）", capAmt:3750,
-    pointType:"OPENPOINT",
-    tags:["單筆滿$199", "限icash Pay", "加碼月上限150點"],
-    sweetSpot:"icash Pay 刷滿 NT$3,750 拿滿加碼 150 點，超額享基本 1% 無上限",
-    note:"國內一般消費1%無上限＋icash Pay單筆滿199元加碼4%(月上限150點)。活動期間2026/9/1-12/31",
-    cats:["super", "pay"],
-    kw:"icash 7-11 台灣7-11 711 台灣超商 超商 一般 icash pay 統一 超市"
-  },
-  {
-    card:"中國信託 uniopen卡",
-    channel:"統一企業集團消費＋踩點任務",
-    rate:"最高7%", rateNum:7, baseRate:1, bonusRate:6, cap:"刷頂 NT$12,500／月", capAmt:12500,
-    pointType:"OPENPOINT",
-    tags:["單筆滿$199", "需踩點任務", "統一集團門市"],
-    sweetSpot:"月刷 NT$12,500 賺滿加碼點數",
-    note:"國內一般1%＋統一集團加碼2%(戶上限500點)＋踩點任務最高加碼4%(不同品牌單筆滿199元，戶上限500點)。適用：7-11、康是美、夢時代、統一時代百貨、DREAM PLAZA、UNIKCY、星巴克等。活動期間2026/9/1-12/31",
-    cats:["super", "dining", "life"],
-    kw:"統一 康是美 星巴克 夢時代 統一時代百貨 dream plaza unikcy 7-11 711 21plus 21風味館 being fit being spa 咖啡 超商 百貨"
-  },
-  {
-    card:"中國信託 uniopen卡",
-    channel:"海外消費（一般＋實體加碼）",
-    rate:"最高11%", rateNum:11, baseRate:3, bonusRate:8, cap:"刷頂 NT$12,500／月", capAmt:12500,
-    pointType:"OPENPOINT",
-    tags:["海外實體", "需面對面感應", "網購不列入"],
-    sweetSpot:"海外實體刷滿 NT$12,500 拿滿加碼，超額享基本 3% 無上限",
-    note:"國外一般2%無上限＋海外實體加碼1%無上限＋海外實體再加碼8%(戶上限500點)。需面對面交易(含Apple/Google/Samsung Pay)，網路交易不列入。活動期間2026/9/1-12/31",
-    cats:["abroad"],
-    kw:"海外 國外 日本 韓國 實體 面對面 apple pay google pay"
-  },
-
-  // --- 玉山銀行 Unicard卡 ---
-  {
-    card:"玉山銀行 Unicard卡",
-    channel:"Up選（百大特店含Apple直營／官網／百貨／高單價，訂閱149元）",
-    rate:"4.5%", rateNum:4.5, baseRate:1, bonusRate:3.5, cap:"刷頂 NT$142,880／月", capAmt:142880,
-    pointType:"玉山 e point",
-    tags:["Apple直營/官網4.5%", "刷頂NT$142,880", "需月費$149", "大額換機首選"],
-    sweetSpot:"購買 iPhone/Mac 高單價首選，月刷 NT$142,880 封頂享 4.5%",
-    note:"需付費訂閱Up選方案（月費149元）。百大特店（含Apple直營店、官網、經銷門市、各大型電商與百貨）享最高4.5%回饋",
-    cats:["pay", "online"],
-    kw:"up選 一般 apple apple直營 apple直營店 蘋果 蘋果直營 蘋果直營店 蘋果官網 apple官網 直營 官網 直營店 iphone ipad mac macbook watch airpods 手機 電腦 大額 高單價 換機 筆電 訂閱 百大特店 studio a 德誼"
-  },
-  {
-    card:"玉山銀行 Unicard卡",
-    channel:"任意選（百大特店自選8間，行動支付／百貨／餐飲／外送等）",
-    rate:"3.5%", rateNum:3.5, baseRate:1, bonusRate:2.5, cap:"刷頂 NT$40,000／月", capAmt:40000,
-    pointType:"玉山 e point",
-    tags:["App自選8特店", "外送平台", "電商百貨"],
-    sweetSpot:"月刷 NT$40,000 封頂，超額享 1% 無上限",
-    note:"需自選8間涵蓋所需通路。通路涵蓋：玉山Wallet/LINE Pay/全支付/街口/悠遊付/全盈+PAY/iPASS MONEY/icash Pay/支付寶、momo/蝦皮/淘寶/酷澎、新光三越/遠東SOGO/遠東百貨/巨城/太平洋百貨/夢時代/統一時代百貨/微風/誠品生活等、萬家福/樂家康/屈臣氏/康是美/特力屋/HOLA/UNIQLO/NET、Uber Eats/foodpanda/王品瘋Pay、台灣中油/台塑石油PAY/55688/台鐵/高鐵/Uber、航空公司/KKday/Klook/Agoda/Booking.com/旅行社、Apple直營店/小米/全國電子/燦坤/拓元售票/威秀/國賓/新光影城/錢櫃KTV",
-    cats:["pay", "delivery", "online", "super", "dining", "travel"],
-    kw:"街口 line pay 悠遊付 全支付 全盈 行動支付 momo 蝦皮 淘寶 酷澎 新光三越 遠東sogo 太平洋百貨 夢時代 統一時代百貨 微風 誠品生活 萬家福 樂家康 屈臣氏 康是美 特力屋 hola uniqlo net uber eats foodpanda 外送 王品瘋pay 中油 台塑石油pay 55688 台鐵 高鐵 uber 航空公司 kkday klook agoda booking apple直營店 蘋果直營店 蘋果官網 蘋果 iphone ipad mac 小米 全國電子 燦坤 拓元售票 威秀 國賓 新光影城 錢櫃ktv"
-  },
-  {
-    card:"玉山銀行 Unicard卡",
-    channel:"四大超商（任意選）",
-    rate:"3.5%", rateNum:3.5, baseRate:1, bonusRate:2.5, cap:"刷頂 NT$40,000／月", capAmt:40000,
-    pointType:"玉山 e point",
-    tags:["超商專屬", "需選入8特店"],
-    sweetSpot:"月刷 NT$40,000 封頂，超額享 1% 無上限",
-    note:"",
-    cats:["super"],
-    kw:"超商 7-11 711 全家 萊爾富 ok 便利商店"
-  },
-  {
-    card:"玉山銀行 Unicard卡",
-    channel:"簡單刷（一般）",
-    rate:"3%", rateNum:3, baseRate:1, bonusRate:2, cap:"刷頂 NT$50,000／月", capAmt:50000,
-    pointType:"玉山 e point",
-    tags:["一般消費", "免選特店"],
-    sweetSpot:"月刷 NT$50,000 封頂，超額享 1% 無上限",
-    note:"",
-    cats:["pay"],
-    kw:"一般 國內 簡單刷"
-  },
-
-  // --- 國泰世華 CUBE卡 ---
-  {
-    card:"國泰世華 CUBE卡",
-    channel:"玩數位（AI工具／串流／網購／國際電商）",
-    rate:"最高3.3%（Level2為3%）", rateNum:3.3, baseRate:3.3, bonusRate:0, cap:"無上限（需達等級門檻）", capAmt:null,
-    pointType:"小樹點",
-    tags:["需當日切換權益", "需自扣或App繳費", "無上限"],
-    sweetSpot:"達等級門檻享 3%~3.3% 回饋無上限",
-    note:"需國泰帳戶自動扣繳或CUBE App繳費(Level2為3%)；財富管理資產達300萬為Level3(3.3%)。含ChatGPT/Canva/Claude/Notion、Apple媒體服務/Netflix/Disney+/Spotify/YouTube Premium、蝦皮/momo/PChome24h/小樹購、酷澎/淘寶天貓",
-    cats:["stream", "online"],
-    kw:"chatgpt canva claude cursor duolingo gamma gemini notion perplexity speak apple媒體服務 google play disney+ netflix spotify youtube premium max 蝦皮 momo pchome24h 小樹購 酷澎 淘寶 天貓 電商 影音 ai"
-  },
-  {
-    card:"國泰世華 CUBE卡",
-    channel:"樂饗購（百貨購物／美食餐廳／外送平台／藥妝）",
-    rate:"最高3.3%（Level2為3%）", rateNum:3.3, baseRate:3.3, bonusRate:0, cap:"無上限（需達等級門檻）", capAmt:null,
-    pointType:"小樹點",
-    tags:["需當日切換權益", "外送平台", "無上限"],
-    sweetSpot:"外送餐飲百貨享有 3%~3.3% 回饋無上限",
-    note:"同樂饗購等級門檻。含Uber Eats、foodpanda、全台餐廳、百貨、藥妝門市",
-    cats:["dining", "delivery", "japan"],
-    kw:"百貨 美食餐廳 外送平台 藥妝 uber eats foodpanda 外送 餐廳 屈臣氏 康是美 新光三越 sogo 微風 漢神"
-  },
-  {
-    card:"國泰世華 CUBE卡",
-    channel:"趣旅行（海外實體／航空公司／旅行社／旅遊平台）",
-    rate:"最高3.3%（Level2為3%）", rateNum:3.3, baseRate:3.3, bonusRate:0, cap:"無上限（需達等級門檻）", capAmt:null,
-    pointType:"小樹點",
-    tags:["需當日切換權益", "機票旅行社", "無上限"],
-    sweetSpot:"旅遊機票海外消費享有 3%~3.3% 無上限",
-    note:"同上等級門檻",
-    cats:["travel", "abroad"],
-    kw:"海外實體 航空公司 旅行社 旅遊平台 klook 海外搭車 機票 日本 韓國 國外 agoda booking"
-  },
-  {
-    card:"國泰世華 CUBE卡",
-    channel:"集精選（電動車充電／停車）",
-    rate:"2%", rateNum:2, baseRate:2, bonusRate:0, cap:"無上限，無等級限制", capAmt:null,
-    pointType:"小樹點",
-    tags:["需切換權益", "充電停車", "無上限"],
-    sweetSpot:"電動車充電與停車 2% 無上限",
-    note:"充電：EVOASIS/TAIL/U-POWER/EVALUE/iCharging；停車：車麻吉Autopass/uTagGo",
-    cats:["life"],
-    kw:"電動車 充電 evoasis tail u-power evalue icharging 車麻吉 autopass utaggo 停車"
-  },
-  {
-    card:"國泰世華 CUBE卡",
-    channel:"慶生月（生日當月限定，指定餐廳／遊樂園／KTV／百貨／外送）",
-    rate:"最高10%（購票平台3.5%）", rateNum:10, baseRate:10, bonusRate:0, cap:"無上限，無等級限制", capAmt:null,
-    pointType:"小樹點",
-    tags:["限生日當月份", "指定餐廳KTV", "無上限"],
-    sweetSpot:"生日當月切換慶生月，指定餐廳最高 10% 無上限",
-    note:"限持卡人生日當月",
-    cats:["dining"],
-    kw:"生日 慶生 指定餐廳 遊樂園 ktv 百貨 外送 錢櫃 好樂迪"
-  },
-  {
-    card:"國泰世華 CUBE卡",
-    channel:"全支付（全聯／大全聯）",
-    rate:"2%", rateNum:2, baseRate:2, bonusRate:0, cap:"無上限，無等級限制", capAmt:null,
-    pointType:"小樹點",
-    tags:["全聯福利中心", "限全支付APP", "無上限"],
-    sweetSpot:"全聯綁全支付 2% 小樹點回饋無上限",
-    note:"2026年新增，電子支付綁定",
-    cats:["super", "pay"],
-    kw:"全聯 大全聯 全支付 超市 超商"
-  },
-  {
-    card:"國泰世華 CUBE卡",
-    channel:"台塑家（加油／健康生活／指定超商）",
-    rate:"最高2%", rateNum:2, baseRate:2, bonusRate:0, cap:"無上限，無等級限制", capAmt:null,
-    pointType:"小樹點",
-    tags:["加油專用", "台塑生醫", "超商實體"],
-    sweetSpot:"加油台塑超商 2% 無上限",
-    note:"2026年新增。加油：台塑石油/台亞/福懋/統一速邁樂；健康生活：台塑生醫/長庚生技/台塑蔬菜/台塑購物網；超商：7-ELEVEN/全家/萊爾富(限實體)",
-    cats:["life", "super"],
-    kw:"台塑石油 台亞 福懋 統一速邁樂 加油 台塑生醫 長庚生技 台塑蔬菜 台塑購物網 7-11 全家 萊爾富 超商"
-  },
-  {
-    card:"國泰世華 CUBE卡",
-    channel:"童樂匯（嬰幼童品牌官網／五感體驗課，限定身份）",
-    rate:"最高10%", rateNum:10, baseRate:10, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"小樹點",
-    tags:["限定身份條件", "母嬰童裝課", "無上限"],
-    sweetSpot:"符合身分享最高 10% 無上限",
-    note:"需符合銀行公告指定條件",
-    cats:["life"],
-    kw:"嬰幼童 10mois mamas papas 古北町 little wonders seahorse originals 體驗課 親子"
-  },
-
-  // --- 匯豐銀行 匯鑽卡 ---
-  {
-    card:"匯豐銀行 匯鑽卡",
-    channel:"指定通路（街口／PayPal／momo／Uber Eats／國外網購／訂房／影音遊戲等）",
-    rate:"3%（達標6%）", rateNum:6, baseRate:1, bonusRate:5, cap:"刷頂 NT$2,000／期", capAmt:2000,
-    pointType:"現金積點",
-    tags:["需資產30萬雙倍兌換", "外送平台", "電商影音"],
-    sweetSpot:"每期刷 NT$2,000 達標 6% 效益最高",
-    note:"資產達30萬且回饋達5,000點可雙倍兌換6%，兌換為NT$10,000刷卡金，一年最多兌換2份(2026.07.01-2027.06.30)。通路含：街口支付/PayPal、momo/Uber Eats、Amazon.com/ASOS/HERMES/SELFRIDGES/Shopbop/MYTHERESA/eBay/Farfetch/GMARKET/DOKODEMO、agoda/Booking.com、Disney+/Netflix/YouTube/Spotify/Nintendo",
-    cats:["online", "delivery", "stream", "travel"],
-    kw:"街口 paypal momo uber eats 外送 amazon asos hermes selfridges shopbop mytheresa ebay farfetch gmarket dokodemo agoda booking netflix disney spotify nintendo 訂房 影音"
-  },
-  {
-    card:"匯豐銀行 匯鑽卡",
-    channel:"一般通路（百貨／線上購物／超市量販／便利超商等）",
-    rate:"1%（達標2%）", rateNum:2, baseRate:1, bonusRate:1, cap:"無上限", capAmt:null,
-    pointType:"現金積點",
-    tags:["需資產30萬雙倍兌換", "超市百貨超商", "無上限"],
-    sweetSpot:"一般通路基本1%（雙倍兌換2%）無上限",
-    note:"百貨：廣三SOGO/微風/台北101/誠品/Global Mall/漢神巨蛋等；線上購物：momo/PChome24h/生活市集/91APP/博客來等；超市量販：家樂福/大潤發/棉花田/聖德克斯/美廉社/屈臣氏；便利超商：7-ELEVEN/全家/萊爾富/OK；其他：台灣中油/台亞加油站/麥當勞/星巴克",
-    cats:["super", "pay"],
-    kw:"廣三sogo 微風 台北101 誠品 global mall 漢神 momo pchome24h 生活市集 91app 博客來 家樂福 大潤發 棉花田 聖德克斯 jasons market place 美廉社 屈臣氏 7-11 711 全家 萊爾富 ok超商 台灣中油 台亞加油站 麥當勞 星巴克 超市 百貨 加油"
-  },
-  {
-    card:"匯豐銀行 匯鑽卡",
-    channel:"國內一般／保險",
-    rate:"1%", rateNum:1, baseRate:1, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"現金積點",
-    tags:["一般保費", "無上限"],
-    sweetSpot:"一般保險消費 1% 無上限",
-    note:"",
-    cats:["pay"],
-    kw:"一般 保險 保費"
-  },
-
-  // --- 第一銀行 iLeo ---
-  {
-    card:"第一銀行 iLeo",
-    channel:"LINE Pay／街口（單筆滿千）",
-    rate:"3%", rateNum:3, baseRate:0.5, bonusRate:2.5, cap:"帳月 NT$20,000", capAmt:20000,
-    pointType:"刷卡金",
-    tags:["單筆滿$1,000", "行動支付", "月上限2萬"],
-    sweetSpot:"單筆滿千，月刷 NT$20,000 拿滿加碼",
-    note:"單筆需滿NT$1,000",
-    cats:["pay"],
-    kw:"line pay 街口 行動支付 linepay 街口支付"
-  },
-  {
-    card:"第一銀行 iLeo",
-    channel:"AI助理／影音訂閱（Netflix／Disney+／ChatGPT／Gemini／Claude）",
-    rate:"最高7%", rateNum:7, baseRate:0.5, bonusRate:6.5, cap:"約刷頂 NT$8,300／月", capAmt:8300,
-    pointType:"刷卡金",
-    tags:["單筆滿$1,000", "需App領券", "AI影音訂閱"],
-    sweetSpot:"月刷約 NT$8,300 賺滿加碼，超額享基本回饋",
-    note:"單筆滿1,000元，需搭配App領券；上限為加碼額度換算之約略消費金額",
-    cats:["stream"],
-    kw:"netflix disney disney+ chatgpt gemini claude ai 訂閱 影音 串流"
-  },
-
-  // --- 聯邦 LINE Bank 聯名卡 ---
-  {
-    card:"聯邦 LINE Bank 聯名卡",
-    channel:"指定網購／影音／遊戲／購票（momo／PChome／淘寶／蝦皮／酷澎／Netflix／Steam等）",
-    rate:"最高4%", rateNum:4, baseRate:1, bonusRate:3, cap:"歸戶每月上限300元（約NT$10,000消費）", capAmt:10000,
-    pointType:"刷卡金",
-    tags:["網購電商", "影音遊戲", "加碼月上限300元"],
-    sweetSpot:"月刷 NT$10,000 賺足加碼 300 元，超額享 1% 無上限",
-    note:"基本1%＋加碼3%。含momo購物網/PChome線上購物/淘寶/蝦皮/酷澎、Netflix/Disney+/CatchPlay/Spotify/LINE TV/KKTV/KKBOX、Steam/PlayStation/Nintendo/Blizzard/Garena/MyCard、tixCraft拓元/KKTIX",
-    cats:["online", "stream"],
-    kw:"momo pchome 淘寶 蝦皮 酷澎 netflix disney+ catchplay spotify line tv kktv kkbox steam playstation nintendo blizzard garena mycard tixcraft 拓元 kktix 電商 遊戲 購票"
-  },
-  {
-    card:"聯邦 LINE Bank 聯名卡",
-    channel:"自動扣款禮加碼5%（首次申辦限定）",
-    rate:"5%（限一次性活動）", rateNum:5, baseRate:1, bonusRate:4, cap:"每次上限200元，歸戶限領3次", capAmt:4000,
-    pointType:"刷卡金",
-    tags:["首次申辦限定", "需自扣信用卡費"],
-    sweetSpot:"每期刷 NT$4,000 拿滿 200 元（限領 3 次）",
-    note:"首次申辦，於活動期間內核卡且180天內自動扣繳信用卡款成功。活動期間2026/8/1-2027/7/31",
-    cats:["pay"],
-    kw:"首刷 自動扣繳 新戶禮 自扣"
-  },
-  {
-    card:"聯邦 LINE Bank 聯名卡",
-    channel:"國內一般／保險（國外2.5%）",
-    rate:"1%", rateNum:1, baseRate:1, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"刷卡金",
-    tags:["一般保費", "國外2.5%", "無上限"],
-    sweetSpot:"國內一般1%、國外2.5%無上限",
-    note:"國外一般消費2.5%",
-    cats:["pay"],
-    kw:"一般 保險 保費 國外"
-  },
-
-  // --- 聯邦 吉鶴卡 ---
-  {
-    card:"聯邦 吉鶴卡",
-    channel:"日本一般消費（日幣，未含各項加碼）",
-    rate:"2.5%", rateNum:2.5, baseRate:2.5, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"刷卡金",
-    tags:["日幣消費", "無上限"],
-    sweetSpot:"日幣實體/線上消費 2.5% 無上限",
-    note:"活動期間2026/07/01-2026/12/31",
-    cats:["abroad"],
-    kw:"日本 海外 國外 日幣"
-  },
-  {
-    card:"聯邦 吉鶴卡",
-    channel:"日本行動支付＋11大熱門商店加碼（現有卡友）",
-    rate:"最高8%", rateNum:8, baseRate:2.5, bonusRate:5.5, cap:"約刷頂 NT$20,000／月", capAmt:20000,
-    pointType:"刷卡金",
-    tags:["🇯🇵 僅限日本境內門市", "需每月登錄", "日本實體Apple Pay感應"],
-    sweetSpot:"月刷約 NT$20,000 拿滿加碼，超額享 2.5% 無上限",
-    note:"基礎2.5%＋行動支付(Google Pay/Apple Pay)加碼最高2.5%(需登錄，月上限800元)＋7-11/全家/LAWSON/東京迪士尼/大阪環球影城/永旺/三越/高島屋/BIC CAMERA/Yodobashi/唐吉訶德加碼3%(月上限600元)",
-    cats:["abroad", "pay"],
-    kw:"日本 熱門商店 迪士尼 環球影城 永旺 三越 高島屋 bic camera yodobashi 唐吉訶德 google pay apple pay 行動支付 日本7-11 日本全家 日本超商 lawson 電器 藥妝"
-  },
-  {
-    card:"聯邦 吉鶴卡",
-    channel:"日本行動支付＋11大熱門商店加碼（新戶限定）",
-    rate:"最高11%", rateNum:11, baseRate:2.5, bonusRate:8.5, cap:"約刷頂 NT$20,000／月", capAmt:20000,
-    pointType:"刷卡金",
-    tags:["新戶限定", "需每月登錄", "日本熱門名店"],
-    sweetSpot:"新戶月刷約 NT$20,000 賺滿加碼回饋",
-    note:"同上再加新戶日本實體消費加碼3%(月上限600元)，僅限新申辦卡友",
-    cats:["abroad"],
-    kw:"日本 新戶 熱門商店 迪士尼 環球影城 bic camera"
-  },
-  {
-    card:"聯邦 吉鶴卡",
-    channel:"日本三大交通卡儲值（SUICA／ICOCA／PASMO）",
-    rate:"1.5%", rateNum:1.5, baseRate:1.5, bonusRate:0, cap:"每月登錄限量10,000名", capAmt:null,
-    pointType:"刷卡金",
-    tags:["需逢15日登錄", "交通卡儲值", "限量1萬名"],
-    sweetSpot:"每月15日需完成登錄，當月儲值享 1.5%",
-    note:"當月消費須於當月完成登錄才算數，無法追溯尚未登錄之月份",
-    cats:["abroad"],
-    kw:"suica icoca pasmo 交通卡 日本交通 儲值 西瓜卡"
-  },
-  {
-    card:"聯邦 吉鶴卡",
-    channel:"國內日系名店（大創／UNIQLO／GU／松本清／思夢樂／TSUTAYA等）",
-    rate:"5%（新戶5.5%）", rateNum:5, baseRate:1, bonusRate:4, cap:"約刷頂 NT$12,500／月", capAmt:12500,
-    pointType:"刷卡金",
-    tags:["日系名店專屬", "加碼月上限500元"],
-    sweetSpot:"月刷 NT$12,500 賺足加碼 500 元，超額享 1% 無上限",
-    note:"一般1%(無上限)＋加碼4%(月上限500元)；新戶另有自扣加碼0.5%(核卡後3個月內上限300元)",
-    cats:["japan", "life"],
-    kw:"大創 daiso uniqlo gu 松本清 思夢樂 tsutaya 日藥本舖 三友藥妝 tomod's 札幌藥妝 tsutaya bookstore global work niko lowrys farm lakole studio clip repipi armario hare heather pageboy rageblue lepsim jeanasis standard products threeppy 服飾 藥妝 書局"
-  },
-  {
-    card:"聯邦 吉鶴卡",
-    channel:"人氣日系餐廳現折（涮乃葉／一風堂／吉豚屋／YAYOI等，週一至週五）",
-    rate:"最高現折10%", rateNum:10, baseRate:10, bonusRate:0, cap:"依店家規定現折", capAmt:null,
-    pointType:"現場現折",
-    tags:["現場現折", "限平日週一至五", "需出示實體卡全額付"],
-    sweetSpot:"結帳出示實體卡享 10% 現折折扣",
-    note:"限週一至週五，部分店家限週一至週四；需全額以聯邦吉鶴卡支付",
-    cats:["japan", "dining"],
-    kw:"涮乃葉 一風堂 吉豚屋 yayoi 彌生軒 壽司美登利 屯京拉麵 千葉火鍋 ramen nagi momo paradise 燒肉 定食8 勝博殿 欣葉 日本料理 涮之華 餐廳 火鍋 拉麵"
-  },
-  {
-    card:"聯邦 吉鶴卡",
-    channel:"國內一般消費",
-    rate:"1%", rateNum:1, baseRate:1, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"刷卡金",
-    tags:["一般消費", "無上限"],
-    sweetSpot:"國內一般消費 1% 無上限",
-    note:"",
-    cats:["pay"],
-    kw:"一般 國內"
-  },
-  {
-    card:"聯邦 吉鶴卡",
-    channel:"國外一般消費（非日本）",
-    rate:"1%", rateNum:1, baseRate:1, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"刷卡金",
-    tags:["海外非日", "無上限"],
-    sweetSpot:"海外其他國家一般消費 1% 無上限",
-    note:"",
-    cats:["abroad"],
-    kw:"海外 國外 歐美"
-  },
-
-  // --- 富邦 J卡 ---
-  {
-    card:"富邦 J卡",
-    channel:"日韓泰旅遊基本回饋（綁定自扣或電子帳單）",
-    rate:"3%", rateNum:3, baseRate:3, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"刷卡金/LINE POINTS",
-    tags:["需自扣或電子帳單", "日韓泰專屬", "無上限"],
-    sweetSpot:"日韓泰刷卡 3% 回饋無上限",
-    note:"未綁定自扣/電子帳單僅0.5%；活動期間2026/4/1-12/31",
-    cats:["abroad"],
-    kw:"日本 韓國 泰國 海外 旅遊 國外"
-  },
-  {
-    card:"富邦 J卡",
-    channel:"日本三大交通卡加碼（最高10%）",
-    rate:"最高10%", rateNum:10, baseRate:3, bonusRate:7, cap:"每季上限200元／戶", capAmt:2857,
-    pointType:"刷卡金/LINE POINTS",
-    tags:["單筆滿$2,000", "限Apple Pay儲值", "需每季登錄限量"],
-    sweetSpot:"單筆儲值滿 NT$2,000，每季刷 NT$2,857 拿滿加碼 200 元",
-    note:"以Apple Pay綁定J卡刷付Suica/PASMO/ICOCA儲值，單筆滿NT$2,000。10%=基本3%+交通卡加碼7%。活動期間2026/4/1-9/30，每季限量30,000名",
-    cats:["abroad"],
-    kw:"suica pasmo icoca 日本交通卡 apple pay 西瓜卡 交通卡 儲值"
-  },
-  {
-    card:"富邦 J卡",
-    channel:"日韓泰當地實體加碼（最高6%）",
-    rate:"最高6%", rateNum:6, baseRate:3, bonusRate:3, cap:"每季上限1,000元／戶", capAmt:33333,
-    pointType:"刷卡金/LINE POINTS",
-    tags:["單筆滿$1,000", "需每季登錄限量", "當地實體店面"],
-    sweetSpot:"每季刷滿 NT$33,333 賺足加碼 1,000 元，超額享基本 3% 無上限",
-    note:"單筆滿千，6%=基本3%+當地實體加碼3%。需登錄，每季限量20,000名",
-    cats:["abroad"],
-    kw:"日本 韓國 泰國 實體消費 購物 藥妝 百貨"
-  },
-  {
-    card:"富邦 J卡",
-    channel:"亞洲精選（中國大陸／香港／澳門／新加坡／馬來西亞／越南）",
-    rate:"等值5%（滿額贈券）", rateNum:5, baseRate:1, bonusRate:4, cap:"實體累積滿NT$6,000贈NT$300即享券", capAmt:6000,
-    pointType:"即享券",
-    tags:["需累積滿$6,000", "指定亞洲國家實體"],
-    sweetSpot:"累積滿 NT$6,000 贈 NT$300 即享券",
-    note:"活動期間2026/4/1-9/30，當月消費可合併計算",
-    cats:["abroad"],
-    kw:"中國大陸 香港 澳門 新加坡 馬來西亞 越南 亞洲"
-  },
-  {
-    card:"富邦 J卡",
-    channel:"國內／其他海外地區一般消費",
-    rate:"1%", rateNum:1, baseRate:1, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"LINE POINTS",
-    tags:["一般消費", "無上限"],
-    sweetSpot:"一般消費 1% 回饋無上限",
-    note:"",
-    cats:["pay"],
-    kw:"一般 國內"
-  },
-  {
-    card:"富邦 J卡",
-    channel:"保費（0.5%回饋或最高12期分期0利率）",
-    rate:"0.5%", rateNum:0.5, baseRate:0.5, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"刷卡金",
-    tags:["保費回饋/分期二選一", "無上限"],
-    sweetSpot:"保費 0.5% 或分期 0 利率",
-    note:"二選一，活動期間2026/1/1-12/31",
-    cats:["pay"],
-    kw:"保費 保險 人壽 產險 分期"
-  },
-
-  // --- 富邦momo卡 ---
-  {
-    card:"富邦momo卡",
-    channel:"momo通路消費（momo購物網／電視購物／型錄／mo店+）",
-    rate:"最高3% mo幣", rateNum:3, baseRate:3, bonusRate:0, cap:"每期上限1,000~2,000 mo幣", capAmt:33333,
-    pointType:"mo幣",
-    tags:["momo通路專屬", "大促期間上限加倍"],
-    sweetSpot:"每期刷滿 NT$33,333 封頂（大促期間可刷至 NT$66,666）",
-    note:"2026年10月-2027年1月結帳帳單升級為上限2,000 mo幣(約NT$66,666)",
-    cats:["online"],
-    kw:"momo購物網 電視購物 型錄 mo店+ 跨境電商 網購"
-  },
-  {
-    card:"富邦momo卡",
-    channel:"momo館內精選品牌加碼（最高7%）",
-    rate:"最高7%", rateNum:7, baseRate:3, bonusRate:4, cap:"7%=權益3%+品牌加碼4%", capAmt:50000,
-    pointType:"mo幣",
-    tags:["免登錄", "館內精選品牌", "不計分期"],
-    sweetSpot:"精選品牌刷滿 NT$50,000 封頂",
-    note:"活動期間2026/7/1-9/30，品牌加碼4%為mo點，不計分期訂單，免登錄",
-    cats:["online"],
-    kw:"momo館內精選品牌 momo 品牌加碼"
-  },
-  {
-    card:"富邦momo卡",
-    channel:"一般消費",
-    rate:"1%", rateNum:1, baseRate:1, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"mo幣",
-    tags:["一般消費", "無上限"],
-    sweetSpot:"一般消費 1% 回饋無上限",
-    note:"",
-    cats:["pay"],
-    kw:"一般 國內"
-  },
-  {
-    card:"富邦momo卡",
-    channel:"海外消費",
-    rate:"1%", rateNum:1, baseRate:1, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"mo幣",
-    tags:["海外消費", "無上限"],
-    sweetSpot:"海外消費 1% 回饋無上限",
-    note:"",
-    cats:["abroad"],
-    kw:"海外 國外"
-  },
-  {
-    card:"富邦momo卡",
-    channel:"保費（0.5%回饋或最高12期分期0利率）",
-    rate:"0.5%", rateNum:0.5, baseRate:0.5, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"mo幣",
-    tags:["保費回饋/分期二選一", "無上限"],
-    sweetSpot:"保費 0.5% 或分期 0 利率",
-    note:"二選一，核卡時設定",
-    cats:["pay"],
-    kw:"保費 保險 分期"
-  },
-
-  // --- 聯邦 賴點卡 ---
-  {
-    card:"聯邦 賴點卡",
-    channel:"國內LINE Pay一般消費",
-    rate:"2%", rateNum:2, baseRate:1, bonusRate:1, cap:"無上限", capAmt:null,
-    pointType:"LINE POINTS",
-    tags:["LINE Pay綁定", "無上限"],
-    sweetSpot:"LINE Pay 綁定消費 2% 回饋無上限",
-    note:"基本1%＋LINE Pay加碼1%",
-    cats:["pay"],
-    kw:"line pay 行動支付 linepay 國內"
-  },
-  {
-    card:"聯邦 賴點卡",
-    channel:"偶數日LINE Pay指定通路加碼（王品／海底撈／星巴克／50嵐／外送等）",
-    rate:"最高6%", rateNum:6, baseRate:2, bonusRate:4, cap:"每帳號月上限150點", capAmt:3000,
-    pointType:"LINE POINTS",
-    tags:["限偶數日(2/4/6...)", "單筆滿$100", "外送餐飲超市"],
-    sweetSpot:"偶數日單筆滿百，月刷 NT$3,000 賺足加碼 150 點",
-    note:"單筆滿100元，僅偶數日(2/4/6...)有效，消費請款名稱需出現「連加*」「連支*」字樣",
-    cats:["dining", "delivery", "pay", "super"],
-    kw:"王品集團 三商集團 輕井澤集團 海底撈 築間 春水堂 壽司郎 爭鮮 八方雲集 麥當勞 肯德基 摩斯漢堡 漢堡王 星巴克 路易莎 cama 50嵐 得正 麻古茶坊 可不可 屈臣氏 寶雅 唐吉訶德 大樹 杏一 丁丁 佑全 躍獅 ikea hola 小北百貨 汪喵星球 東森寵物 飲料 餐廳 偶數日"
-  },
-  {
-    card:"聯邦 賴點卡",
-    channel:"國外消費（含歐洲實體商店）",
-    rate:"3%", rateNum:3, baseRate:3, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"LINE POINTS",
-    tags:["海外消費", "含歐洲實體", "無上限"],
-    sweetSpot:"國外消費 3% 回饋無上限（歐洲實體亦認列）",
-    note:"",
-    cats:["abroad"],
-    kw:"海外 國外 歐洲 實體 旅遊"
-  },
-  {
-    card:"聯邦 賴點卡",
-    channel:"指定IP商店／票券／影城加碼（CHIIKAWA／OPENTIX／拓元／威秀／秀泰）",
-    rate:"最高6%", rateNum:6, baseRate:1, bonusRate:5, cap:"每月歸戶上限200點", capAmt:4000,
-    pointType:"LINE POINTS",
-    tags:["吉伊卡哇快閃", "拓元KKTIX購票", "威秀秀泰影城"],
-    sweetSpot:"月刷 NT$4,000 拿滿加碼 200 點",
-    note:"活動期間2026/7/1-9/30",
-    cats:["stream"],
-    kw:"chiikawa shop intaipei chiikawa days opentix 拓元 寬宏售票 年代線上售票 kktix 威秀 秀泰 影城 電影 票券 吉伊卡哇"
-  },
-
-  // --- 玉山PI ---
-  {
-    card:"玉山PI",
-    channel:"全家／美廉社（Pi錢包）",
-    rate:"5%", rateNum:5, baseRate:1, bonusRate:4, cap:"刷頂 NT$8,750／月", capAmt:8750,
-    pointType:"P幣",
-    tags:["限Pi錢包支付", "全家美廉社", "加碼月上限350點"],
-    sweetSpot:"月刷 NT$8,750 賺滿加碼 350 點，超額享 1% 無上限",
-    note:"一般1%＋加碼4%，每月上限350點。活動至2026/08/31",
-    cats:["super", "pay"],
-    kw:"全家 台灣全家 美廉社 超商 台灣超商 pi錢包 pi拍錢包 超市"
-  },
-  {
-    card:"玉山PI",
-    channel:"國外一般消費",
-    rate:"2.5%", rateNum:2.5, baseRate:2.5, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"P幣",
-    tags:["國外一般", "無上限"],
-    sweetSpot:"國外消費 2.5% P幣無上限",
-    note:"",
-    cats:["abroad"],
-    kw:"海外 國外"
-  },
-  {
-    card:"玉山PI",
-    channel:"保險",
-    rate:"1.2%", rateNum:1.2, baseRate:1.2, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"P幣",
-    tags:["保費專屬", "無上限"],
-    sweetSpot:"保險費 1.2% 回饋無上限",
-    note:"",
-    cats:["pay"],
-    kw:"保險 保費"
-  },
-
-  // --- 永豐大戶DAWHO（大戶等級） ---
-  {
-    card:"永豐大戶DAWHO（大戶等級）",
-    channel:"國內一般消費",
-    rate:"1%", rateNum:1, baseRate:1, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"刷卡金",
-    tags:["國內一般", "無上限"],
-    sweetSpot:"一般消費 1% 現金回饋無上限",
-    note:"",
-    cats:["pay"],
-    kw:"一般 國內"
-  },
-  {
-    card:"永豐大戶DAWHO（大戶等級）",
-    channel:"國外一般消費",
-    rate:"2%", rateNum:2, baseRate:2, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"刷卡金",
-    tags:["國外一般", "無上限"],
-    sweetSpot:"國外消費 2% 現金回饋無上限",
-    note:"",
-    cats:["abroad"],
-    kw:"海外 國外"
-  },
-  {
-    card:"永豐大戶DAWHO（大戶等級）",
-    channel:"綁定指定任務國內加碼（外送／餐飲／旅行／交通／影音）",
-    rate:"3.5%", rateNum:3.5, baseRate:1, bonusRate:2.5, cap:"月上限400元", capAmt:16000,
-    pointType:"刷卡金",
-    tags:["需大戶活存等級", "需帳戶自扣+電子帳單", "外送平台"],
-    sweetSpot:"月刷 NT$16,000 拿滿加碼 400 元，超額享基本 1% 無上限",
-    note:"國內1%＋加碼2.5%。指定任務＝①數位帳戶扣繳信用卡款②電子/行動帳單(取消實體帳單)。適用Uber Eats、foodpanda、餐廳、旅行、影音等",
-    cats:["pay", "delivery", "dining", "travel"],
-    kw:"指定任務 數位帳戶 電子帳單 uber eats foodpanda 外送 餐廳 影音 交通"
-  },
-  {
-    card:"永豐大戶DAWHO（大戶等級）",
-    channel:"綁定指定任務國外加碼",
-    rate:"4.5%", rateNum:4.5, baseRate:2, bonusRate:2.5, cap:"月上限400元", capAmt:16000,
-    pointType:"刷卡金",
-    tags:["需大戶活存等級", "需自扣+電子帳單", "海外指定通路"],
-    sweetSpot:"月刷 NT$16,000 拿滿加碼 400 元，超額享基本 2% 無上限",
-    note:"國外2%＋加碼2.5%",
-    cats:["abroad", "travel"],
-    kw:"指定任務 海外 國外 旅遊"
-  },
-  {
-    card:"永豐大戶DAWHO（大戶等級）",
-    channel:"悠遊卡自動加值",
-    rate:"3%", rateNum:3, baseRate:0, bonusRate:3, cap:"月上限100元", capAmt:3333,
-    pointType:"刷卡金",
-    tags:["需完成大戶任務", "自動加值專屬"],
-    sweetSpot:"每月悠遊卡自動加值滿 NT$3,333 賺足 100 元",
-    note:"限完成指定任務者適用",
-    cats:["pay"],
-    kw:"悠遊卡 交通 加值 自動加值 捷運 公車"
-  },
-
-  // --- 永豐幣倍卡 ---
-  {
-    card:"永豐幣倍卡",
-    channel:"精選通路（海外實體／日本交通卡／訂房／旅行社）",
-    rate:"4%", rateNum:4, baseRate:2, bonusRate:2, cap:"刷頂 NT$20,000／月", capAmt:20000,
-    pointType:"刷卡金",
-    tags:["需外幣資產30萬", "日韓海外實體", "日本交通卡儲值"],
-    sweetSpot:"月刷 NT$20,000 拿滿加碼 400 元，超額享基本 2% 無上限",
-    note:"需資產達30萬，每月加碼上限400元(基本2%無上限)",
-    cats:["travel", "abroad"],
-    kw:"suica pasmo icoca 日本交通 訂房 booking agoda hotels expedia trip.com airbnb klook kkday 大國藥妝 sugi rakuten mercari amazon ebay 淘寶 gmarket 海外 西瓜卡"
-  },
-  {
-    card:"永豐幣倍卡",
-    channel:"機票（航空公司官網）",
-    rate:"5%", rateNum:5, baseRate:2, bonusRate:3, cap:"刷頂 NT$20,000／月", capAmt:20000,
-    pointType:"刷卡金",
-    tags:["需外幣資產30萬", "航空公司官網"],
-    sweetSpot:"月刷 NT$20,000 賺足加碼 600 元，超額享基本 2% 無上限",
-    note:"",
-    cats:["travel"],
-    kw:"機票 航空 中華航空 長榮 星宇 廉航 國泰"
-  },
-  {
-    card:"永豐幣倍卡",
-    channel:"國內／國外一般／保險",
-    rate:"1%／2%／1.2%", rateNum:2, baseRate:2, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"刷卡金",
-    tags:["無上限", "美金計價不宜刷日幣"],
-    sweetSpot:"國外一般 2%、保險 1.2% 無上限",
-    note:"美金幣別，不適合刷日幣交易",
-    cats:["pay"],
-    kw:"一般 保險 國外"
-  },
-
-  // --- 聯邦（萊爾富） ---
-  {
-    card:"聯邦（萊爾富）",
-    channel:"實體卡／HiPay感應",
-    rate:"5% 現折", rateNum:5, baseRate:5, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"現場現折",
-    tags:["現場現折", "萊爾富限定", "不含代收稅費"],
-    sweetSpot:"萊爾富門市感應刷卡現折 5% 無上限",
-    note:"聯邦信用卡／金融卡，不含繳稅費用",
-    cats:["super"],
-    kw:"萊爾富 超商 現折 hipay"
-  },
-  {
-    card:"聯邦（萊爾富）",
-    channel:"iPASS MONEY 綁定",
-    rate:"10% 現折", rateNum:10, baseRate:10, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"現場現折",
-    tags:["現場現折", "限iPASS MONEY條碼", "萊爾富限定"],
-    sweetSpot:"萊爾富門市掃碼現折 10% 無上限",
-    note:"需用iPASS MONEY APP付款碼，不含繳稅費用",
-    cats:["super"],
-    kw:"萊爾富 超商 ipass money 現折 一卡通"
-  },
-
-  // --- 王道銀行 O!Range簽帳金融卡 ---
-  {
-    card:"王道銀行 O!Range簽帳金融卡",
-    channel:"支付、外送（Apple Pay／LINE Pay／foodpanda／UberEats）",
-    rate:"3.8%", rateNum:3.8, baseRate:1, bonusRate:2.8, cap:"月上限500元", capAmt:17857,
-    pointType:"現金回饋",
-    tags:["⚠️簽帳金融卡扣帳戶", "需月底活存滿10萬", "外送行動支付"],
-    sweetSpot:"月刷 NT$17,857 拿滿加碼 500 元，超額享基本 1% 無上限",
-    note:"⚠️此為簽帳金融卡（扣帳戶餘額）非信用卡。需消費當月最終日活存餘額達10萬元(含)以上，未達成仍有基本1%。活動期間2026/7/1-12/31",
-    cats:["pay", "delivery"],
-    kw:"apple pay line pay foodpanda ubereats 外送 金融卡 簽帳金融卡 王道"
-  },
-  {
-    card:"王道銀行 O!Range簽帳金融卡",
-    channel:"指定百貨餐飲、購票（新光三越／SOGO／微風／台北101等）",
-    rate:"3.8%", rateNum:3.8, baseRate:1, bonusRate:2.8, cap:"月上限500元", capAmt:17857,
-    pointType:"現金回饋",
-    tags:["⚠️簽帳金融卡扣帳戶", "需月底活存滿10萬", "不適用行動支付", "百貨餐飲購票"],
-    sweetSpot:"月刷 NT$17,857 拿滿加碼 500 元，超額享基本 1% 無上限",
-    note:"⚠️簽帳金融卡。同上指定任務(活存達10萬)，不適用行動支付綁定交易。限MCC5311百貨及指定餐飲/售票通路",
-    cats:["dining", "stream"],
-    kw:"新光三越 遠東sogo 遠東百貨 太平洋百貨 夢時代 統一時代百貨 mitsui outlet park 微風 台北101 bellavita 京站 美麗華 台茂 大葉高島屋 中友 南紡 漢神 拓元 kktix ticket plus 寬宏 opentix 年代售票 udn售票網 金融卡 購票 百貨"
-  },
-  {
-    card:"王道銀行 O!Range簽帳金融卡",
-    channel:"Apple Pay綁定日本三大交通卡儲值（Suica／PASMO／ICOCA）",
-    rate:"最高6%（依卡別可達10%）", rateNum:6, baseRate:1, bonusRate:5, cap:"每人每月加碼上限200元", capAmt:4000,
-    pointType:"現金回饋",
-    tags:["⚠️簽帳金融卡扣帳戶", "單筆滿$1,000", "限Apple Pay儲值", "加碼月上限200元"],
-    sweetSpot:"單筆滿千，月刷 NT$4,000 賺足加碼 200 元",
-    note:"⚠️簽帳金融卡。10%=原卡回饋(一般卡1%)+加碼5%；CAMA CAFÉ卡原始回饋達5%可到10%。單筆滿千，好評延長至2026/9/30",
-    cats:["abroad"],
-    kw:"suica pasmo icoca 日本交通卡 apple pay 金融卡 西瓜卡"
-  },
-  {
-    card:"王道銀行 O!Range簽帳金融卡",
-    channel:"王道刷支付（Apple Pay／LINE Pay／街口／悠遊付等）",
-    rate:"5%", rateNum:5, baseRate:1, bonusRate:4, cap:"月上限500元", capAmt:12500,
-    pointType:"現金回饋",
-    tags:["⚠️簽帳金融卡扣帳戶", "單筆滿$500", "需每月登錄限量3千名"],
-    sweetSpot:"月刷 NT$12,500 賺滿加碼 500 元，超額享基本 1% 無上限",
-    note:"⚠️簽帳金融卡。基本1%＋加碼4%。單筆滿500元，需登錄，每月限額3,000名。活動期間2026/7/1-9/30",
-    cats:["pay"],
-    kw:"apple pay line pay 街口支付 悠遊付 全盈+pay ipass money icash pay 全支付 金融卡 行動支付"
-  },
-
-  // --- 聯邦綠卡 ---
-  {
-    card:"聯邦綠卡",
-    channel:"綠色消費（蔬食餐廳／電動車充電／共享交通／生機選品）",
-    rate:"6%", rateNum:6, baseRate:1, bonusRate:5, cap:"月合計上限300元", capAmt:5000,
-    pointType:"刷卡金",
-    tags:["需電子帳單", "綠色蔬食充電共享", "加碼月上限300元"],
-    sweetSpot:"月刷 NT$5,000 賺滿加碼 300 元，超額享基本 1% 無上限",
-    note:"需申辦電子化帳單。蔬食餐廳：仙桃素/鈺善閣/祥和蔬食/曙光居/毛蔬/小小樹食/陽明春天/寬心園/養心茶樓等；電動車充電：全國特急電/E-VALUE/EVOASIS/TESLA/Gogoro/eMoving；共享交通：iRent/GoShare/WeMo Scooter；生機選品：里仁/聖德科斯/棉花田/主婦聯盟/綠藤生機/鮮乳坊/茶籽堂/AESOP/10/10 HOPE等。活動期間2026/7/1-12/31",
-    cats:["life"],
-    kw:"仙桃素 鈺善閣 祥和蔬食 曙光居 毛蔬 小小樹食 陽明春天 寬心園 養心茶樓 熱浪島 原素食府 全國特急電 e-value evoasis tesla gogoro emoving irent goshare wemo scooter 里仁 聖德科斯 棉花田 主婦聯盟 綠藤生機 鮮乳坊 茶籽堂 直接跟農夫買 甘樂文創 o'right aesop 10/10 hope green safe 安永鮮物 野菜村 蔬食 素食 電動車 共享機車"
-  },
-  {
-    card:"聯邦綠卡",
-    channel:"生活代扣繳費（電信／水電瓦斯／路邊停車）",
-    rate:"1%", rateNum:1, baseRate:1, bonusRate:0, cap:"月上限100元", capAmt:10000,
-    pointType:"刷卡金",
-    tags:["代扣繳水電瓦斯電信", "月上限100元"],
-    sweetSpot:"月扣繳 NT$10,000 封頂",
-    note:"",
-    cats:["life"],
-    kw:"電信費用 水電瓦斯 路邊停車 代扣繳 水電 瓦斯 中華電信 遠傳 台灣大哥大"
-  },
-  {
-    card:"聯邦綠卡",
-    channel:"一卡通綠色大眾運輸／iPASS MONEY繳卡費",
-    rate:"1%", rateNum:1, baseRate:1, bonusRate:0, cap:"每人每月上限200點", capAmt:20000,
-    pointType:"LINE POINTS/一卡通點",
-    tags:["大眾運輸", "iPASS餘額繳卡費", "月上限200點"],
-    sweetSpot:"月繳 NT$20,000 封頂",
-    note:"需綁定聯邦綠卡並用iPASS MONEY帳戶餘額繳納信用卡費。活動期間2026/7/1-12/31，總回饋上限1,500萬點",
-    cats:["life"],
-    kw:"一卡通 ipass money 大眾運輸 捷運 公車 繳卡費"
-  },
-  {
-    card:"聯邦綠卡",
-    channel:"國內一般消費",
-    rate:"1%", rateNum:1, baseRate:1, bonusRate:0, cap:"無上限", capAmt:null,
-    pointType:"刷卡金",
-    tags:["一般消費", "無上限"],
-    sweetSpot:"國內一般消費 1% 無上限",
-    note:"",
-    cats:["pay"],
-    kw:"一般 國內"
+  {card:"台新Richart卡", channel:"【Chill刷限期方案至09/30】瘋聚會-歡聚微醺（詹記麻辣火鍋／海底撈／屋馬燒肉／CAFE ACME／Bar TCRC等）", rate:"10%", rateNum:10, cap:"詳細月上限請洽台新官網", capAmt:null, note:"活動期間2026/7/8-9/30，2026年版方案已全面改版，非原「四大超商3.8%」方案", cat:"dining", kw:"詹記 麻辣火鍋 萬客什鍋 海底撈 屋馬燒肉 茶六 新村站著吃 燒肉政宗 碳佐麻里 雞湯大叔 brun 不然 cafe acme antipodean 貳樓 樂子 fake sober draft land 臺虎精釀 abv bar tcrc bar home phowa moonrock 聚餐 酒吧"},
+  {card:"台新Richart卡", channel:"【Chill刷限期方案至09/30】瘋聚會-日常續命（50嵐／得正／五桐號／龜記／CAFE!N／%Arabica等）", rate:"10%", rateNum:10, cap:"詳細月上限請洽台新官網", capAmt:null, note:"活動期間2026/7/8-9/30", cat:"dining", kw:"50嵐 得正 五桐號 龜記 ug tea 叮哥茶飲 cafe!n arabica compose coffee 飲料 手搖飲"},
+  {card:"台新Richart卡", channel:"【Chill刷限期方案至09/30】瘋聚會-約會犒賞（饗饗INPARADISE／NAGOMI）", rate:"5%", rateNum:5, cap:"詳細月上限請洽台新官網", capAmt:null, note:"活動期間2026/7/8-9/30", cat:"dining", kw:"饗饗 inparadise nagomi 吃到飽 約會"},
+  {card:"台新Richart卡", channel:"【Chill刷限期方案至09/30】沉浸娛樂-應援追星（WEVERSE／五大唱片／FANME／NOL）", rate:"5%", rateNum:5, cap:"詳細月上限請洽台新官網", capAmt:null, note:"", cat:"stream", kw:"weverse k-monstar 微樂客 五大唱片 仙女樹 fanme nol 追星 周邊"},
+  {card:"台新Richart卡", channel:"【Chill刷限期方案至09/30】沉浸娛樂-熬夜追更（巴哈姆特／Netflix／Disney+／愛爾達等）", rate:"5%", rateNum:5, cap:"詳細月上限請洽台新官網", capAmt:null, note:"", cat:"stream", kw:"巴哈姆特 book walker animate 樂天kobo readmoo 讀墨 netflix disney 愛爾達 漫畫 動漫"},
+  {card:"台新Richart卡", channel:"【Chill刷限期方案至09/30】獨自升級-數位外掛（Apple直營／DJI／GoPro／蝦皮／淘寶／Uber Eats）", rate:"3.3%", rateNum:3.3, cap:"詳細月上限請洽台新官網", capAmt:null, note:"", cat:"online", kw:"apple 直營 studio a straight a dji insta360 gopro 蝦皮 淘寶 酷澎 uber eats"},
+  {card:"台新Richart卡", channel:"【Chill刷限期方案至09/30】獨自升級-營養補給（好好生醫／MYPROTEIN／UrMart等）", rate:"5%", rateNum:5, cap:"詳細月上限請洽台新官網", capAmt:null, note:"", cat:"life", kw:"好好生醫 popcare 好在乎 營養師輕食 vitabox myprotein urmart 優馬選品 保健食品"},
+  {card:"台新Richart卡", channel:"獨自升級-運動品牌（Adidas／Nike／HOKA／lululemon等）", rate:"5%", rateNum:5, cap:"詳細月上限請洽台新官網", capAmt:null, note:"", cat:"life", kw:"adidas new balance puma onitsuka tiger nike hoka salomon lululemon 運動品牌 球鞋"},
+  {card:"台新Richart卡", channel:"【常態方案】Pay著刷（台新Pay／台新Pay+）", rate:"3.8%", rateNum:3.8, cap:"詳細月上限請洽台新官網", capAmt:null, note:"台新Pay含全家/7-11/新光三越/康是美/IKEA/NET等；台新Pay+日韓交易再免1.5%手續費", cat:"pay", kw:"台新pay 全家 7-11 711 新光三越 richart mart 康是美 ikea net 台灣pay twqr 神腦 燦坤 全國電子 麥當勞 美廉社 大樹藥局 lawson biccamera gs25 daiso"},
+  {card:"台新Richart卡", channel:"【常態方案】LINE Pay／全盈+Pay 綁定支付", rate:"2.3%", rateNum:2.3, cap:"詳細月上限請洽台新官網", capAmt:null, note:"7/8起新增全盈+Pay", cat:"pay", kw:"line pay 全盈+pay 行動支付"},
+  {card:"台新Richart卡", channel:"【常態方案】天天刷（萬家福／大買家／唐吉訶德／中油／百貨等）", rate:"3.3%", rateNum:3.3, cap:"詳細月上限請洽台新官網", capAmt:null, note:"全家/7-11限台新Pay支付", cat:"super", kw:"萬家福 樂家康 大買家 唐吉訶德 lopia 智生活 台鐵 高鐵 台灣大車隊 linego yoxi uber 台灣bolt 中油 全國加油 寶雅 康是美 屈臣氏 大樹藥局 新光三越 遠東sogo 微風 台北101 誠品生活 global mall 漢神 ikea uniqlo gu zara net lululemon"},
+  {card:"台新Richart卡", channel:"【常態方案】好饗刷（全台餐飲／王品瘋Pay／Uber Eats／foodpanda／KTV）", rate:"3.3%", rateNum:3.3, cap:"詳細月上限請洽台新官網", capAmt:null, note:"", cat:"dining", kw:"全台餐飲 王品瘋pay uber eats foodpanda 拓元 kktix 年代售票 寬宏售票 opentix funnow 錢櫃 好樂迪 oncor sing go 享溫馨 ktv"},
+  {card:"台新Richart卡", channel:"【常態方案】數趣刷（蝦皮／momo／PChome／線上課程／AI服務）", rate:"3.3%", rateNum:3.3, cap:"詳細月上限請洽台新官網", capAmt:null, note:"", cat:"online", kw:"蝦皮 momo 酷澎 coupang pchome 東森 博客來 richart mart payeasy iherb shein farfetch olive young 知識衛星 amazing talker tutor abc hahow pressplay mycard 遊戲橘子 steam playstation nintendo netflix disney chatgpt notion canva perplexity claude ai服務"},
+  {card:"台新Richart卡", channel:"【常態方案】玩旅刷（海外消費／航空公司／訂房／旅行社）", rate:"3.3%", rateNum:3.3, cap:"詳細月上限請洽台新官網", capAmt:null, note:"海外消費含歐洲國家交易", cat:"travel", kw:"海外消費 中華航空 長榮航空 星宇航空 台灣虎航 國泰航空 華信航空 立榮航空 樂桃航空 阿聯酋航空 亞洲航空 酷航 捷星航空 新加坡航空 日本航空 越捷航空 uber grab suica icoca pasmo wowpass airsim klook kkday agoda booking.com trip.com airbnb hotels.com expedia 雄獅旅遊 易遊網 東南旅遊 可樂旅遊 長汎假期 五福旅遊 喜鴻假期 易飛旅遊 燦星旅遊 加利利旅行社 鳳凰國際旅行社 山富旅遊 行健旅遊"},
+  {card:"台新Richart卡", channel:"【常態方案】假日刷（節假日不限通路，含保費、LINE Pay、全盈+Pay）", rate:"2%", rateNum:2, cap:"無上限", capAmt:null, note:"", cat:"pay", kw:"假日 節假日 保費 一般"},
+  {card:"台新Richart卡", channel:"【常態方案】保費（免切換免領券）", rate:"1.3%", rateNum:1.3, cap:"無上限", capAmt:null, note:"", cat:"pay", kw:"保費 保險"},
+  {card:"星展 傳說對決卡", channel:"生活玩家精選通路", rate:"10%", rateNum:10, cap:"刷頂 NT$5,556／月", capAmt:5556, note:"基本1%＋加碼9%，加碼上限500點／月。LINE Pay已排除", cat:"stream", kw:"app store google play netflix disney disney+ spotify kkbox kktv catchplay litv 愛奇藝 蝦皮 淘寶 uber eats foodpanda 外送 麥當勞 肯德基 摩斯 必勝客 steam playstation nintendo garena gash mycard 巴哈姆特 youtube twitch tiktok 售票 拓元 寬宏 年代售票 kktix logitech nova 三創生活園區 animate 野獸國 popmart 鼎美玩具 khtoy toysnap 東海模型 潮玩動漫"},
+  {card:"星展 傳說對決卡", channel:"國外指定地區實體（日／韓／泰／新／美／歐，含Apple／Samsung Pay感應）", rate:"5%", rateNum:5, cap:"刷頂 NT$12,500／月", capAmt:12500, note:"基本1%＋加碼4%", cat:"abroad", kw:"日本 韓國 泰國 新加坡 美國 歐洲 海外 國外 apple pay 感應"},
+  {card:"星展 傳說對決卡", channel:"國內一般消費", rate:"1%", rateNum:1, cap:"無上限（含國內基本回饋0.2%）", capAmt:null, note:"", cat:"pay", kw:"一般 國內"},
+  {card:"中國信託 uniopen卡", channel:"國內一般消費＋icash Pay加碼", rate:"最高5%", rateNum:5, cap:"刷頂 NT$3,750／月（icash Pay加碼部分）", capAmt:3750, note:"國內一般消費1%無上限＋icash Pay單筆滿199元加碼4%(月上限150點)。活動期間2026/9/1-12/31", cat:"super", kw:"icash 7-11 711 超商 一般"},
+  {card:"中國信託 uniopen卡", channel:"統一企業集團消費＋踩點任務", rate:"最高7%", rateNum:7, cap:"刷頂 NT$12,500／月", capAmt:12500, note:"國內一般1%＋統一集團加碼2%(戶上限500點)＋踩點任務最高加碼4%(不同品牌單筆滿199元，戶上限500點)。適用：7-11、康是美、夢時代、統一時代百貨、DREAM PLAZA、UNIKCY、星巴克等。活動期間2026/9/1-12/31", cat:"super", kw:"統一 康是美 星巴克 夢時代 統一時代百貨 dream plaza unikcy 7-11 711 21plus 21風味館 being fit being spa"},
+  {card:"中國信託 uniopen卡", channel:"海外消費（一般＋實體加碼）", rate:"最高11%", rateNum:11, cap:"刷頂 NT$12,500／月", capAmt:12500, note:"國外一般2%無上限＋海外實體加碼1%無上限＋海外實體再加碼8%(戶上限500點)。需面對面交易(含Apple/Google/Samsung Pay)，網路交易不列入。活動期間2026/9/1-12/31", cat:"abroad", kw:"海外 國外 日本 韓國"},
+  {card:"玉山銀行 Unicard卡", channel:"Up選（百大特店最高4.5%／Apple直營／適合大額消費）", rate:"4.5%", rateNum:4.5, baseRate:1.0, bonusRate:3.5, cap:"加碼上限5,000點（可刷NT$142,880）", capAmt:142880, cap:"刷頂 NT$142,880／月", capAmt:142880, note:"需付費訂閱Up選方案", cat:"pay", kw:"up選 一般 apple apple直營 apple直營店 蘋果 蘋果直營 蘋果直營店 蘋果官網 直營 官網 iphone ipad mac macbook watch 台灣大哥大 手機 電腦 大額 高單價"},
+  {card:"玉山銀行 Unicard卡", channel:"任意選（百大特店自選8間，行動支付／百貨／餐飲／交通等）", rate:"3.5%", rateNum:3.5, cap:"刷頂 NT$40,000／月", capAmt:40000, note:"需自選8間涵蓋所需通路。通路涵蓋：玉山Wallet/LINE Pay/全支付/街口/悠遊付/全盈+PAY/iPASS MONEY/icash Pay/支付寶、momo/蝦皮/淘寶/酷澎、新光三越/遠東SOGO/遠東百貨/巨城/太平洋百貨/夢時代/統一時代百貨/微風/誠品生活等、萬家福/樂家康/屈臣氏/康是美/特力屋/HOLA/UNIQLO/NET、Uber Eats/foodpanda/王品瘋Pay、台灣中油/台塑石油PAY/55688/台鐵/高鐵/Uber、航空公司/KKday/Klook/Agoda/Booking.com/旅行社、Apple直營店/小米/全國電子/燦坤/拓元售票/威秀/國賓/新光影城/錢櫃KTV", cat:"pay", kw:"街口 line pay 悠遊付 全支付 全盈 行動支付 momo 蝦皮 淘寶 酷澎 新光三越 遠東sogo 太平洋百貨 夢時代 統一時代百貨 微風 誠品生活 萬家福 樂家康 屈臣氏 康是美 特力屋 hola uniqlo net uber eats foodpanda 王品瘋pay 中油 台塑石油pay 55688 台鐵 高鐵 uber 航空公司 kkday klook agoda booking apple直營店 小米 全國電子 燦坤 拓元售票 威秀 國賓 新光影城 錢櫃ktv"},
+  {card:"玉山銀行 Unicard卡", channel:"四大超商（任意選）", rate:"3.5%", rateNum:3.5, cap:"刷頂 NT$40,000／月", capAmt:40000, note:"", cat:"super", kw:"超商 7-11 711 全家 萊爾富 ok"},
+  {card:"玉山銀行 Unicard卡", channel:"簡單刷（一般）", rate:"3%", rateNum:3, cap:"刷頂 NT$50,000／月", capAmt:50000, note:"", cat:"pay", kw:"一般"},
+  {card:"國泰世華 CUBE卡", channel:"玩數位（AI工具／串流／網購／國際電商）", rate:"最高3.3%（Level2為3%）", rateNum:3, cap:"無上限（需達等級門檻）", capAmt:null, note:"需國泰帳戶自動扣繳或CUBE App繳費(Level2)；財富管理資產達300萬為Level3(3.3%)。含ChatGPT/Canva/Claude/Notion、Apple媒體服務/Netflix/Disney+/Spotify/YouTube Premium、蝦皮/momo/PChome24h/小樹購、酷澎/淘寶天貓", cat:"stream", kw:"chatgpt canva claude cursor duolingo gamma gemini notion perplexity speak apple媒體服務 google play disney+ netflix spotify youtube premium max 蝦皮 momo pchome24h 小樹購 酷澎 淘寶 天貓"},
+  {card:"國泰世華 CUBE卡", channel:"樂饗購（百貨購物／美食餐廳／外送平台／藥妝）", rate:"最高3.3%（Level2為3%）", rateNum:3, cap:"無上限（需達等級門檻）", capAmt:null, note:"同樂饗購等級門檻", cat:"dining", kw:"百貨 美食餐廳 外送平台 藥妝"},
+  {card:"國泰世華 CUBE卡", channel:"趣旅行（海外實體／航空公司／旅行社／旅遊平台）", rate:"最高3.3%（Level2為3%）", rateNum:3, cap:"無上限（需達等級門檻）", capAmt:null, note:"同上等級門檻", cat:"travel", kw:"海外實體 航空公司 旅行社 旅遊平台 klook 海外搭車"},
+  {card:"國泰世華 CUBE卡", channel:"集精選（電動車充電／停車）", rate:"2%", rateNum:2, cap:"無上限，無等級限制", capAmt:null, note:"充電：EVOASIS/TAIL/U-POWER/EVALUE/iCharging；停車：車麻吉Autopass/uTagGo", cat:"life", kw:"電動車 充電 evoasis tail u-power evalue icharging 車麻吉 autopass utaggo 停車"},
+  {card:"國泰世華 CUBE卡", channel:"慶生月（生日當月限定，指定餐廳／遊樂園／KTV／百貨／外送）", rate:"最高10%（購票平台3.5%）", rateNum:10, cap:"無上限，無等級限制", capAmt:null, note:"限持卡人生日當月", cat:"dining", kw:"生日 慶生 指定餐廳 遊樂園 ktv 百貨 外送"},
+  {card:"國泰世華 CUBE卡", channel:"全支付（全聯／大全聯）", rate:"2%", rateNum:2, cap:"無上限，無等級限制", capAmt:null, note:"2026年新增，電子支付綁定", cat:"super", kw:"全聯 大全聯 全支付"},
+  {card:"國泰世華 CUBE卡", channel:"台塑家（加油／健康生活／指定超商）", rate:"最高2%", rateNum:2, cap:"無上限，無等級限制", capAmt:null, note:"2026年新增。加油：台塑石油/台亞/福懋/統一速邁樂；健康生活：台塑生醫/長庚生技/台塑蔬菜/台塑購物網；超商：7-ELEVEN/全家/萊爾富(限實體)", cat:"life", kw:"台塑石油 台亞 福懋 統一速邁樂 加油 台塑生醫 長庚生技 台塑蔬菜 台塑購物網 7-11 全家 萊爾富"},
+  {card:"國泰世華 CUBE卡", channel:"童樂匯（嬰幼童品牌官網／五感體驗課，限定身份）", rate:"最高10%", rateNum:10, cap:"無上限", capAmt:null, note:"需符合銀行公告指定條件", cat:"life", kw:"嬰幼童 10mois mamas papas 古北町 little wonders seahorse originals 體驗課"},
+  {card:"匯豐銀行 匯鑽卡", channel:"指定通路（街口／PayPal／momo／Uber Eats／國外網購／訂房／影音遊戲等）", rate:"3%（達標6%）", rateNum:6, cap:"刷頂 NT$2,000／期", capAmt:2000, note:"資產達30萬且回饋達5,000點可雙倍兌換6%，兌換為NT$10,000刷卡金，一年最多兌換2份(2026.07.01-2027.06.30)。通路含：街口支付/PayPal、momo/Uber Eats、Amazon.com/ASOS/HERMES/SELFRIDGES/Shopbop/MYTHERESA/eBay/Farfetch/GMARKET/DOKODEMO、agoda/Booking.com、Disney+/Netflix/YouTube/Spotify/Nintendo", cat:"online", kw:"街口 paypal momo uber eats amazon asos hermes selfridges shopbop mytheresa ebay farfetch gmarket dokodemo agoda booking netflix disney spotify nintendo 訂房 外送"},
+  {card:"匯豐銀行 匯鑽卡", channel:"一般通路（百貨／線上購物／超市量販／便利超商等）", rate:"1%（達標2%）", rateNum:1, cap:"無上限", capAmt:null, note:"百貨：廣三SOGO/微風/台北101/誠品/Global Mall/漢神巨蛋等；線上購物：momo/PChome24h/生活市集/91APP/博客來等；超市量販：家樂福/大潤發/棉花田/聖德克斯/美廉社/屈臣氏；便利超商：7-ELEVEN/全家/萊爾富/OK；其他：台灣中油/台亞加油站/麥當勞/星巴克", cat:"super", kw:"廣三sogo 微風 台北101 誠品 global mall 漢神 momo pchome24h 生活市集 91app 博客來 家樂福 大潤發 棉花田 聖德克斯 jasons market place 美廉社 屈臣氏 7-11 711 全家 萊爾富 ok超商 台灣中油 台亞加油站 麥當勞 星巴克"},
+  {card:"匯豐銀行 匯鑽卡", channel:"國內一般／保險", rate:"1%", rateNum:1, cap:"無上限", capAmt:null, note:"", cat:"pay", kw:"一般 保險"},
+  {card:"聯邦 LINE Bank 聯名卡", channel:"指定網購／影音／遊戲／購票（momo／PChome／淘寶／蝦皮／酷澎／Netflix／Steam等）", rate:"最高4%", rateNum:4, cap:"歸戶每月上限300元（約NT$10,000消費）", capAmt:10000, note:"基本1%＋加碼3%。含momo購物網/PChome線上購物/淘寶/蝦皮/酷澎、Netflix/Disney+/CatchPlay/Spotify/LINE TV/KKTV/KKBOX、Steam/PlayStation/Nintendo/Blizzard/Garena/MyCard、tixCraft拓元/KKTIX", cat:"online", kw:"momo pchome 淘寶 蝦皮 酷澎 netflix disney+ catchplay spotify line tv kktv kkbox steam playstation nintendo blizzard garena mycard tixcraft 拓元 kktix"},
+  {card:"聯邦 LINE Bank 聯名卡", channel:"自動扣款禮加碼5%（首次申辦限定）", rate:"5%（限一次性活動）", rateNum:5, cap:"每次上限200元，歸戶限領3次", capAmt:4000, note:"首次申辦，於活動期間內核卡且180天內自動扣繳信用卡款成功。活動期間2026/8/1-2027/7/31", cat:"pay", kw:"首刷 自動扣繳 新戶禮"},
+  {card:"聯邦 LINE Bank 聯名卡", channel:"國內一般／保險（國外2.5%）", rate:"1%", rateNum:1, cap:"無上限", capAmt:null, note:"國外一般消費2.5%", cat:"pay", kw:"一般 保險"},
+  {card:"聯邦 吉鶴卡", channel:"日本一般消費（日幣，未含各項加碼）", rate:"2.5%", rateNum:2.5, cap:"無上限", capAmt:null, note:"活動期間2026/07/01-2026/12/31", cat:"abroad", kw:"日本 海外 國外"},
+  {card:"聯邦 吉鶴卡", channel:"日本行動支付＋11大熱門商店加碼（現有卡友）", rate:"最高8%", rateNum:8, cap:"約刷頂 NT$20,000／月（各項加碼分開計算）", capAmt:20000, note:"基礎2.5%＋行動支付(Google Pay/Apple Pay)加碼最高2.5%(需登錄，月上限800元)＋7-11/全家/LAWSON/東京迪士尼/大阪環球影城/永旺/三越/高島屋/BIC CAMERA/Yodobashi/唐吉訶德加碼3%(月上限600元)", cat:"abroad", kw:"日本 熱門商店 迪士尼 環球影城 永旺 三越 高島屋 bic camera yodobashi 唐吉訶德 google pay apple pay 行動支付 7-11 全家 lawson"},
+  {card:"聯邦 吉鶴卡", channel:"日本行動支付＋11大熱門商店加碼（新戶限定）", rate:"最高11%", rateNum:11, cap:"約刷頂 NT$20,000／月（各項加碼分開計算）", capAmt:20000, note:"同上再加新戶日本實體消費加碼3%(月上限600元)，僅限新申辦卡友", cat:"abroad", kw:"日本 新戶 熱門商店"},
+  {card:"聯邦 吉鶴卡", channel:"日本三大交通卡儲值（SUICA／ICOCA／PASMO）", rate:"1.5%", rateNum:1.5, cap:"每月登錄限量10,000名，逢15日開放登錄", capAmt:null, note:"當月消費須於當月完成登錄才算數，無法追溯尚未登錄之月份", cat:"abroad", kw:"suica icoca pasmo 交通卡 日本交通 儲值"},
+  {card:"聯邦 吉鶴卡", channel:"國內日系名店（大創／UNIQLO／GU／松本清／思夢樂／TSUTAYA等）", rate:"5%（新戶5.5%）", rateNum:5, cap:"約刷頂 NT$12,500／月", capAmt:12500, note:"一般1%(無上限)＋加碼4%(月上限500元)；新戶另有自扣加碼0.5%(核卡後3個月內上限300元)", cat:"japan", kw:"大創 daiso uniqlo gu 松本清 思夢樂 tsutaya 日藥本舖 三友藥妝 tomod's 札幌藥妝 tsutaya bookstore global work niko lowrys farm lakole studio clip repipi armario hare heather pageboy rageblue lepsim jeanasis standard products threeppy"},
+  {card:"聯邦 吉鶴卡", channel:"人氣日系餐廳現折（涮乃葉／一風堂／吉豚屋／YAYOI等，週一至週五）", rate:"最高現折10%", rateNum:10, cap:"依店家規定，需出示實體卡並全額支付", capAmt:null, note:"限週一至週五，部分店家限週一至週四；需全額以聯邦吉鶴卡支付", cat:"japan", kw:"涮乃葉 一風堂 吉豚屋 yayoi 彌生軒 壽司美登利 屯京拉麵 千葉火鍋 ramen nagi momo paradise 燒肉 定食8 勝博殿 欣葉 日本料理 涮之華"},
+  {card:"聯邦 吉鶴卡", channel:"國內一般消費", rate:"1%", rateNum:1, cap:"無上限", capAmt:null, note:"", cat:"pay", kw:"一般"},
+  {card:"聯邦 吉鶴卡", channel:"國外一般消費（非日本）", rate:"1%", rateNum:1, cap:"無上限", capAmt:null, note:"", cat:"abroad", kw:"海外 國外"},
+  {card:"富邦 J卡", channel:"日韓泰旅遊基本回饋（綁定自扣或電子帳單）", rate:"3%", rateNum:3, cap:"無上限", capAmt:null, note:"未綁定自扣/電子帳單僅0.5%；活動期間2026/4/1-12/31", cat:"abroad", kw:"日本 韓國 泰國 海外"},
+  {card:"富邦 J卡", channel:"日本三大交通卡加碼（最高10%）", rate:"最高10%", rateNum:10, cap:"每季上限200元／戶", capAmt:2857, note:"以Apple Pay綁定J卡刷付Suica/PASMO/ICOCA儲值，單筆滿NT$2,000。10%=基本3%+交通卡加碼7%。活動期間2026/4/1-9/30，每季限量30,000名", cat:"abroad", kw:"suica pasmo icoca 日本交通卡 apple pay"},
+  {card:"富邦 J卡", channel:"日韓泰當地實體加碼（最高6%）", rate:"最高6%", rateNum:6, cap:"每季上限1,000元／戶", capAmt:33333, note:"單筆滿千，6%=基本3%+當地實體加碼3%。需登錄，每季限量20,000名", cat:"abroad", kw:"日本 韓國 泰國 實體消費"},
+  {card:"富邦 J卡", channel:"亞洲精選（中國大陸／香港／澳門／新加坡／馬來西亞／越南）", rate:"等值5%（滿額贈券）", rateNum:5, cap:"實體消費累積滿NT$6,000贈NT$300即享券", capAmt:6000, note:"活動期間2026/4/1-9/30，當月消費可合併計算", cat:"abroad", kw:"中國大陸 香港 澳門 新加坡 馬來西亞 越南"},
+  {card:"富邦 J卡", channel:"國內／其他海外地區一般消費", rate:"1%", rateNum:1, cap:"無上限", capAmt:null, note:"", cat:"pay", kw:"一般 國內"},
+  {card:"富邦 J卡", channel:"保費（0.5%回饋或最高12期分期0利率）", rate:"0.5%", rateNum:0.5, cap:"無上限", capAmt:null, note:"二選一，活動期間2026/1/1-12/31", cat:"pay", kw:"保費 保險"},
+  {card:"富邦momo卡", channel:"momo通路消費（momo購物網／電視購物／型錄／mo店+）", rate:"最高3% mo幣", rateNum:3, cap:"歸戶每期帳單上限1,000 mo幣", capAmt:33333, note:"2026年10月-2027年1月結帳帳單升級為上限2,000 mo幣(約NT$66,666)", cat:"online", kw:"momo購物網 電視購物 型錄 mo店+ 跨境電商"},
+  {card:"富邦momo卡", channel:"momo館內精選品牌加碼（最高7%）", rate:"最高7%", rateNum:7, cap:"7%=權益3%+品牌加碼4%", capAmt:50000, note:"活動期間2026/7/1-9/30，品牌加碼4%為mo點，不計分期訂單，免登錄", cat:"online", kw:"momo館內精選品牌"},
+  {card:"富邦momo卡", channel:"一般消費", rate:"1%", rateNum:1, cap:"無上限", capAmt:null, note:"", cat:"pay", kw:"一般"},
+  {card:"富邦momo卡", channel:"海外消費", rate:"1%", rateNum:1, cap:"無上限", capAmt:null, note:"", cat:"abroad", kw:"海外 國外"},
+  {card:"富邦momo卡", channel:"保費（0.5%回饋或最高12期分期0利率）", rate:"0.5%", rateNum:0.5, cap:"無上限", capAmt:null, note:"二選一，核卡時設定", cat:"pay", kw:"保費 保險"},
+  {card:"聯邦 賴點卡", channel:"國內LINE Pay一般消費", rate:"2%", rateNum:2, cap:"無上限", capAmt:null, note:"基本1%＋LINE Pay加碼1%", cat:"pay", kw:"line pay 行動支付"},
+  {card:"聯邦 賴點卡", channel:"偶數日LINE Pay指定通路加碼（王品／三商／海底撈／星巴克／50嵐／屈臣氏／寶雅等）", rate:"最高6%", rateNum:6, cap:"每LINE Pay帳號月上限150點", capAmt:3000, note:"單筆滿100元，僅偶數日(2/4/6...)有效，消費請款名稱需出現「連加*」「連支*」字樣", cat:"dining", kw:"王品集團 三商集團 輕井澤集團 海底撈 築間 春水堂 壽司郎 爭鮮 八方雲集 麥當勞 肯德基 摩斯漢堡 漢堡王 星巴克 路易莎 cama 50嵐 得正 麻古茶坊 可不可 屈臣氏 寶雅 唐吉訶德 大樹 杏一 丁丁 佑全 躍獅 ikea hola 小北百貨 汪喵星球 東森寵物"},
+  {card:"聯邦 賴點卡", channel:"國外消費（含歐洲實體商店）", rate:"3%", rateNum:3, cap:"無上限", capAmt:null, note:"", cat:"abroad", kw:"海外 國外 歐洲"},
+  {card:"聯邦 賴點卡", channel:"指定IP商店／票券／影城加碼（CHIIKAWA／OPENTIX／拓元／威秀／秀泰）", rate:"最高6%", rateNum:6, cap:"每月歸戶上限200點", capAmt:4000, note:"活動期間2026/7/1-9/30", cat:"stream", kw:"chiikawa shop intaipei chiikawa days opentix 拓元 寬宏售票 年代線上售票 kktix 威秀 秀泰"},
+  {card:"玉山PI", channel:"全家／美廉社（Pi錢包）", rate:"5%", rateNum:5, cap:"刷頂 NT$8,750／月", capAmt:8750, note:"一般1%＋加碼4%，每月上限350點。活動至2026/08/31", cat:"super", kw:"全家 美廉社 超商 pi錢包"},
+  {card:"玉山PI", channel:"國外一般消費", rate:"2.5%", rateNum:2.5, cap:"無上限", capAmt:null, note:"", cat:"abroad", kw:"海外 國外"},
+  {card:"玉山PI", channel:"保險", rate:"1.2%", rateNum:1.2, cap:"無上限", capAmt:null, note:"", cat:"pay", kw:"保險"},
+  {card:"永豐大戶DAWHO（大戶等級）", channel:"國內一般消費", rate:"1%", rateNum:1, cap:"無上限", capAmt:null, note:"", cat:"pay", kw:"一般"},
+  {card:"永豐大戶DAWHO（大戶等級）", channel:"國外一般消費", rate:"2%", rateNum:2, cap:"無上限", capAmt:null, note:"", cat:"abroad", kw:"海外 國外"},
+  {card:"永豐大戶DAWHO（大戶等級）", channel:"綁定指定任務國內加碼", rate:"3.5%", rateNum:3.5, cap:"月上限400元", capAmt:16000, note:"國內1%＋加碼2.5%。指定任務＝①數位帳戶扣繳信用卡款②電子/行動帳單(取消實體帳單)", cat:"pay", kw:"指定任務 數位帳戶 電子帳單"},
+  {card:"永豐大戶DAWHO（大戶等級）", channel:"綁定指定任務國外加碼", rate:"4.5%", rateNum:4.5, cap:"月上限400元", capAmt:16000, note:"國外2%＋加碼2.5%", cat:"abroad", kw:"指定任務 海外"},
+  {card:"永豐大戶DAWHO（大戶等級）", channel:"悠遊卡自動加值", rate:"3%", rateNum:3, cap:"月上限100元", capAmt:3333, note:"限完成指定任務者適用", cat:"pay", kw:"悠遊卡 交通 加值"},
+  {card:"聯邦（萊爾富）", channel:"實體卡／HiPay感應", rate:"5% 現折", rateNum:5, cap:"無上限", capAmt:null, note:"聯邦信用卡／金融卡，不含繳稅費用", cat:"super", kw:"萊爾富 超商"},
+  {card:"聯邦（萊爾富）", channel:"iPASS MONEY 綁定", rate:"10% 現折", rateNum:10, cap:"無上限", capAmt:null, note:"需用iPASS MONEY APP付款碼，不含繳稅費用", cat:"super", kw:"萊爾富 超商 ipass money"},
+  {card:"王道銀行 O!Range簽帳金融卡", channel:"支付、外送（Apple Pay／LINE Pay／foodpanda／UberEats）", rate:"3.8%", rateNum:3.8, cap:"月上限500元", capAmt:17857, note:"⚠️此為簽帳金融卡（扣帳戶餘額）非信用卡。需消費當月最終日活存餘額達10萬元(含)以上，未達成仍有基本1%。活動期間2026/7/1-12/31", cat:"pay", kw:"apple pay line pay foodpanda ubereats 外送 金融卡"},
+  {card:"王道銀行 O!Range簽帳金融卡", channel:"指定百貨餐飲、購票（新光三越／SOGO／微風／台北101等）", rate:"3.8%", rateNum:3.8, cap:"月上限500元", capAmt:17857, note:"⚠️簽帳金融卡。同上指定任務(活存達10萬)，不適用行動支付綁定交易。限MCC5311百貨及指定餐飲/售票通路", cat:"dining", kw:"新光三越 遠東sogo 遠東百貨 太平洋百貨 夢時代 統一時代百貨 mitsui outlet park 微風 台北101 bellavita 京站 美麗華 台茂 大葉高島屋 中友 南紡 漢神 拓元 kktix ticket plus 寬宏 opentix 年代售票 udn售票網 金融卡"},
+  {card:"王道銀行 O!Range簽帳金融卡", channel:"Apple Pay綁定日本三大交通卡儲值（Suica／PASMO／ICOCA）", rate:"最高6%（依卡別可達10%）", rateNum:6, cap:"每人每月加碼上限200元", capAmt:4000, note:"⚠️簽帳金融卡。10%=原卡回饋(一般卡1%)+加碼5%；CAMA CAFÉ卡原始回饋達5%可到10%。單筆滿千，好評延長至2026/9/30", cat:"abroad", kw:"suica pasmo icoca 日本交通卡 apple pay 金融卡"},
+  {card:"王道銀行 O!Range簽帳金融卡", channel:"王道刷支付（Apple Pay／LINE Pay／街口／悠遊付等）", rate:"5%", rateNum:5, cap:"月上限500元", capAmt:12500, note:"⚠️簽帳金融卡。基本1%＋加碼4%。單筆滿500元，需登錄，每月限額3,000名。活動期間2026/7/1-9/30", cat:"pay", kw:"apple pay line pay 街口支付 悠遊付 全盈+pay ipass money icash pay 全支付 金融卡"},
+  {card:"聯邦綠卡", channel:"綠色消費（蔬食餐廳／電動車充電／共享交通／生機選品）", rate:"6%", rateNum:6, cap:"月合計上限300元", capAmt:5000, note:"需申辦電子化帳單。蔬食餐廳：仙桃素/鈺善閣/祥和蔬食/曙光居/毛蔬/小小樹食/陽明春天/寬心園/養心茶樓等；電動車充電：全國特急電/E-VALUE/EVOASIS/TESLA/Gogoro/eMoving；共享交通：iRent/GoShare/WeMo Scooter；生機選品：里仁/聖德科斯/棉花田/主婦聯盟/綠藤生機/鮮乳坊/茶籽堂/AESOP/10/10 HOPE等。活動期間2026/7/1-12/31", cat:"life", kw:"仙桃素 鈺善閣 祥和蔬食 曙光居 毛蔬 小小樹食 陽明春天 寬心園 養心茶樓 熱浪島 原素食府 全國特急電 e-value evoasis tesla gogoro emoving irent goshare wemo scooter 里仁 聖德科斯 棉花田 主婦聯盟 綠藤生機 鮮乳坊 茶籽堂 直接跟農夫買 甘樂文創 o'right aesop 10/10 hope green safe 安永鮮物 野菜村 蔬食 素食 電動車 共享機車"},
+  {card:"聯邦綠卡", channel:"生活代扣繳費（電信／水電瓦斯／路邊停車）", rate:"1%", rateNum:1, cap:"月上限100元", capAmt:10000, note:"", cat:"life", kw:"電信費用 水電瓦斯 路邊停車 代扣繳"},
+  {card:"聯邦綠卡", channel:"一卡通綠色大眾運輸／iPASS MONEY繳卡費", rate:"1%", rateNum:1, cap:"每人每月上限200點", capAmt:20000, note:"需綁定聯邦綠卡並用iPASS MONEY帳戶餘額繳納信用卡費。活動期間2026/7/1-12/31，總回饋上限1,500萬點", cat:"life", kw:"一卡通 ipass money 大眾運輸"},
+  {card:"聯邦綠卡", channel:"國內一般消費", rate:"1%", rateNum:1, cap:"無上限", capAmt:null, note:"", cat:"pay", kw:"一般"},
+  {
+    card: "玉山 U Bear卡",
+    channel: "指定數位訂閱平台（Netflix／ChatGPT／Gemini／Steam／Nintendo／PlayStation）",
+    rate: "10%",
+    rateNum: 10,
+    baseRate: 0,
+    bonusRate: 10,
+    cap: "每期上限100元（可刷NT$1,000）",
+    capAmt: 1000,
+    pointType: "現金折抵",
+    tags: ["影音串流", "AI訂閱", "遊戲娛樂", "每期上限100"],
+    sweetSpot: "最佳刷滿金額 NT$1,000，回饋NT$100（不列入一般消費）",
+    note: "指定平台含Netflix、ChatGPT、Gemini、Steam、Nintendo、PlayStation。每期上限100元直接折抵當期帳單。活動至2027/2/28",
+    cats: ["stream"],
+    kw: "玉山 u bear ubear netflix chatgpt gemini steam nintendo 任天堂 playstation ps psn 訂閱 串流 影音 ai"
+  },
+  {
+    card: "玉山 U Bear卡",
+    channel: "網購與行動支付（LINE Pay／街口／全支付／momo／蝦皮／淘寶／線上訂房／高鐵）",
+    rate: "3%",
+    rateNum: 3,
+    baseRate: 1.0,
+    bonusRate: 2.0,
+    cap: "加碼每期上限150元（可刷NT$7,500）",
+    capAmt: 7500,
+    pointType: "現金折抵",
+    tags: ["網購電商", "行動支付", "需帳單e化", "超額享1%無上限"],
+    sweetSpot: "最佳刷滿金額 NT$7,500，拿滿加碼NT$150，超額享1%無上限",
+    note: "含基本1%(帳單e化+帳戶自扣)+網購加碼2%(需綁e化帳單每期上限150元)。適用LINE Pay、街口、全支付(全聯繳費不適用)、momo、蝦皮、淘寶、訂房、高鐵。活動至2027/2/28",
+    cats: ["online", "pay"],
+    kw: "玉山 u bear ubear 網購 網路消費 momo 蝦皮 淘寶 line pay 街口 全支付 行動支付 訂房 高鐵 電商"
+  },
+  {
+    card: "玉山 U Bear卡",
+    channel: "新東陽門市（綁定 icash Pay）",
+    rate: "10%",
+    rateNum: 10,
+    baseRate: 0,
+    bonusRate: 10,
+    cap: "活動上限150點（可刷NT$1,500）",
+    capAmt: 1500,
+    pointType: "OPENPOINT",
+    tags: ["新東陽", "icash Pay", "活動至09/30"],
+    sweetSpot: "最佳刷滿金額 NT$1,500，拿滿150點OPENPOINT",
+    note: "綁定icash Pay於新東陽指定門市消費。每戶上限150點，活動總上限350,000點。活動期間2026/9/1-9/30",
+    cats: ["dining"],
+    kw: "玉山 u bear ubear 新東陽 icash pay openpoint 伴手禮"
+  },
+  {
+    card: "玉山 U Bear卡",
+    channel: "國內外一般消費",
+    rate: "1%",
+    rateNum: 1,
+    baseRate: 1.0,
+    bonusRate: 0,
+    cap: "回饋無上限",
+    capAmt: null,
+    pointType: "現金折抵",
+    tags: ["國內外一般", "無上限", "需e化自扣"],
+    sweetSpot: "當期帳單直接折抵，回饋無上限",
+    note: "需同時綁定帳單e化及玉山銀行臺幣帳戶自動扣繳（單一條件為0.5%）。數位訂閱不列入。活動至2027/2/28",
+    cats: ["general"],
+    kw: "玉山 u bear ubear 一般消費 國內 國外 現金回饋 折抵"
+  },
+  {
+    card: "富邦 Open Possible聯名卡",
+    channel: "台灣大哥大電信費（5G門號代扣／繳費）",
+    rate: "3.5%",
+    rateNum: 3.5,
+    baseRate: 1.0,
+    bonusRate: 2.5,
+    cap: "加碼每期上限NT$500（可刷NT$20,000）",
+    capAmt: 20000,
+    pointType: "現金折抵",
+    tags: ["台哥大5G", "需月刷滿5000", "超額享1%無上限"],
+    sweetSpot: "當月帳單新增滿NT$5,000始享加碼，加碼刷滿NT$20,000享最高回饋NT$700",
+    note: "限本人名下門號。需當月帳單Open Possible卡新增消費滿NT$5,000享加碼2.5%(每期上限500元)，超過享1%無上限。活動至2026/12/31",
+    cats: ["utility"],
+    kw: "富邦 open possible op卡 台灣大哥大 台哥大 5g 電信費 手機費 通話費 代扣繳"
+  },
+  {
+    card: "富邦 Open Possible聯名卡",
+    channel: "行車加油與共享交通（中油／台塑／全國／Gogoro電池資費／WeMo／iRent／GoShare）",
+    rate: "2%",
+    rateNum: 2.0,
+    baseRate: 1.0,
+    bonusRate: 1.0,
+    cap: "加碼每期上限NT$600（跨指定通路合併可刷NT$60,000）",
+    capAmt: 60000,
+    pointType: "現金折抵",
+    tags: ["不限加油站", "需月刷滿5000", "行車共享", "超額享1%無上限"],
+    sweetSpot: "當月帳單新增滿NT$5,000享加碼1%，加碼合併上限600元（可刷6萬）",
+    note: "不限加油站含自助加油(需MCC 5541/5542)。行車含Gogoro電池資費、USPACE停車、WeMo、iRENT、GoShare。當期新增滿5,000享加碼1%。活動至2026/12/31",
+    cats: ["travel", "general"],
+    kw: "富邦 open possible op卡 加油 中油 台塑 全國 自助加油 gogoro 電池 停車 uspace wemo irent goshare 租車"
+  },
+  {
+    card: "富邦 Open Possible聯名卡",
+    channel: "兩大超商實體門市（7-ELEVEN／全家便利商店）",
+    rate: "2%",
+    rateNum: 2.0,
+    baseRate: 1.0,
+    bonusRate: 1.0,
+    cap: "加碼每期上限NT$600（跨指定通路合併可刷NT$60,000）",
+    capAmt: 60000,
+    pointType: "現金折抵",
+    tags: ["7-11", "全家", "需月刷滿5000", "指定支付方式", "不含代收代售"],
+    sweetSpot: "當月帳單新增滿NT$5,000享加碼1%，加碼合併上限600元",
+    note: "限實體卡刷卡或綁定Line Pay/OPEN錢包/icash Pay/全家FamiPay/全盈+PAY/Apple Pay/Google Pay。不含代收代售與繳稅。活動至2026/12/31",
+    cats: ["cvs"],
+    kw: "富邦 open possible op卡 7-11 711 全家 統一超商 超商 便利商店 line pay open錢包 icash pay famipay 全盈"
+  },
+  {
+    card: "富邦 Open Possible聯名卡",
+    channel: "指定AI工具與影音娛樂（Perplexity／ChatGPT／Gemini／Copilot／Grok／Nintendo／PlayStation／Steam／Disney+）",
+    rate: "2%",
+    rateNum: 2.0,
+    baseRate: 1.0,
+    bonusRate: 1.0,
+    cap: "加碼每期上限NT$600（跨指定通路合併可刷NT$60,000）",
+    capAmt: 60000,
+    pointType: "現金折抵",
+    tags: ["五大AI工具", "遊戲訂閱", "需月刷滿5000", "超額享1%無上限"],
+    sweetSpot: "當月帳單新增滿NT$5,000享加碼1%，加碼合併上限600元",
+    note: "指定AI含Perplexity、ChatGPT、Gemini、Copilot、Grok。影音娛樂含Disney+、Nintendo、PlayStation、Steam等。當期新增滿5,000享加碼1%。活動至2026/12/31",
+    cats: ["stream", "online"],
+    kw: "富邦 open possible op卡 perplexity chatgpt gemini copilot grok ai 訂閱 disney+ nintendo playstation steam 遊戲"
+  },
+  {
+    card: "富邦 Open Possible聯名卡",
+    channel: "淘寶網／天貓（境外電商網購）",
+    rate: "2%",
+    rateNum: 2.0,
+    baseRate: 1.0,
+    bonusRate: 1.0,
+    cap: "加碼每期上限NT$600（跨指定通路合併可刷NT$60,000）",
+    capAmt: 60000,
+    pointType: "現金折抵",
+    tags: ["淘寶天貓", "需月刷滿5000", "超額享1%無上限"],
+    sweetSpot: "當月帳單新增滿NT$5,000享加碼1%，加碼合併上限600元",
+    note: "淘寶網/天貓網購消費。當期帳單新增滿5,000享加碼1%，合併上限600元，超過享1%無上限。活動至2026/12/31",
+    cats: ["online"],
+    kw: "富邦 open possible op卡 淘寶 淘寶網 天貓 taobao tmall 跨境 網購"
+  },
+  {
+    card: "富邦 Open Possible聯名卡",
+    channel: "國內外一般消費",
+    rate: "1%",
+    rateNum: 1.0,
+    baseRate: 1.0,
+    bonusRate: 0,
+    cap: "回饋無上限",
+    capAmt: null,
+    pointType: "現金折抵",
+    tags: ["國內外一般", "回饋無上限", "需富邦自扣"],
+    sweetSpot: "富邦帳戶自扣享1%無上限（未自扣享0.5%無上限）",
+    note: "本行帳戶自動扣繳富邦信用卡費享1%回饋無上限；無設定自扣享0.5%無上限。排除歐盟實體交易。活動至2026/12/31",
+    cats: ["general", "foreign"],
+    kw: "富邦 open possible op卡 一般消費 國內 國外 海外 現金回饋 折抵"
+  },
+  {
+    card: "第一銀行 iLEO信用卡",
+    channel: "LINE Pay／街口支付（單筆滿千享3%／新戶最高13%）",
+    rate: "3%",
+    rateNum: 3.0,
+    baseRate: 0.5,
+    bonusRate: 2.5,
+    cap: "指定加碼每期上限NT$500+滿千自扣加碼NT$200",
+    capAmt: 20000,
+    pointType: "現金折抵",
+    tags: ["LINE Pay", "街口支付", "單筆滿千享3%", "需自扣+e化", "新戶最高13%"],
+    sweetSpot: "單筆滿NT$1,000享3%，月刷NT$20,000拿滿加碼回饋；新戶前90天享13%（刷5千拿500）",
+    note: "基本0.5%+指定通路加碼1.5%(每期上限500)+一銀自扣且單筆滿千加碼1%(每期上限200)。新戶核卡90天內再加碼10%(上限500)。活動至2026/12/31",
+    cats: ["pay"],
+    kw: "第一銀行 一銀 ileo ileo卡 line pay 街口 街口支付 行動支付"
+  },
+  {
+    card: "第一銀行 iLEO信用卡",
+    channel: "三大電信費（中華電信／台灣大哥大／遠傳電信 代扣繳與繳費）",
+    rate: "2%",
+    rateNum: 2.0,
+    baseRate: 0.5,
+    bonusRate: 1.5,
+    cap: "指定加碼每期上限NT$500（可刷NT$33,333）",
+    capAmt: 33333,
+    pointType: "現金折抵",
+    tags: ["三大電信", "中華電信", "台灣大", "遠傳", "上限500元"],
+    sweetSpot: "每期可刷滿NT$33,333拿滿加碼NT$500，繳電信費少數享2%實質折抵",
+    note: "基本0.5%+指定通路(愛數位)加碼1.5%(每期上限500元)。含三大電信公司扣繳與繳費。活動至2026/12/31",
+    cats: ["utility"],
+    kw: "第一銀行 一銀 ileo ileo卡 電信費 中華電信 台灣大哥大 台哥大 遠傳 繳費 代扣 手機費 通話費"
+  },
+  {
+    card: "第一銀行 iLEO信用卡",
+    channel: "台灣Pay 掃碼支付（單筆滿千享3%／新戶最高13%）",
+    rate: "3%",
+    rateNum: 3.0,
+    baseRate: 0.5,
+    bonusRate: 2.5,
+    cap: "台灣Pay每期上限NT$100+滿千加碼NT$200",
+    capAmt: 6666,
+    pointType: "現金折抵",
+    tags: ["台灣Pay", "掃碼支付", "單筆滿千享3%", "需自扣+e化"],
+    sweetSpot: "台灣Pay掃碼單筆滿千享3%，月刷NT$6,666拿滿加碼回饋",
+    note: "基本0.5%+台灣Pay加碼1.5%(月上限100元)+一銀自扣單筆滿千加碼1%(期上限200元)。活動至2026/12/31",
+    cats: ["pay"],
+    kw: "第一銀行 一銀 ileo ileo卡 台灣pay twqr 掃碼支付"
+  },
+  {
+    card: "第一銀行 iLEO信用卡",
+    channel: "海外外幣實體消費（舊戶最高3%／新戶最高13%）",
+    rate: "3%",
+    rateNum: 3.0,
+    baseRate: 0.5,
+    bonusRate: 2.5,
+    cap: "海外加碼每期上限NT$500+實體加碼NT$200",
+    capAmt: 20000,
+    pointType: "現金折抵",
+    tags: ["海外消費", "海外實體3%", "新戶最高13%", "需自扣+e化"],
+    sweetSpot: "舊戶海外實體刷NT$20,000拿滿3%（NT$600）；新戶前90天刷2萬享最高13%（NT$2,600）",
+    note: "基本0.5%+指定海外加碼1.5%(每期上限500)+一銀自扣海外實體加碼1%(每期上限200)。新戶前90天再加碼10%(上限2,000)。排除歐盟實體。活動至2026/12/31",
+    cats: ["foreign", "travel"],
+    kw: "第一銀行 一銀 ileo ileo卡 海外 國外 日本 韓國 歐美 外幣 實體消費 旅遊"
+  },
+  {
+    card: "第一銀行 iLEO信用卡",
+    channel: "指定AI與數位串流（Netflix／ChatGPT／Gemini／Disney+／YouTube Premium）",
+    rate: "2%",
+    rateNum: 2.0,
+    baseRate: 0.5,
+    bonusRate: 1.5,
+    cap: "指定加碼每期上限NT$500（可刷NT$33,333）",
+    capAmt: 33333,
+    pointType: "現金折抵",
+    tags: ["指定串流", "AI訂閱", "常態2%", "登錄領券享7%"],
+    sweetSpot: "常態享2%（可刷NT$33,333）；每月指定日登錄領券享加碼5%最高7%（加碼上限200元可刷4,000）",
+    note: "基本0.5%+指定通路(愛數位)加碼1.5%(每期上限500元)。指定日登錄領券享加碼5%(限量3000名/月上限200元)。活動至2026/12/31",
+    cats: ["stream"],
+    kw: "第一銀行 一銀 ileo ileo卡 netflix chatgpt gemini disney+ youtube premium perplexity 訂閱 串流"
+  },
+  {
+    card: "第一銀行 iLEO信用卡",
+    channel: "國內外一般消費",
+    rate: "0.5%",
+    rateNum: 0.5,
+    baseRate: 0.5,
+    bonusRate: 0,
+    cap: "回饋無上限",
+    capAmt: null,
+    pointType: "現金折抵",
+    tags: ["一般消費", "無上限"],
+    sweetSpot: "現金回饋無上限，折抵次期帳單",
+    note: "一般消費享0.5%現金回饋無上限。活動至2026/12/31",
+    cats: ["general"],
+    kw: "第一銀行 一銀 ileo ileo卡 一般消費 現金回饋 折抵"
+  },
+  {
+    card: "永豐幣倍卡（日圓雙幣）",
+    channel: "日本實體消費與日幣網購（SUICA／PASMO／ICOCA加值／大國藥妝／Sugi／Rakuten／Mercari）",
+    rate: "6%",
+    rateNum: 6.0,
+    baseRate: 2.0,
+    bonusRate: 4.0,
+    cap: "加碼每期上限NT$800（跨精選通路合併可刷NT$20,000）",
+    capAmt: 20000,
+    pointType: "外幣回饋",
+    tags: ["日圓結付", "日本實體", "西瓜卡儲值", "資產滿10萬", "新申辦最高8%"],
+    sweetSpot: "達成大戶/資產滿10萬+自扣e化，月刷等值NT$20,000拿滿6%（超額享2%無上限）；新申辦Apple Pay再加碼2%達8%",
+    note: "需綁定永豐臺外幣自扣+e化帳單，且前月往來資產滿10萬或大戶等級。日幣結付直接扣日圓帳戶，基本2%無上限+精選加碼4%(上限800元)。活動至2026/12/31",
+    cats: ["abroad", "foreign", "travel"],
+    kw: "永豐 幣倍 幣倍卡 雙幣卡 日圓 日幣 jpy 日本 日本實體 suica 西瓜卡 pasmo icoca 交通卡 大國藥妝 sugi 杉藥局 rakuten 樂天 mercari"
+  },
+  {
+    card: "永豐幣倍卡（美元雙幣）",
+    channel: "美金消費與海外電商／訂房（Amazon／iHerb／eBay／Agoda／Booking／機票）",
+    rate: "6%",
+    rateNum: 6.0,
+    baseRate: 2.0,
+    bonusRate: 4.0,
+    cap: "加碼每期上限NT$800（跨精選通路合併可刷NT$20,000）",
+    capAmt: 20000,
+    pointType: "外幣回饋",
+    tags: ["美元結付", "海外電商", "全球訂房機票", "資產滿10萬", "新申辦最高8%"],
+    sweetSpot: "達成大戶/資產滿10萬+自扣e化，月刷等值NT$20,000拿滿6%（超額享2%無上限）；新申辦Apple Pay/Google Pay再加碼2%達8%",
+    note: "需綁定永豐臺外幣自扣+e化帳單，且前月往來資產滿10萬或大戶等級。美金結付直接扣美元帳戶，基本2%無上限+精選加碼4%(上限800元)。含Amazon、iHerb、eBay、國際航空訂房。活動至2026/12/31",
+    cats: ["foreign", "online", "travel"],
+    kw: "永豐 幣倍 幣倍卡 雙幣卡 美元 美金 usd amazon iherb ebay agoda booking trip airbnb 航空 機票 海外 美國"
+  },
+  {
+    card: "永豐幣倍卡（歐元雙幣）",
+    channel: "歐洲實體與歐元消費（歐盟實體商店／Selfridges／歐洲旅遊）",
+    rate: "6%",
+    rateNum: 6.0,
+    baseRate: 2.0,
+    bonusRate: 4.0,
+    cap: "加碼每期上限NT$800（跨精選通路合併可刷NT$20,000）",
+    capAmt: 20000,
+    pointType: "外幣回饋",
+    tags: ["歐元結付", "歐洲旅遊", "資產滿10萬", "新申辦最高8%"],
+    sweetSpot: "達成大戶/資產滿10萬+自扣e化，月刷等值NT$20,000拿滿6%（超額享2%無上限）",
+    note: "需綁定永豐臺外幣自扣+e化帳單，且前月往來資產滿10萬或大戶等級。歐元結付直接扣歐元帳戶，基本2%無上限+精選加碼4%(上限800元)。活動至2026/12/31",
+    cats: ["foreign", "travel", "abroad"],
+    kw: "永豐 幣倍 幣倍卡 雙幣卡 歐元 eur 歐洲 法國 德國 義大利 英國 selfridges 歐洲實體"
+  },
+  {
+    card: "永豐幣倍卡",
+    channel: "精選旅遊（航空公司／旅行社／Klook／KKday／松山機場停車）",
+    rate: "5%",
+    rateNum: 5.0,
+    baseRate: 1.0,
+    bonusRate: 4.0,
+    cap: "加碼每期上限NT$800（跨精選通路合併可刷NT$20,000）",
+    capAmt: 20000,
+    pointType: "現金折抵",
+    tags: ["航空機票", "旅行社", "Klook/KKday", "需資產滿10萬"],
+    sweetSpot: "達成大戶/資產滿10萬+自扣e化，月刷NT$20,000拿滿加碼NT$800",
+    note: "含國內外航空公司、旅行社、Booking、Agoda、Klook、KKday、松山機場停車。國內基本1%+精選加碼4%(上限800元)。活動至2026/12/31",
+    cats: ["travel"],
+    kw: "永豐 幣倍 幣倍卡 機票 航空公司 旅行社 klook kkday 訂房 旅遊 機場停車"
+  },
+  {
+    card: "永豐幣倍卡",
+    channel: "國內一般消費",
+    rate: "1%",
+    rateNum: 1.0,
+    baseRate: 1.0,
+    bonusRate: 0,
+    cap: "回饋無上限",
+    capAmt: null,
+    pointType: "現金折抵",
+    tags: ["國內一般", "無上限"],
+    sweetSpot: "國內消費享1%無上限，折抵次期帳單",
+    note: "國內一般消費享1%現金回饋無上限，不含保費代繳。活動至2026/12/31",
+    cats: ["general"],
+    kw: "永豐 幣倍 幣倍卡 一般消費 國內 現金回饋 折抵"
+  },
+  {
+    card: "星展 eco永續卡",
+    channel: "海外指定國家實體消費（日本／韓國／泰國／新加坡／美洲／歐洲實體商店）",
+    rate: "5%",
+    rateNum: 5.0,
+    baseRate: 1.0,
+    bonusRate: 4.0,
+    cap: "加碼每期上限600點（可刷NT$15,000）",
+    capAmt: 15000,
+    pointType: "現金積點",
+    tags: ["日韓泰星美", "含歐洲實體", "實體/ApplePay", "超額享1%無上限"],
+    sweetSpot: "當地實體外幣刷滿NT$15,000拿滿回饋NT$750（加碼600點），超額享1%無上限。少數歐盟實體有高回饋！",
+    note: "於日/韓/泰/新加坡/美洲/歐洲實體店外幣結帳(實體卡或Apple/Samsung Pay感應)。基本1%無上限+加碼4%(上限600點)，超額享1%無上限。活動至2026/12/31",
+    cats: ["abroad", "foreign", "travel"],
+    kw: "星展 eco 永續卡 eco卡 日本 韓國 泰國 新加坡 美洲 歐洲 歐盟 海外 國外 實體 旅遊 外幣 實體商店"
+  },
+  {
+    card: "星展 eco永續卡",
+    channel: "電動車綠能出行（Tesla特斯拉充電／Gogoro電池資費）",
+    rate: "10%",
+    rateNum: 10.0,
+    baseRate: 1.0,
+    bonusRate: 9.0,
+    cap: "加碼每期上限300點（可刷NT$3,333）",
+    capAmt: 3333,
+    pointType: "現金積點",
+    tags: ["Tesla充電", "Gogoro電池", "月刷3333封頂", "超額享1%無上限"],
+    sweetSpot: "月刷NT$3,333充電/換電資費拿滿10%回饋NT$333（加碼300點），超額享1%無上限",
+    note: "綁定Tesla官方APP、Gogoro-EC、Gogoro Network繳付全額充電換電資費。基本1%無上限+加碼9%(上限300點)。活動至2026/12/31",
+    cats: ["travel", "general"],
+    kw: "星展 eco 永續卡 eco卡 特斯拉 tesla 充電 gogoro gogoro network 電池 電池資費 綠色 換電 電動車"
+  },
+  {
+    card: "星展 eco永續卡",
+    channel: "國內外一般消費與保費（無腦刷／保費適用）",
+    rate: "1%",
+    rateNum: 1.0,
+    baseRate: 1.0,
+    bonusRate: 0,
+    cap: "回饋無上限",
+    capAmt: null,
+    pointType: "現金積點",
+    tags: ["國內外一般", "保費適用", "無上限", "無腦刷"],
+    sweetSpot: "一般消費與保費筆筆1%現金積點無上限，折抵帳單（1點=1元）",
+    note: "國內外一般消費、保費享1%現金積點無上限，街口綁定超商亦適用。折抵帳單每次以100點為單位。活動至2026/12/31",
+    cats: ["general", "foreign"],
+    kw: "星展 eco 永續卡 eco卡 一般消費 國內 國外 保費 街口 超商 現金積點 無腦"
   }
 ];
+
+// 主題切換邏輯
+const STORAGE_KEY_THEME = "cc_calc_theme_v2";
+let currentTheme = localStorage.getItem(STORAGE_KEY_THEME) || "light";
+
+function applyTheme(theme){
+  document.documentElement.setAttribute('data-theme', theme);
+  const icon = document.getElementById('themeIcon');
+  const text = document.getElementById('themeText');
+  const metaTheme = document.querySelector('meta[name="theme-color"]');
+  if(theme === 'dark'){
+    if(icon) icon.textContent = '🌙';
+    if(text) text.textContent = '深色';
+    if(metaTheme) metaTheme.setAttribute('content', '#0B0F14');
+  } else {
+    if(icon) icon.textContent = '☀️';
+    if(text) text.textContent = '淺色';
+    if(metaTheme) metaTheme.setAttribute('content', '#F8FAFC');
+  }
+}
+
+applyTheme(currentTheme);
+
+const themeToggleBtn = document.getElementById('themeToggleBtn');
+themeToggleBtn.addEventListener('click', () => {
+  currentTheme = currentTheme === 'light' ? 'dark' : 'light';
+  localStorage.setItem(STORAGE_KEY_THEME, currentTheme);
+  applyTheme(currentTheme);
+});
+
 
 // 分類清單（對齊 cats 陣列）
 const CATS = [
@@ -2275,15 +1838,41 @@ const ALL_CARDS = Array.from(new Set(DATA.map(d => d.card)));
 const POPULAR_CARDS = [
   "國泰世華 CUBE卡",
   "富邦 J卡",
-  "台新Richart卡（Chill刷）",
+  "台新Richart卡",
   "玉山銀行 Unicard卡",
+  "玉山 U Bear卡",
+  "星展 eco永續卡",
+  "第一銀行 iLEO信用卡",
+  "富邦 Open Possible聯名卡",
+  "永豐幣倍卡（日圓雙幣）",
+  "永豐 大戶DAWHO現金回饋信用卡",
   "聯邦 LINE Bank 聯名卡",
-  "聯邦 吉鶴卡",
-  "星展 傳說對決卡"
+  "聯邦 吉鶴卡"
 ];
 
 // 意圖定義表（解決同名衝突：如 Apple 直營 vs Apple Pay、台灣全家 vs 日本全家）
 const INTENT_MAP = {
+  "日圓": [
+    { label: "🇯🇵 永豐幣倍卡（日圓雙幣 6%）", q: "永豐幣倍卡 日圓", desc: "日本實體外幣直接扣日圓帳戶" },
+    { label: "🇯🇵 聯邦吉鶴卡（日幣最高4.5%）", q: "吉鶴卡", desc: "日幣實體感應／日幣結帳" },
+    { label: "🇯🇵 玉山熊本熊卡（最高8.5%）", q: "熊本熊", desc: "日本指定連鎖藥妝超市" }
+  ],
+  "美元": [
+    { label: "🇺🇸 永豐幣倍卡（美元雙幣 6%）", q: "永豐幣倍卡 美元", desc: "美金消費直接扣美元帳戶" },
+    { label: "🇺🇸 海外電商與美金訂房", q: "美元", desc: "Amazon / iHerb / eBay" }
+  ],
+  "ubear": [
+    { label: "🐻 玉山 U Bear卡（網購3%／串流10%）", q: "u bear", desc: "影音訂閱與行動支付" }
+  ],
+  "ileo": [
+    { label: "🦁 第一銀行 iLEO卡（行動支付3%／電信2%）", q: "iLEO", desc: "LINE Pay滿千享3%／電信2%" }
+  ],
+  "eco": [
+    { label: "🌱 星展 eco永續卡（歐美日韓實體5%／綠能10%）", q: "eco", desc: "含歐洲實體5%與Tesla/Gogoro" }
+  ],
+  "opp": [
+    { label: "📱 富邦 Open Possible聯名卡（台哥大5G 3.5%）", q: "open possible", desc: "5G電信費與超商加油" }
+  ],
   "全家": [
     { label: "🏪 台灣全家超商（玉山Pi/台新Pay等）", q: "台灣全家", desc: "台灣全家便利商店日常消費" },
     { label: "🇯🇵 日本全家 FamilyMart（吉鶴卡等）", q: "日本全家", desc: "日本旅遊當地門市消費" }
@@ -2470,6 +2059,8 @@ function updateWalletBarUI(){
     walletStatusText.innerHTML = `<span>皮夾模式：未啟用，顯示全部 <strong>${ALL_CARDS.length}</strong> 張卡</span>`;
   }
   walletBtnCount.textContent = `(${myCards.length}/${ALL_CARDS.length})`;
+  const headerTotalEl = document.getElementById('headerTotalCount');
+  if(headerTotalEl) headerTotalEl.textContent = ALL_CARDS.length;
 }
 
 walletToggleWrap.addEventListener('click', () => {
