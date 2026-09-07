@@ -2387,8 +2387,6 @@ function render(){
   updateWalletBarUI();
   const rawQ = searchInput.value.trim();
   updateIntentUI(rawQ);
-
-  const rawQ = searchInput.value.trim();
   const qTerms = rawQ.toLowerCase().split(/\s+/).filter(Boolean);
   const amount = parseFloat(amountInput.value);
   const hasAmount = !isNaN(amount) && amount > 0;
