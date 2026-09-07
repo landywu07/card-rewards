@@ -157,6 +157,54 @@
     color:var(--text);
   }
 
+  
+  /* 智慧意圖分流標籤 */
+  .intent-bar{
+    display:none;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:10px;
+    padding:8px 12px;
+    background:rgba(232,182,92,0.1);
+    border:1px solid rgba(232,182,92,0.3);
+    border-radius:8px;
+    font-size:12px;
+    animation:fadeIn .2s ease;
+  }
+  .intent-bar.show{
+    display:flex;
+  }
+  .intent-title{
+    color:var(--gold);
+    font-weight:600;
+    display:inline-flex;
+    align-items:center;
+    gap:4px;
+  }
+  .intent-pill{
+    background:var(--surface);
+    border:1px solid var(--border);
+    color:var(--text);
+    padding:3px 10px;
+    border-radius:14px;
+    font-size:11.5px;
+    cursor:pointer;
+    transition:all .15s;
+  }
+  .intent-pill:hover{
+    border-color:var(--gold);
+    color:var(--gold);
+    background:var(--surface-alt);
+  }
+  .intent-pill.active{
+    background:var(--gold);
+    color:#1A1204;
+    font-weight:600;
+    border-color:var(--gold);
+  }
+  @keyframes fadeIn{from{opacity:0;transform:translateY(-4px);}to{opacity:1;transform:translateY(0);}}
+
   /* 熱門快速標籤 */
   .hot-tags{
     display:flex;
@@ -838,6 +886,13 @@
         <button class="clear-btn" id="clearSearchBtn" title="清除搜尋">✕</button>
       </div>
 
+      
+      <!-- 智慧搜尋意圖引導 -->
+      <div class="intent-bar" id="intentBar">
+        <span class="intent-title">💡 快速鎖定：</span>
+        <div id="intentPills" style="display:flex; gap:6px; flex-wrap:wrap;"></div>
+      </div>
+
       <!-- 熱門搜尋標籤 -->
       <div class="hot-tags">
         <span class="hot-label">熱門：</span>
@@ -984,7 +1039,7 @@ const DATA = [
     sweetSpot:"月上限依台新官網公告",
     note:"",
     cats:["online", "delivery"],
-    kw:"apple 直營 studio a straight a dji insta360 gopro 蝦皮 淘寶 酷澎 uber eats 外送"
+    kw:"apple 直營 蘋果 官網 iphone ipad mac macbook watch studio a straight a dji insta360 gopro 蝦皮 淘寶 酷澎 uber eats 外送"
   },
   {
     card:"台新Richart卡（Chill刷）",
@@ -1017,7 +1072,7 @@ const DATA = [
     sweetSpot:"月上限依台新官網公告",
     note:"台新Pay含全家/7-11/新光三越/康是美/IKEA/NET等；台新Pay+日韓交易再免1.5%手續費",
     cats:["pay", "super"],
-    kw:"台新pay 全家 7-11 711 新光三越 richart mart 康是美 ikea net 台灣pay twqr 神腦 燦坤 全國電子 麥當勞 美廉社 大樹藥局 lawson biccamera gs25 daiso 超商"
+    kw:"台新pay 全家 台灣全家 7-11 台灣7-11 711 台灣超商 新光三越 richart mart 康是美 ikea net 台灣pay twqr 神腦 燦坤 全國電子 麥當勞 美廉社 大樹藥局 lawson biccamera gs25 daiso 超商"
   },
   {
     card:"台新Richart卡（Chill刷）",
@@ -1166,7 +1221,7 @@ const DATA = [
     sweetSpot:"icash Pay 刷滿 NT$3,750 拿滿加碼 150 點，超額享基本 1% 無上限",
     note:"國內一般消費1%無上限＋icash Pay單筆滿199元加碼4%(月上限150點)。活動期間2026/9/1-12/31",
     cats:["super", "pay"],
-    kw:"icash 7-11 711 超商 一般 icash pay 統一 超市"
+    kw:"icash 7-11 台灣7-11 711 台灣超商 超商 一般 icash pay 統一 超市"
   },
   {
     card:"中國信託 uniopen卡",
@@ -1201,7 +1256,7 @@ const DATA = [
     sweetSpot:"月消費可刷至 NT$142,880 封頂",
     note:"需付費訂閱Up選方案",
     cats:["pay", "online"],
-    kw:"up選 一般 apple 手機 電腦 大額 高單價 訂閱"
+    kw:"up選 一般 apple 蘋果 直營 官網 直營店 iphone ipad mac macbook 手機 電腦 大額 高單價 訂閱"
   },
   {
     card:"玉山銀行 Unicard卡",
@@ -1212,7 +1267,7 @@ const DATA = [
     sweetSpot:"月刷 NT$40,000 封頂，超額享 1% 無上限",
     note:"需自選8間涵蓋所需通路。通路涵蓋：玉山Wallet/LINE Pay/全支付/街口/悠遊付/全盈+PAY/iPASS MONEY/icash Pay/支付寶、momo/蝦皮/淘寶/酷澎、新光三越/遠東SOGO/遠東百貨/巨城/太平洋百貨/夢時代/統一時代百貨/微風/誠品生活等、萬家福/樂家康/屈臣氏/康是美/特力屋/HOLA/UNIQLO/NET、Uber Eats/foodpanda/王品瘋Pay、台灣中油/台塑石油PAY/55688/台鐵/高鐵/Uber、航空公司/KKday/Klook/Agoda/Booking.com/旅行社、Apple直營店/小米/全國電子/燦坤/拓元售票/威秀/國賓/新光影城/錢櫃KTV",
     cats:["pay", "delivery", "online", "super", "dining", "travel"],
-    kw:"街口 line pay 悠遊付 全支付 全盈 行動支付 momo 蝦皮 淘寶 酷澎 新光三越 遠東sogo 太平洋百貨 夢時代 統一時代百貨 微風 誠品生活 萬家福 樂家康 屈臣氏 康是美 特力屋 hola uniqlo net uber eats foodpanda 外送 王品瘋pay 中油 台塑石油pay 55688 台鐵 高鐵 uber 航空公司 kkday klook agoda booking apple直營店 小米 全國電子 燦坤 拓元售票 威秀 國賓 新光影城 錢櫃ktv"
+    kw:"街口 line pay 悠遊付 全支付 全盈 行動支付 momo 蝦皮 淘寶 酷澎 新光三越 遠東sogo 太平洋百貨 夢時代 統一時代百貨 微風 誠品生活 萬家福 樂家康 屈臣氏 康是美 特力屋 hola uniqlo net uber eats foodpanda 外送 王品瘋pay 中油 台塑石油pay 55688 台鐵 高鐵 uber 航空公司 kkday klook agoda booking apple直營店 蘋果直營店 蘋果官網 蘋果 iphone ipad mac 小米 全國電子 燦坤 拓元售票 威秀 國賓 新光影城 錢櫃ktv"
   },
   {
     card:"玉山銀行 Unicard卡",
@@ -1438,11 +1493,11 @@ const DATA = [
     channel:"日本行動支付＋11大熱門商店加碼（現有卡友）",
     rate:"最高8%", rateNum:8, baseRate:2.5, bonusRate:5.5, cap:"約刷頂 NT$20,000／月", capAmt:20000,
     pointType:"刷卡金",
-    tags:["需每月登錄", "日本實體感應", "11大熱門名店"],
+    tags:["🇯🇵 僅限日本境內門市", "需每月登錄", "日本實體Apple Pay感應"],
     sweetSpot:"月刷約 NT$20,000 拿滿加碼，超額享 2.5% 無上限",
     note:"基礎2.5%＋行動支付(Google Pay/Apple Pay)加碼最高2.5%(需登錄，月上限800元)＋7-11/全家/LAWSON/東京迪士尼/大阪環球影城/永旺/三越/高島屋/BIC CAMERA/Yodobashi/唐吉訶德加碼3%(月上限600元)",
     cats:["abroad", "pay"],
-    kw:"日本 熱門商店 迪士尼 環球影城 永旺 三越 高島屋 bic camera yodobashi 唐吉訶德 google pay apple pay 行動支付 7-11 全家 lawson 電器 藥妝"
+    kw:"日本 熱門商店 迪士尼 環球影城 永旺 三越 高島屋 bic camera yodobashi 唐吉訶德 google pay apple pay 行動支付 日本7-11 日本全家 日本超商 lawson 電器 藥妝"
   },
   {
     card:"聯邦 吉鶴卡",
@@ -1692,7 +1747,7 @@ const DATA = [
     sweetSpot:"月刷 NT$8,750 賺滿加碼 350 點，超額享 1% 無上限",
     note:"一般1%＋加碼4%，每月上限350點。活動至2026/08/31",
     cats:["super", "pay"],
-    kw:"全家 美廉社 超商 pi錢包 pi拍錢包 超市"
+    kw:"全家 台灣全家 美廉社 超商 台灣超商 pi錢包 pi拍錢包 超市"
   },
   {
     card:"玉山PI",
@@ -2188,6 +2243,106 @@ saveWalletBtn.addEventListener('click', () => {
   render();
 });
 
+
+// 意圖定義表（解決同名衝突：如 Apple 直營 vs Apple Pay）
+const INTENT_MAP = {
+  "全家": [
+    { label: "🏪 台灣全家超商（玉山Pi/台新Pay等）", q: "台灣全家", desc: "台灣全家便利商店日常消費" },
+    { label: "🇯🇵 日本全家 FamilyMart（吉鶴卡等）", q: "日本全家", desc: "日本旅遊當地門市消費" }
+  ],
+  "7-11": [
+    { label: "🏪 台灣 7-ELEVEN（icash/台新等）", q: "台灣7-11", desc: "台灣 7-11 便利商店消費" },
+    { label: "🇯🇵 日本 7-11（吉鶴卡/海外實體）", q: "日本7-11", desc: "日本旅遊當地門市消費" }
+  ],
+  "711": [
+    { label: "🏪 台灣 7-ELEVEN", q: "台灣7-11", desc: "台灣 7-11 便利商店消費" },
+    { label: "🇯🇵 日本 7-11", q: "日本7-11", desc: "日本旅遊當地門市消費" }
+  ],
+  apple: [
+    { label: "🍎 買 Apple 產品（直營／官網／門市）", q: "apple直營", desc: "購買 iPhone/Mac/iPad" },
+    { label: "📱 Apple Pay 行動支付感應", q: "apple pay", desc: "以 Apple Pay 綁定感應付款" }
+  ],
+  "蘋果": [
+    { label: "🍎 買 Apple 產品（直營／官網／門市）", q: "apple直營", desc: "購買 iPhone/Mac/iPad" },
+    { label: "📱 Apple Pay 行動支付感應", q: "apple pay", desc: "以 Apple Pay 綁定感應付款" }
+  ],
+  line: [
+    { label: "🟢 LINE Pay 綁定支付", q: "line pay", desc: "超商/餐廳行動支付" },
+    { label: "🏦 LINE Bank 聯名卡專屬", q: "line bank", desc: "指定網購/遊戲4%" }
+  ]
+};
+
+const intentBar = document.getElementById('intentBar');
+const intentPills = document.getElementById('intentPills');
+
+function updateIntentUI(rawQ){
+  const cleanQ = rawQ.toLowerCase().trim();
+  const intents = INTENT_MAP[cleanQ];
+  if(intents && intents.length > 0){
+    intentBar.classList.add('show');
+    intentPills.innerHTML = intents.map(item => `
+      <button class="intent-pill" onclick="selectIntent('${item.q}')" title="${item.desc}">${item.label}</button>
+    `).join('');
+  } else {
+    intentBar.classList.remove('show');
+    intentPills.innerHTML = '';
+  }
+}
+
+window.selectIntent = function(queryText){
+  searchInput.value = queryText;
+  clearSearchBtn.style.display = 'block';
+  render();
+};
+
+// 相關度評分（智慧加權：解決找店家卻跳出一堆行動支付的問題）
+function calculateRelevance(d, rawQ, qTerms){
+  if(qTerms.length === 0) return 0;
+  let score = 0;
+  const qLower = rawQ.toLowerCase().trim();
+  const channelLower = (d.channel || '').toLowerCase();
+  const cardLower = (d.card || '').toLowerCase();
+  const kwLower = (d.kw || '').toLowerCase();
+  const tagsLower = (d.tags || []).join(' ').toLowerCase();
+
+    // 特殊意圖：超商（全家 / 7-11）區分台灣本地 vs 日本旅遊
+  if((qLower === '全家' || qLower === '7-11' || qLower === '711') && !qLower.includes('日本')){
+    // 如果是台灣本地超商通路，大幅加分置頂
+    if(d.cats && d.cats.includes('super') && !d.cats.includes('abroad')){
+      score += 1200;
+    } else if(d.cats && d.cats.includes('abroad')){
+      score -= 500; // 降低海外超商優先級，避免在台灣超商結帳誤刷
+    }
+  } else if(qLower.includes('日本全家') || qLower.includes('日本7-11') || qLower.includes('日本超商')){
+    if(d.cats && d.cats.includes('abroad')){
+      score += 1500;
+    }
+  }
+  // 特殊意圖：當使用者搜尋 "apple" 或 "蘋果" 且未輸入 "pay"
+  if(qLower === 'apple' || qLower === '蘋果'){
+    // 如果是實體購買 Apple 產品的通路（直營店、官網、經銷商）
+    const isStore = channelLower.includes('apple直營') || kwLower.includes('apple 直營') || kwLower.includes('apple直營店') || channelLower.includes('apple直營店');
+    if(isStore){
+      score += 1500; // 超高權重，優先置頂！
+    } else if(channelLower.includes('apple pay') || tagsLower.includes('apple pay') || kwLower.includes('apple pay')){
+      score += 10; // 僅為支付方式，降低優先級
+    }
+  } else if(qLower.includes('apple pay')){
+    if(channelLower.includes('apple pay') || tagsLower.includes('apple pay') || kwLower.includes('apple pay')){
+      score += 800;
+    }
+  }
+
+  // 通用關鍵字權重
+  qTerms.forEach(t => {
+    if(channelLower.includes(t)) score += 80;
+    if(cardLower.includes(t)) score += 40;
+    if(tagsLower.includes(t)) score += 30;
+  });
+
+  return score;
+}
+
 // 輔助格式化
 function fmtMoney(n){
   return 'NT$' + Math.round(n).toLocaleString();
@@ -2230,6 +2385,8 @@ function getBadgeClass(tag){
 // 核心渲染邏輯
 function render(){
   updateWalletBarUI();
+  const rawQ = searchInput.value.trim();
+  updateIntentUI(rawQ);
 
   const rawQ = searchInput.value.trim();
   const qTerms = rawQ.toLowerCase().split(/\s+/).filter(Boolean);
@@ -2276,10 +2433,12 @@ function render(){
       const totalCashback = baseCashback + bonusCashback;
       const effectiveRate = (totalCashback / amount) * 100;
 
+      const relevance = calculateRelevance(d, rawQ, qTerms);
       return {
         ...d,
         index,
         isHeld,
+        relevance,
         hasAmount: true,
         baseRate,
         bonusRate,
@@ -2292,10 +2451,12 @@ function render(){
       };
     }
 
+    const relevance = calculateRelevance(d, rawQ, qTerms);
     return {
       ...d,
       index,
       isHeld,
+      relevance,
       hasAmount: false,
       cashback: null,
       effectiveRate: d.rateNum,
@@ -2304,7 +2465,13 @@ function render(){
   });
 
   // 排序：有金額依實質回饋金高到低，無金額依名目費率高到低
-  list.sort((a,b) => hasAmount ? (b.cashback - a.cashback) : (b.rateNum - a.rateNum));
+    // 智慧排序：當相關度差異顯著時優先按相關度排（如找 Apple 直營店 vs Apple Pay），其餘按回饋排序
+  list.sort((a, b) => {
+    if(rawQ && Math.abs((b.relevance || 0) - (a.relevance || 0)) >= 500){
+      return (b.relevance || 0) - (a.relevance || 0);
+    }
+    return hasAmount ? (b.cashback - a.cashback) : (b.rateNum - a.rateNum);
+  });
 
   const resultsEl = document.getElementById('results');
   const labelEl = document.getElementById('resultLabel');
