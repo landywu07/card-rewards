@@ -638,19 +638,42 @@
     box-shadow:0 2px 6px rgba(0,0,0,0.15);
   }
 
-  /* 卡片主體 */
+  /* 卡片主體：雙層自適應結構（頂部：卡名+回饋率；底部：通路+上限+標籤+備註） */
   .card-body{
-    display:grid;
-    grid-template-columns:36px 1fr auto;
-    gap:14px;
+    padding:16px 18px 15px;
+    display:flex;
+    flex-direction:column;
+    gap:9px;
+  }
+  .card-card.top-rank .card-body{
+    padding-top:24px;
+  }
+
+  /* 頂部資訊列：卡名、幣別、我的卡、名次 與 右側回饋數值 */
+  .card-header-bar{
+    display:flex;
     align-items:center;
-    padding:18px 18px 16px;
+    justify-content:space-between;
+    gap:10px;
+    border-bottom:1px solid rgba(255,255,255,0.06);
+    padding-bottom:10px;
+  }
+  [data-theme="light"] .card-header-bar{
+    border-bottom-color:rgba(15, 23, 42, 0.06);
+  }
+
+  .card-header-left{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    min-width:0;
+    flex:1;
   }
 
   /* 排名標章 */
   .rank-pill{
-    width:32px;
-    height:32px;
+    width:30px;
+    height:30px;
     border-radius:50%;
     background:var(--surface-alt);
     border:1px solid var(--border);
@@ -661,25 +684,26 @@
     font-weight:700;
     font-size:14px;
     color:var(--text-muted);
+    flex-shrink:0;
   }
   .card-card.top-rank .rank-pill{
     background:linear-gradient(135deg, #F59E0B, #D97706);
     border-color:var(--gold);
     color:#FFFFFF;
-    font-size:15px;
+    font-size:14px;
     box-shadow:0 2px 8px var(--gold-glow);
   }
 
   /* 卡片主資訊 */
-  .card-info{
+  .card-title-meta{
     min-width:0;
+    flex:1;
   }
   .card-title-row{
     display:flex;
     align-items:center;
     flex-wrap:wrap;
-    gap:8px;
-    margin-bottom:6px;
+    gap:6px;
   }
   .card-brand{
     font-size:16px;
@@ -689,7 +713,7 @@
     letter-spacing:.01em;
   }
 
-  /* 點數幣別標章 */
+  /* 點數幣別標籤 */
   .currency-badge{
     font-family:"IBM Plex Mono", monospace;
     font-size:10.5px;
@@ -733,17 +757,131 @@
     background:rgba(5, 150, 105, 0.12);
     color:var(--green);
     border:1px solid rgba(5, 150, 105, 0.35);
+    white-space:nowrap;
   }
 
-  .channel-title{
-    font-size:14px;
+  /* 右側費率／回饋金區塊 */
+  .rate-column{
+    text-align:right;
+    flex-shrink:0;
+  }
+  .cashback-num{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:24px;
+    font-weight:700;
+    color:var(--green);
+    letter-spacing:-0.03em;
+    line-height:1.1;
+    white-space:nowrap;
+  }
+  .cashback-num small{
+    font-size:13px;
+    font-weight:600;
+    margin-right:2px;
+  }
+  .card-card.top-rank .cashback-num{
+    color:var(--gold);
+    font-size:26px;
+  }
+
+  .rate-badge-row{
+    margin-top:3px;
+  }
+  .effective-tag{
+    display:inline-block;
+    font-family:"IBM Plex Mono", monospace;
+    font-size:12px;
+    font-weight:700;
+    color:var(--gold);
+    background:rgba(217, 119, 6, 0.12);
+    padding:1px 7px;
+    border-radius:4px;
+    white-space:nowrap;
+  }
+  .effective-tag.full{
+    color:var(--green);
+    background:rgba(5, 150, 105, 0.12);
+  }
+  .nominal-rate-text{
+    font-size:11px;
     font-weight:500;
-    color:var(--text);
-    line-height:1.55;
-    margin:0 0 8px;
+    color:var(--text-muted);
+    margin-top:2px;
+    white-space:nowrap;
+  }
+  .cap-tag-alert{
+    display:inline-block;
+    margin-top:3px;
+    font-size:10.5px;
+    font-weight:700;
+    color:var(--red);
+    background:rgba(220, 38, 38, 0.1);
+    border:1px solid rgba(220, 38, 38, 0.25);
+    border-radius:4px;
+    padding:1px 6px;
+    white-space:nowrap;
   }
 
-  /* 防踩雷微膠囊標籤 */
+  .nominal-alone{
+    font-family:"IBM Plex Mono", monospace;
+    font-size:22px;
+    font-weight:700;
+    color:var(--green);
+    line-height:1.15;
+    white-space:nowrap;
+  }
+  .card-card.top-rank .nominal-alone{
+    color:var(--gold);
+    font-size:24px;
+  }
+  .rate-subnote{
+    font-size:11px;
+    font-weight:600;
+    color:var(--text-muted);
+    line-height:1.2;
+    margin-top:2px;
+    text-align:right;
+  }
+  .cap-desc-header{
+    font-size:11px;
+    font-weight:600;
+    color:var(--text-dim);
+    margin-top:2px;
+    text-align:right;
+  }
+
+  /* 通路、上限規則、防踩雷標籤與備註（全寬展示，絕不縮減擠壓） */
+  .card-channel-block{
+    width:100%;
+  }
+  .channel-title{
+    font-size:14.5px;
+    font-weight:600;
+    color:var(--text);
+    line-height:1.5;
+    margin:0 0 6px;
+  }
+  .cap-bar-line{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    font-size:11.5px;
+    font-weight:600;
+    color:var(--gold);
+    background:rgba(217, 119, 6, 0.08);
+    border:1px solid rgba(217, 119, 6, 0.25);
+    padding:3px 9px;
+    border-radius:6px;
+    margin-bottom:7px;
+    line-height:1.4;
+  }
+  [data-theme="dark"] .cap-bar-line{
+    background:rgba(245, 158, 11, 0.1);
+    border-color:rgba(245, 158, 11, 0.3);
+    color:#FBBF24;
+  }
+
+  /* 防踩雷標籤 */
   .pills-group{
     display:flex;
     flex-wrap:wrap;
@@ -790,82 +928,6 @@
     color:var(--text-muted);
     line-height:1.65;
     margin:0;
-  }
-
-  /* 右側金額與費率 */
-  .rate-column{
-    text-align:right;
-    white-space:nowrap;
-    padding-left:8px;
-  }
-  .cashback-num{
-    font-family:"IBM Plex Mono", monospace;
-    font-size:24px;
-    font-weight:700;
-    color:var(--green);
-    letter-spacing:-0.03em;
-    line-height:1.1;
-  }
-  .cashback-num small{
-    font-size:13px;
-    font-weight:600;
-    margin-right:2px;
-  }
-  .card-card.top-rank .cashback-num{
-    color:var(--gold);
-    font-size:27px;
-  }
-
-  .rate-badge-row{
-    margin-top:4px;
-  }
-  .effective-tag{
-    display:inline-block;
-    font-family:"IBM Plex Mono", monospace;
-    font-size:12px;
-    font-weight:700;
-    color:var(--gold);
-    background:rgba(217, 119, 6, 0.12);
-    padding:1px 7px;
-    border-radius:4px;
-  }
-  .effective-tag.full{
-    color:var(--green);
-    background:rgba(5, 150, 105, 0.12);
-  }
-  .nominal-rate-text{
-    font-size:11px;
-    font-weight:500;
-    color:var(--text-muted);
-    margin-top:2px;
-  }
-  .cap-tag-alert{
-    display:inline-block;
-    margin-top:4px;
-    font-size:10.5px;
-    font-weight:700;
-    color:var(--red);
-    background:rgba(220, 38, 38, 0.1);
-    border:1px solid rgba(220, 38, 38, 0.25);
-    border-radius:4px;
-    padding:1px 6px;
-  }
-
-  .nominal-alone{
-    font-family:"IBM Plex Mono", monospace;
-    font-size:24px;
-    font-weight:700;
-    color:var(--green);
-    line-height:1.1;
-  }
-  .card-card.top-rank .nominal-alone{
-    color:var(--gold);
-    font-size:27px;
-  }
-  .cap-desc{
-    font-size:11.5px;
-    color:var(--text-dim);
-    margin-top:3px;
   }
 
   /* 展開式計算明細面板 */
@@ -1182,17 +1244,25 @@
   }
 
   @media (max-width:600px){
-    h1{font-size:27px;}
-    .wrap{padding:20px 14px 60px;}
-    .control-panel{padding:16px 14px;}
+    h1{font-size:25px;}
+    .wrap{padding:16px 12px 60px;}
+    .control-panel{padding:14px 12px;}
     .wallet-card-grid{grid-template-columns:1fr;}
-    .card-body{grid-template-columns:28px 1fr auto; padding:15px 14px; gap:10px;}
+    .card-body{padding:13px 12px 12px; gap:7px;}
+    .card-card.top-rank .card-body{padding-top:26px;}
+    .card-header-bar{gap:8px; padding-bottom:8px;}
+    .card-header-left{gap:8px;}
+    .rank-pill{width:26px; height:26px; font-size:13px; flex-shrink:0;}
+    .card-brand{font-size:15px;}
     .cashback-num{font-size:20px;}
     .card-card.top-rank .cashback-num{font-size:22px;}
-    .nominal-alone{font-size:20px;}
-    .card-card.top-rank .nominal-alone{font-size:22px;}
+    .nominal-alone{font-size:19px;}
+    .card-card.top-rank .nominal-alone{font-size:21px;}
     .amount-input-row{flex-direction:column; align-items:stretch;}
     .amount-label{margin-bottom:2px;}
+    .channel-title{font-size:13.5px; line-height:1.45;}
+    .card-note{font-size:11.5px; line-height:1.55;}
+    .cap-bar-line{font-size:11px; padding:2px 7px;}
   }
 </style>
 </head>
@@ -2255,6 +2325,16 @@ function calculateRelevance(d, rawQ, qTerms){
 }
 
 // 核心渲染
+
+function formatNominalRate(rateStr) {
+  if (!rateStr) return '';
+  const m = rateStr.match(/^([^（(]+)[（(]([^）)]+)[）)]$/);
+  if (m) {
+    return `${m[1]} <div class="rate-subnote">(${m[2]})</div>`;
+  }
+  return rateStr;
+}
+
 function render(){
   updateWalletBarUI();
   const rawQ = searchInput.value.trim();
@@ -2398,9 +2478,10 @@ function render(){
         ${d.isCapped ? `<span class="cap-tag-alert">加碼已滿額 (超額享${d.baseRate}%)</span>` : ''}
       `;
     } else {
+      const isUnlimited = (d.cap && (d.cap.includes('無上限') || d.cap.includes('回饋無上限')));
       rateBlockHtml = `
-        <div class="nominal-alone">${d.rate}</div>
-        <div class="cap-desc">${d.cap}</div>
+        <div class="nominal-alone">${formatNominalRate(d.rate)}</div>
+        <div class="cap-desc-header">${isUnlimited ? '回饋無上限' : '加碼有上限'}</div>
       `;
     }
 
@@ -2461,19 +2542,28 @@ function render(){
       <div class="card-card ${isTop ? 'top-rank' : ''}">
         ${isTop ? `<div class="champion-ribbon"><span>★</span> 最佳首選</div>` : ''}
         <div class="card-body">
-          <div class="rank-pill">${i + 1}</div>
-          <div class="card-info">
-            <div class="card-title-row">
-              <span class="card-brand">${cardTitle}</span>
-              ${d.pointType ? `<span class="currency-badge ${getCurrencyBadgeClass(d.pointType)}">${d.pointType}</span>` : ''}
-              ${d.isHeld ? `<span class="held-badge">✓ 我的卡</span>` : ''}
+          <div class="card-header-bar">
+            <div class="card-header-left">
+              <div class="rank-pill">${i + 1}</div>
+              <div class="card-title-meta">
+                <div class="card-title-row">
+                  <span class="card-brand">${cardTitle}</span>
+                  ${d.pointType ? `<span class="currency-badge ${getCurrencyBadgeClass(d.pointType)}">${d.pointType}</span>` : ''}
+                  ${d.isHeld ? `<span class="held-badge">✓ 我的卡</span>` : ''}
+                </div>
+              </div>
             </div>
+            <div class="rate-column">
+              ${rateBlockHtml}
+            </div>
+          </div>
+          <div class="card-channel-block">
             <p class="channel-title">${channelTitle}</p>
+            ${(!hasAmount && d.cap && !d.cap.includes('無上限') && !d.cap.includes('回饋無上限')) ? `
+              <div class="cap-bar-line"><span>⚡</span><span>上限：${d.cap}</span></div>
+            ` : ''}
             ${badgesHtml}
             ${d.note ? `<p class="card-note">${noteContent}</p>` : ''}
-          </div>
-          <div class="rate-column">
-            ${rateBlockHtml}
           </div>
         </div>
 
